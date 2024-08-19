@@ -1,0 +1,6 @@
+(deflayer arrows
+     _    esc  tab  _    S--  _    pgup home up   end  _
+     _    @met @alt @ctl @sft _    pgdn left down rght @bwd _
+     _    _    _    _    _    _    bspc del  _    _    @alg _
+     _    _    caps            _              lrld _    lrnx
+)
