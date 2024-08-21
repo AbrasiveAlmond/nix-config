@@ -1,7 +1,7 @@
 {
   description = "Template based nixconfig from nix-starter-config";
   # test build with > nixos-rebuild dry-build --flake .#minifridge
-
+  # home-manager switch --flake .#username@hostname
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -26,7 +26,7 @@
     self,
     nixpkgs,
     home-manager,
-    systems
+    systems,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -41,13 +41,6 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
-    pkgsFor = lib.genAttrs (import systems) (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-    );
 
   in {
     # Your custom packages
@@ -62,10 +55,10 @@
     overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
+    # nixosModules = import ./modules/nixos;
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    # homeManagerModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -80,13 +73,13 @@
       };
 
       # Theoretical server
-      immitchy = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./hosts/immitchy/
-        ];
-      };
+      # immitchy = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {inherit inputs outputs;};
+      #   modules = [
+      #     # > Our main nixos configuration file <
+      #     ./hosts/immitchy/
+      #   ];
+      # };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -94,7 +87,7 @@
     homeConfigurations = {
       # Personal Desktop
       "quinnieboi@minifridge" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
@@ -102,14 +95,14 @@
         ];
       };
 
-      # 2010/11 MacBook Pro
-      "quinnieboi@rolling-slab" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./home/rolling-slab/home.nix
-        ];
-      };
+      # # 2010/11 MacBook Pro
+      # "quinnieboi@rolling-slab" = home-manager.lib.homeManagerConfiguration {
+      #   pkgs = pkgsFor.x86_64-linux;
+      #   extraSpecialArgs = {inherit inputs outputs;};
+      #   modules = [
+      #     ./home/rolling-slab/home.nix
+      #   ];
+      # };
     };
   };
 }

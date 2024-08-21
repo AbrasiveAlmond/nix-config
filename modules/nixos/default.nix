@@ -3,9 +3,9 @@
 {pkgs, ...}: {
   # List your module files here
   # my-module = import ./my-module.nix;
-  imports = [
-    ./drivers.nix
-  ];
+  # imports = [
+  #   ./drivers.nix
+  # ];
 
   services.xserver.excludePackages = [ pkgs.xterm ];
 }

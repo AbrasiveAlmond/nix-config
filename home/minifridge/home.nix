@@ -8,11 +8,12 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    outputs.homeManagerModules
+    # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
-
-    ./apps
+    ../apps
+    ../kanata-service/default.nix
+    # ./apps
   ];
 
   # accessed via home-manager modules

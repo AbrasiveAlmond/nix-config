@@ -12,23 +12,26 @@
   tap-time 200
   hold-time 150
 
-  ;;left-hand-keys (
-  ;;  q w f p b
-  ;;  a r s t g
-  ;;  z x c d v
-  ;;)
-;;
-  ;;right-hand-keys (
-  ;;  j l u y ;
-  ;;  m n e i o
-  ;;  k h , . /
-  ;;)
+  ;; keys that trigger an early tap
+  left-hand-keys (
+    q w f p b
+  ;;a r s t g
+    z x c d v
+    spc bspc tab esc mlft mrgt
+  )
 
-  left-hand-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
-	right-hand-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
+  right-hand-keys (
+    j l y ;
+  ;;m n e i o
+    k , . /       ;; mouse buttons
+    spc bspc tab esc mlft mrgt 
+  )
+t
+  ;;left-hand-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
+	;;right-hand-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
 )
 
-(deffakekeys
+(defsfakekeys
   to-base (layer-switch colemak)
 )
 
