@@ -11,15 +11,13 @@ in {
   config = mkIf cfg.enable {
     systemd.user.services.kanata = {
       Unit.Description = "Kanata Daemon";
-      Install.WantedBy = [ "graphical.target" ];
+      Install.WantedBy = [ "gnome-session-manager.target" ];
       Service = {
         Type = "exec";
         ExecStartPre="/run/current-system/sw/bin/modprobe uinput"; # May not be necessary
-        ExecStart = (pkgs.kanata) + "/bin/kanata --nodelay -c ${./colemak/colemak.kbd} -c ${./qwerty/qwerty.kbd}";
+        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${./colemak/colemak.kbd} -c ${./qwerty/qwerty.kbd}";
         Restart = "no";
       };
-      
     };
-
   };
 }

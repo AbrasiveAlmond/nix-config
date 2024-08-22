@@ -52,7 +52,7 @@
 
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays
-    overlays = import ./overl4.05ays {inherit inputs;};
+    overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
     # nixosModules = import ./modules/nixos;
@@ -72,14 +72,14 @@
         ];
       };
 
-      # Theoretical server
-      # immitchy = nixpkgs.lib.nixosSystem {
-      #   specialArgs = {inherit inputs outputs;};
-      #   modules = [
-      #     # > Our main nixos configuration file <
-      #     ./hosts/immitchy/
-      #   ];
-      # };
+      # 2010/11 MacBook Pro
+      rolling-slab = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/rolling-slab/configuration.nix
+        ];
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -95,14 +95,14 @@
         ];
       };
 
-      # # 2010/11 MacBook Pro
-      # "quinnieboi@rolling-slab" = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = pkgsFor.x86_64-linux;
-      #   extraSpecialArgs = {inherit inputs outputs;};
-      #   modules = [
-      #     ./home/rolling-slab/home.nix
-      #   ];
-      # };
+      # 2010/11 MacBook Pro
+      "quinnieboi@rolling-slab" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home/rolling-slab/home.nix
+        ];
+      };
     };
   };
 }

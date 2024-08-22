@@ -11,7 +11,7 @@
     # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
-    ../apps
+    # ../apps
     ../kanata-service/default.nix
     ../gnome/extensions.nix
     ../apps/tmux.nix
@@ -50,7 +50,6 @@
       switcheroo    # Image converter
       hydrapaper    # Gnome utility for multi-screen wlpaper
       eyedropper    # Colour picker
-      apostrophe    # Markdown Editor
       gnome.devhelp # Local Docs browser
 
       # Social
