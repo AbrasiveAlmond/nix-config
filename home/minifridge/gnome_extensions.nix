@@ -5,9 +5,8 @@ in
 {
   home.packages = with pkgs.gnomeExtensions; [
     vertical-workspaces    # Nicer workspaces overview
-    # pano                   # Clipboard Manager
+    pano                 # Clipboard Manager
     reboottouefi           # Adds uefi boot option
-    alphabetical-app-grid  # How is it ordered if not alphabetically??
     #dim-background-windows # Customisable saturation and brightness
     happy-appy-hotkey      # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
@@ -37,14 +36,12 @@ in
         "blur-my-shell@aunetx"
         "happy-appy-hotkey@jqno.nl"
         #"ds4battery@slie.ru"
-        "AlphabeticalAppGrid@stuarthayhurst"
-        # "dim-background-windows@stephane-13.github.com"
         "quick-settings-tweaks@qwreey"
         "caffeine@patapon.info"
         "middleclickclose@paolo.tranquilli.gmail.com"
         "tiling-assistant@leleat-on-github"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "display-brightness-ddcutil@themightydeity.github.com"
+        # "display-brightness-ddcutil@themightydeity.github.com"
       ];
     };
   };

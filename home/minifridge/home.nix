@@ -13,7 +13,7 @@
     # inputs.nix-colors.homeManagerModules.default
     # ../apps
     ../kanata-service/default.nix
-    ../gnome/extensions.nix
+    ./gnome_extensions.nix
     ../apps/tmux.nix
     # ./apps
   ];
