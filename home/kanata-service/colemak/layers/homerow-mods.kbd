@@ -26,12 +26,12 @@
     k , . /       ;; mouse buttons
     spc bspc tab esc mlft mrgt 
   )
-t
+
   ;;left-hand-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
 	;;right-hand-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
 )
 
-(defsfakekeys
+(deffakekeys
   to-base (layer-switch colemak)
 )
 

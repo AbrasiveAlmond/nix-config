@@ -1,7 +1,7 @@
 { lib, config, ...}: 
-let cfg = config.gnomeDE; in {
+let cfg = config.gnome; in {
   options = {
-    gnomeDE.enable = lib.mkEnableOption "Enable Module";
+    gnome.enable = lib.mkEnableOption "Enable Module";
   };
   
   config = lib.mkIf cfg.enable {

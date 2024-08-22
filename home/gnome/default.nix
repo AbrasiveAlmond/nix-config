@@ -1,6 +1,7 @@
 {
   imports = [
     ../apps/gnome.nix
+    ./extensions.nix
   ];
 
   apps = {

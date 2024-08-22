@@ -1,7 +1,7 @@
 {lib, pkgs, config, ... }:
 with lib;                      
 let
-  cfg = config.gnome.apss.excludes;
+  cfg = config.gnome.apps.excludes;
 in {
   options.gnome.apps.excludes = {
     enable = mkEnableOption "Exclude useless apps";

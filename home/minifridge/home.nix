@@ -13,6 +13,8 @@
     # inputs.nix-colors.homeManagerModules.default
     ../apps
     ../kanata-service/default.nix
+    ../gnome/extensions.nix
+    ../apps/tmux.nix
     # ./apps
   ];
 
@@ -21,15 +23,15 @@
 
   nixpkgs = {
     # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+    # overlays = [
+    #   # Add overlays your own flake exports (from overlays and pkgs dir):
+    #   outputs.overlays.additions
+    #   outputs.overlays.modifications
+    #   outputs.overlays.unstable-packages
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-    ];
+    #   # You can also add overlays exported from other flakes:
+    #   # neovim-nightly-overlay.overlays.default
+    # ];
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -38,7 +40,61 @@
     };
   };
 
-  # TODO: Set your username
+  home.packages = with pkgs; [
+       # Gnome apps
+      # plots       # Worse desmos
+      fragments     # BitTorrent
+      gnome-secrets # Passwords
+      amberol       # Music player
+      apostrophe    # Markdown Editor
+      switcheroo    # Image converter
+      hydrapaper    # Gnome utility for multi-screen wlpaper
+      eyedropper    # Colour picker
+      apostrophe    # Markdown Editor
+      gnome.devhelp # Local Docs browser
+
+      # Social
+      fractal       # Matrix Client
+      gnome-feeds   # RSS Feeds
+
+      # Image editing
+      # xournalpp
+      darktable
+      krita
+      inkscape
+      gimp
+      hugin
+      ffmpeg
+      identity
+      shotwell
+
+      # Utilities
+      warp          # File sharing tool
+      pika-backup   # Backup manager
+      ddcui         # boot-kernel module "ddcci_backlight" for brightness control
+      ddcutil       # brightness
+
+      # When it is running it disables power_saving / auto_suspend / whatever makes audio take 5s to cut in
+      pwvucontrol # Better looking - same functionality
+
+      # Keyboard remapping
+      kanata
+
+      gnome-builder
+      gnome-extensions-cli
+
+      vscodium
+      direnv # Dynamically load dev environments when cd'ing into folders
+      tmux
+      neovim
+      tree
+      zoxide
+      git
+      
+      firefox
+      spotify
+  ];
+
   home = {
     username = "quinnieboi";
     homeDirectory = "/home/quinnieboi";
