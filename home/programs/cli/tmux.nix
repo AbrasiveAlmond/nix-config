@@ -58,7 +58,7 @@ in {
     '';
   };
 
-  #home.packages = with pkgs.tmuxPlugins; = [
+  # home.packages = with pkgs.tmuxPlugins; = [
   #  sensible
-  #];
+  # ];
 }

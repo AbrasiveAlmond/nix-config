@@ -14,8 +14,8 @@
 
     # ../apps
     ../kanata-service/default.nix
-    ../gnome/extensions.nix
-    ../apps/tmux.nix
+    # ../gnome/extensions.nix
+    ../programs/cli
   ];
 
   home.packages = with pkgs; [

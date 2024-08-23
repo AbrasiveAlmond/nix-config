@@ -14,8 +14,8 @@
     # ../apps
     ../kanata-service/default.nix
     ./gnome_extensions.nix
-    ../apps/tmux.nix
-    # ./apps
+    # ../programs/nvim
+    ../programs/cli
   ];
 
   # accessed via home-manager modules
@@ -50,7 +50,8 @@
       switcheroo    # Image converter
       hydrapaper    # Gnome utility for multi-screen wlpaper
       eyedropper    # Colour picker
-      gnome.devhelp # Local Docs browser
+      devhelp # Local Docs browser
+      vscodium
 
       # Social
       fractal       # Matrix Client
@@ -81,18 +82,15 @@
 
       gnome-builder
       gnome-extensions-cli
-
-      vscodium
-      direnv # Dynamically load dev environments when cd'ing into folders
-      tmux
-      neovim
-      tree
-      zoxide
-      git
       
       firefox
       spotify
   ];
+
+  programs.starship = {
+    enable = lib.mkDefault true;
+    # enableZshIntegration = true;
+  };
 
   home = {
     username = "quinnieboi";

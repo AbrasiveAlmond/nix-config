@@ -92,6 +92,9 @@
     kernelParams = [
       "quiet"
       "splash"
+      # quiet doesn't work - loglevel was still 4 
+      # as seen in ./result/boot.json or ./result/kernel-params
+      "loglevel=3" 
     ];
   };
   

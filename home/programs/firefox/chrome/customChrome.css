@@ -1,0 +1,96 @@
+/* Gnome Colours
+background-dark: rgb(48, 48, 48);
+background-light: rgb(69, 69, 69);
+text-focused: rgb(255, 255, 255);
+text-unfocused: rgb(153, 153, 153);
+*/
+
+#sidebar-header {
+    display: none;
+}
+
+#TabsToolbar {
+    display: none;
+}
+
+/* 
+code that controls colour of title bar
+#nav-bar {
+    background: var(--gnome-headerbar-background) !important;
+} */
+
+/* Remove ugly black border under titlebar*/
+#navigator-toolbox {
+    border: none !important;
+}
+
+/* Make draggable vert-tab-resize larger and correct colour */
+#sidebar-splitter {
+	background: rgb(48, 48, 48) !important;
+	border: 0 !important;
+	border-right: none !important;
+    width: 8px !important; /* Basically functions as padding-right for sidebar */
+}
+
+.sidebar-splitter {
+    border: none;
+    border-style: none;
+}
+
+/* Main browsing window */
+/* #appcontent {
+	padding: 5px;
+	background-color: gray;
+} */
+.browserStack {
+    background-color: rgb(48, 48, 48) !important;
+}
+
+.browserStack browser {
+    padding: 4px 8px 8px 0px;
+    /* padding-left: 0px; */
+    border-radius: 16px;
+    background-color: rgb(48, 48, 48) !important;
+}
+
+/* Sidebar instead of utility pane */
+/*
+create variable for width of sidebar 
+Move items of titlebar over while maintaining true width
+Move sidebar upwards, and send to top
+
+*/
+/* #navigator-toolbox {
+	width: 80%;
+	left: 20%;
+	position: relative;
+} */
+
+
+
+
+/* Taken from tab-center-reborn.css */
+:root {
+    --delay: 0s;
+    --transition-time: 0.2s;
+    --positionX1: 48px;
+    --positionX2: absolute;
+}
+
+/* This is only tabs, I also want to hide siblings
+such as new-tab button */
+#tabbrowser-tabs {
+    display: none !important;
+}
+
+#browser {
+    position: relative;
+}
+
+#tabbrowser-tabbox {
+    z-index: 0 !important;
+}
+
+#navigator-toolbox {
+    z-index: 10 !important;
+}

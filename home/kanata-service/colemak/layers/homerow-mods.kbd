@@ -2,7 +2,7 @@
      _    q    w    f    p    b    j    l    u    y    ;
      @cps a    r    s    t    g    m    n    e    i    o    '
      _    z    x    c    d    v    k    h    ,    .    /    _
-     _    _    _          spc           _    _    _
+     _    _    _          @spc           _    _    _
 )
 ;; for some reason w/o @cps you can get capslock enabled 
 ;; recreate: press o or some other homerow mod then quickly tap capslock
@@ -12,7 +12,7 @@
   tap-time 200
   hold-time 150
 
-  ;; keys that trigger an early tap
+  ;; keys that trigger an early tap, i.e are not modified by the opposite hand
   left-hand-keys (
     q w f p b
   ;;a r s t g
@@ -21,14 +21,11 @@
   )
 
   right-hand-keys (
-    j l y ;
+    j l y 
   ;;m n e i o
     k , . /       ;; mouse buttons
     spc bspc tab esc mlft mrgt 
   )
-
-  ;;left-hand-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
-	;;right-hand-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
 )
 
 (deffakekeys

@@ -25,13 +25,6 @@
      lctl lmet lalt          @spc            @alg rmet rctl
 )
 
-(deflayer arrows
-     _    esc  tab  _    S--  _    pgup home up   end  _
-     _    @met @alt @ctl @sft _    pgdn left down rght @bwd _
-     _    _    _    _    _    _    bspc del  _    _    @alg _
-     _    _    caps            _              lrld _    lrnx
-)
-
 (defalias
   bwd C-bspc
   sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
@@ -42,10 +35,10 @@
 )
 
 ;; include
-;; (include ./layers/homerow-mods.kbd)
-;; (include ./layers/maths.kbd)
-;; (include ./layers/symbols.kbd)
-;; (include ./layers/text-navigation.kbd)
+(include ./layers/homerow-mods.kbd)
+(include ./layers/maths.kbd)
+(include ./layers/symbols.kbd)
+(include ./layers/text-navigation.kbd)
 
 
 
@@ -63,157 +56,3 @@
 ;;Example specifying multiple config files in the command line:
 ;;
 ;;kanata -c startup.cfg -c 2nd.cfg -c 3rd.cfg
-
-;; home row mods ;;
-
-(deflayer nomods
-     _    q    w    f    p    b    j    l    u    y    ;
-     @cps a    r    s    t    g    m    n    e    i    o    '
-     _    z    x    c    d    v    k    h    ,    .    /    _
-     _    _    _          spc           _    _    _
-)
-;; for some reason w/o @cps you can get capslock enabled 
-;; recreate: press o or some other homerow mod then quickly tap capslock
-
-;; Homerow mods
-(defvar
-  tap-time 200
-  hold-time 150
-
-  ;; keys that trigger an early tap
-  left-hand-keys (
-    q w f p b
-  ;;a r s t g
-    z x c d v
-    spc bspc tab esc mlft mrgt
-  )
-
-  right-hand-keys (
-    j l y ;
-  ;;m n e i o
-    k , . /       ;; mouse buttons
-    spc bspc tab esc mlft mrgt 
-  )
-
-  ;;left-hand-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
-	;;right-hand-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
-)
-
-(deffakekeys
-  to-base (layer-switch colemak)
-)
-
-(defalias
-  tap (multi
-     (layer-switch nomods)
-     (on-idle-fakekey to-base tap 20)
-  )
-
-  a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
-  r (tap-hold-release-keys $tap-time $hold-time (multi r @tap) lalt $left-hand-keys)
-  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
-  t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) ralt $left-hand-keys)
-
-  h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) ralt $right-hand-keys)
-  n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
-  e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
-  i (tap-hold-release-keys $tap-time $hold-time (multi i @tap) lalt $right-hand-keys)
-  o (tap-hold-release-keys $tap-time $hold-time (multi o @tap) rmet $right-hand-keys)
-)
-
-;; maths ;;
-
-;; Symbols for maths
-(defalias
-  ^ S-6
-  * S-8
-  + S-=
-  ! S-1
-  = (macro (unmod =) =) ;; cannot roll += without
-  ≠ (macro @! =)
-  ~ S-`
-
-)
-
-;; Maths
-(defalias 
-  sin (macro (s i n S-9 S-0 left))
-  cos (macro (c o s S-9 S-0 left))
-  tan (macro (t a n S-9 S-0 left))
-  log (macro (l o g S-9 S-0 left))
-  <= (macro (S-, =))
-  >= (macro (S-. =))
-)
-
-(deflayer maths
-     _    @≠   _    /    -    @sin @cos @+   @*   @^   @=
-     _    1    2    3    4    5    6    7    8    9    0    @sin
-     _    _    _    _    _    _    _    _    ,    .    /    _
-     _    _    _              _              _    _    _
-)
-;; notes on experience thus far
-;; haven't noticed any horrific common sfb's.
-;; top is symmetric with left/right having inverse operators
-;; bottom row has many common variables, but
-;; no access to other common letters y, t, or n.
-
-;; symbols ;;
-
-(deflayer symbols
-     _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  _    =
-     _    nop0 @{   @[   @ob  @<   @>   @cb  @]   @}   nop0 _
-     _    _    _    _    _    _    _    _    _    _    \    _
-     _    _    _              _              _    _    _
-)
-
-;; Bracket shit 
-(defalias 
-     ob (fork 
-          (macro (S-9 S-0 left))
-          S-9
-          (nop0)
-     )
-
-     cb (fork 
-          S-0
-          (macro (S-0 left))
-          (nop0)
-     )
-
-     [ (fork 
-          (macro ([ ] left))
-          [
-          (nop0)
-     )
-
-     ] (fork 
-          ]
-          (macro (] left))
-          (nop0)
-     )
-
-     { (fork 
-          (macro (S-[ S-] left))
-          S-[
-          (nop0)
-     )
-
-     } (fork 
-          S-]
-          (macro (S-] left))
-          (nop0)
-     )
-
-     < (fork 
-          (macro (S-, S-. left))
-          S-,
-          (nop0)
-     )
-
-     > (fork 
-          S-.
-          (macro (S-. left))
-          (nop0)
-     )
-)
