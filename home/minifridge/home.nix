@@ -16,6 +16,7 @@
     ./gnome_extensions.nix
     # ../programs/nvim
     ../programs/cli
+    ../programs/firefox
   ];
 
   # accessed via home-manager modules
@@ -83,7 +84,7 @@
       gnome-builder
       gnome-extensions-cli
       
-      firefox
+      # firefox
       spotify
   ];
 
