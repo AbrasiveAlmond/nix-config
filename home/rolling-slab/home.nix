@@ -14,7 +14,7 @@
 
     # ../apps
     ../kanata-service/default.nix
-    # ../gnome/extensions.nix
+    ../gnome/extensions.nix
     ../programs/cli
     ../programs/firefox
   ];
