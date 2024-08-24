@@ -5,27 +5,24 @@ in
 {
   home.packages = with pkgs.gnomeExtensions; [
     vertical-workspaces    # Nicer workspaces overview
-    pano                 # Clipboard Manager
     reboottouefi           # Adds uefi boot option
-    #dim-background-windows # Customisable saturation and brightness
+
     happy-appy-hotkey      # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
     blur-my-shell          # Blurry shell is a needed ux improvement
-    # forge                 # Tiling window manager
-    quick-settings-tweaker # Used to hide certain buttons
+    forge                 # Tiling window manager
     caffeine
-    #tactile # Tile windows using a custom grid.
-    #gtile # literally a tiling WM
+    tactile # Tile windows using a custom grid.
+    gtile # literally a tiling WM
     tiling-assistant
     middle-click-to-close-in-overview # Much better.
     
     brightness-control-using-ddcutil
-    alphatint
 
-    gnome-clipboard
-    clipboard-history
     clipboard-indicator-2
-    clipboard-indicator
+    burn-my-windows
+
+    
   ];
 
   dconf.settings = {
@@ -48,11 +45,6 @@ in
 
   #### gnomeExtensions customisation ####
   dconf.settings = {
-      ${(extsn + "dim-background-windows")} = {
-        brightness = 1.0;
-	      saturation = 0.7;
-      };
-
       ${(extsn + "blur-my-shell")} = {
         sigma = 10;
         brightness = 0.8;

@@ -18,14 +18,14 @@
     q w e r t
     a s d f g
     z x c v b
-    spc bspc tab esc mlft mrgt
+    bspc tab esc mlft mrgt ;;spc
   )
 
   right-hand-keys (
     y u i o p
     h j k l ;
     m , . /       ;; mouse buttons
-    spc bspc tab esc mlft mrgt 
+    bspc tab esc mlft mrgt ;;spc
   )
 )
 

@@ -34,12 +34,12 @@ in {
           extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
             darkreader
-            vimium
             sidebery
             stylus
             privacy-badger
             disconnect
             clearurls
+            greasemonkey
             # browserpass
           ];
 
@@ -69,6 +69,9 @@ in {
           };
 
           settings = {
+            # prevent alt menu, freeing alt for tab navigation
+            "ui.key.menuAccessKeyFocuses" = false;
+
             # Enable SVG context-propertes
             "svg.context-properties.content.enabled" = true;
 

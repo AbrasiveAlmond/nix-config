@@ -13,7 +13,7 @@
     # inputs.nix-colors.homeManagerModules.default
     # ../apps
     ../kanata-service/default.nix
-    ./gnome_extensions.nix
+    ../gnome
     # ../programs/nvim
     ../programs/cli
     ../programs/firefox
@@ -55,6 +55,9 @@
       vscodium
       citations
       planify
+      mission-center
+      flameshot
+      drawing
 
       # Social
       fractal       # Matrix Client
