@@ -53,6 +53,8 @@
       eyedropper    # Colour picker
       devhelp # Local Docs browser
       vscodium
+      citations
+      planify
 
       # Social
       fractal       # Matrix Client
@@ -68,6 +70,7 @@
       ffmpeg
       identity
       shotwell
+      rnote
 
       # Utilities
       warp          # File sharing tool

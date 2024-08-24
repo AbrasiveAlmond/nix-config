@@ -1,6 +1,13 @@
-(deflayer symbols
+(deflayer symbols_oneshot
      _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  _    =
      _    nop0 @{   @[   @ob  @<   @>   @cb  @]   @}   nop0 _
+     _    _    _    _    _    _    _    _    _    _    \    _
+     _    _    _              _              _    _    _
+)
+
+(deflayer symbols
+     _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  _    =
+     _    nop0 S-[   [   S-9  S-,   S-. S-0  ]    S-]   nop0 _
      _    _    _    _    _    _    _    _    _    _    \    _
      _    _    _              _              _    _    _
 )
