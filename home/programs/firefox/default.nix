@@ -69,6 +69,18 @@ in {
           };
 
           settings = {
+            # Enable SVG context-propertes
+            "svg.context-properties.content.enabled" = true;
+
+            # Disable private window dark theme
+            "browser.theme.dark-private-windows" = false;
+
+            # Enable rounded bottom window corners
+            "widget.gtk.rounded-bottom-corners.enabled" = true;
+            
+            # Set UI density to normal
+            "browser.uidensity" = 0;
+
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "browser.startup.homepage" = "about:home";
 

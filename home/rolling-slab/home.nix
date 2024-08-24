@@ -16,6 +16,7 @@
     ../kanata-service/default.nix
     # ../gnome/extensions.nix
     ../programs/cli
+    ../programs/firefox
   ];
 
   home.packages = with pkgs; [
@@ -39,7 +40,7 @@
       zoxide
       git
       
-      firefox
+      # just in case it is more performant
       ungoogled-chromium
   ];
 

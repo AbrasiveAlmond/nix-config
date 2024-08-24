@@ -2,6 +2,8 @@
   description = "Template based nixconfig from nix-starter-config";
   # test build with > nixos-rebuild dry-build --flake .#minifridge
   # home-manager switch --flake .#username@hostname
+  # when console yells that hm config is different version, try using
+  # nix build .#homeConfigurations.me.activationPackage && result/activate
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
