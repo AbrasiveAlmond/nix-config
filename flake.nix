@@ -28,6 +28,8 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
+
+    flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
   };
 
   outputs = {
@@ -35,6 +37,7 @@
     nixpkgs,
     home-manager,
     systems,
+    flatpaks,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -100,6 +103,7 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home/minifridge/home.nix
+          flatpaks.homeManagerModules.default
         ];
       };
 

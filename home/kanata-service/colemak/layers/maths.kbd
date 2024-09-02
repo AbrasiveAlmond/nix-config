@@ -21,13 +21,16 @@
 )
 
 (deflayer maths
-     _    @≠   _    /    -    @sin @cos @+   @*   @^   @=
+     _    @!   _    /    -    @sin @cos @+   @*   @^   @=
      _    1    2    3    4    5    6    7    8    9    0    @sin
      _    _    _    _    _    _    _    _    ,    .    /    _
      _    _    _              _              _    _    _
 )
 ;; notes on experience thus far
-;; haven't noticed any horrific common sfb's.
-;; top is symmetric with left/right having inverse operators
-;; bottom row has many common variables, but
-;; no access to other common letters y, t, or n.
+;; much fewer occurances of sfbs than compared to num-pad style layouts.
+;; I am not the biggest fan of using dashes-when-typing-like-this
+;; lefthand index finger feels like its flying
+
+;; top is somewhat symmetric with left/right having inverse operators
+;; bottom row has many common variables, 
+;; but no access to other common letters y, t, or n.

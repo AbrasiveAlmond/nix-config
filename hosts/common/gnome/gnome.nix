@@ -1,4 +1,4 @@
-{ lib, config, ...}: 
+{ lib, config, pkgs, ...}: 
 let cfg = config.gnome; in {
   options = {
     gnome.enable = lib.mkEnableOption "Enable Module";
@@ -19,14 +19,15 @@ let cfg = config.gnome; in {
     };
 
     # Enable sound with pipewire.
-    sound.enable = true;
+    # sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-      pulse.enable = true;
+      pulse.enable = true; 
     };
   };
 }
+  

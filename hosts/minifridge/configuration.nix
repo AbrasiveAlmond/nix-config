@@ -29,6 +29,14 @@
   ];
 
 
+  # hardware.pulseaudio.extraConfig =''
+  #   .nofail
+  #   unload-module module-suspend-on-idle
+  #   .fail
+  # '';
+  # fish completions provided by Nixpkgs along with HM
+  programs.fish.enable = true;
+
   # Loads ceratin qmk udev rules. Ones missing in ">qmk setup"
   # Makes via work aswell: https://nixos.wiki/wiki/Qmk
   hardware.keyboard.qmk.enable = false;
@@ -87,7 +95,11 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelModules = ["i2c-dev" "ddcci_backlight"]; 
+    kernelModules = [
+      "i2c-dev"
+      "ddcci_backlight"
+      "uinput"
+      ]; 
     extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     kernelParams = [
       "quiet"
@@ -95,7 +107,26 @@
       # quiet doesn't work - loglevel was still 4 
       # as seen in ./result/boot.json or ./result/kernel-params
       "loglevel=3" 
+      "boot.shell_on_fail"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
     ];
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    loader.timeout = 1;
+
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "rings" ];
+        })
+      ];
+    };
   };
   
   users.users = {

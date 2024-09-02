@@ -43,6 +43,9 @@ in {
             # browserpass
           ];
 
+          # https://github.com/nix-community/home-manager/issues/3698#issuecomment-1442291975
+          search.force = true; 
+          
           search.engines = {
             "Nix Packages" = {
               urls = [{

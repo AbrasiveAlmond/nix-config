@@ -27,13 +27,34 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/wm/keybindings" = {
       activate-window-menu = [];
-    }
+      close = [ "<Super>c" ];
+      switch-applications = [];
+      switch-applications-backward = [];
+      switch-group = [ "<Super>Tab" ];
+      switch-group-backward = [ "<Shift><Super>Tab" ];
+      switch-input-source = [ "<Alt><Super>space" ];
+      switch-input-source-backward = [ "<Shift><Alt><Super>space" ];
+      toggle-maximized = [ "<Super>m" ];
+      unmaximize = [];
+      maximize = [];
+    };
+
+    # Night light config
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      next = [ "<Alt>y" ];
+      play = [ "<Alt>k" ];
+      previous = [ "<Alt>l" ];
+      screensaver = [];
+      volume-down = [ "<Alt>m" ];
+      volume-up = [ "<Alt>j" ];
+      www = [];
+    };
 
     # Night light config
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = false;
-      night-light-temperature = 4700;
+      night-light-temperature = lib.hm.gvariant.mkUint32 3700;
       night-light-schedule-from = 18.0;
       night-light-schedule-to = 6.0;
     };

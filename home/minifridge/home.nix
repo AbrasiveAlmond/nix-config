@@ -17,7 +17,26 @@
     # ../programs/nvim
     ../programs/cli
     ../programs/firefox
+    # ./flatpak.nix
+
+    ../programs/cli/fish.nix
+    ../programs/cli/starship.nix
   ];
+
+  
+  services.flatpak = {
+    enableModule = true;
+    packages = [
+      "flathub:app/dev.bragefuglseth.Keypunch/x86_64/stable"
+      "flathub:app/re.sonny.Workbench/x86_64/stable"
+    ];
+    
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    };
+    # https://flathub.org/apps/dev.bragefuglseth.Keypunch
+  };
 
   # accessed via home-manager modules
   services.kanata.enable = true;
@@ -41,7 +60,14 @@
     };
   };
 
+  systemd.user.sessionVariables = {
+		EDITOR = "helix";
+		TERM = "fish";
+	};
+
+	fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
        # Gnome apps
       # plots       # Worse desmos
       fragments     # BitTorrent
@@ -58,6 +84,11 @@
       mission-center
       flameshot
       drawing
+      papers
+      sysprof
+
+      qalculate-gtk
+      speedcrunch
 
       # Social
       fractal       # Matrix Client
@@ -77,6 +108,7 @@
 
       # Utilities
       warp          # File sharing tool
+      impression    # Disk image etcher
       pika-backup   # Backup manager
       ddcui         # boot-kernel module "ddcci_backlight" for brightness control
       ddcutil       # brightness
@@ -92,6 +124,9 @@
       
       # firefox
       spotify
+      flatpak # I install packages declaritively - this is just for running them
+
+      bottles
   ];
 
   programs.starship = {

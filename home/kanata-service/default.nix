@@ -19,7 +19,7 @@ in {
         WorkingDirectory = kanataFolder;
 
         Type = "exec";
-        ExecStartPre="/run/current-system/sw/bin/modprobe uinput"; # May not be necessary
+        # ExecStartPre="/run/current-system/sw/bin/modprobe uinput"; # May not be necessary
         # ExecStartPre = "echo ${kanataFolder}";
         ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/./colemak/colemak.kbd -c ${kanataFolder}/./qwerty/qwerty.kbd";
         # ExecStart = "ls ";

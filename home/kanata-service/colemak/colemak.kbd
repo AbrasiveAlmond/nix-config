@@ -8,7 +8,8 @@
 (defalias
   cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
-  sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols_oneshot)) (layer-while-held symbols))
+  sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
+  asym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held alt_symbols)) (layer-while-held alt_symbols))
 )
 
 (defsrc
@@ -39,6 +40,7 @@
 (include ./layers/maths.kbd)
 (include ./layers/symbols.kbd)
 (include ./layers/text-navigation.kbd)
+(include ./layers/alt_symbols.kbd)
 
 
 

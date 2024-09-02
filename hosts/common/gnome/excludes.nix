@@ -13,13 +13,13 @@ in {
   config = mkIf cfg.enable {
     environment.gnome.excludePackages = with pkgs.gnome; [
       pkgs.snapshot # Camera
-      simple-scan # Document Scanner for hardware scanners
-      seahorse # Password manager
-      yelp # Help Viewer
+      pkgs.simple-scan # Document Scanner for hardware scanners
+      pkgs.seahorse # Password manager
+      pkgs.yelp # Help Viewer
       pkgs.gnome-tour
       gnome-music 
       gnome-contacts
-      gnome-calendar
+      pkgs.gnome-calendar
       gnome-weather
     ];
   };

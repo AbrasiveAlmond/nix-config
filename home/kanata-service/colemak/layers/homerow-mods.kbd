@@ -18,14 +18,14 @@
     q w e r t
     a s d f g
     z x c v b
-    bspc tab esc mlft mrgt ;;spc
-  )
+    ;;bspc esc ;;mlft mrgt spc tab 
+  ) ;; it takes less time to activate spc and tab when they're commented out
 
   right-hand-keys (
     y u i o p
     h j k l ;
     m , . /       ;; mouse buttons
-    bspc tab esc mlft mrgt ;;spc
+    ;;bspc esc mlft mrgt spc tab 
   )
 )
 
@@ -43,9 +43,9 @@
   r (tap-hold-release-keys $tap-time $hold-time (multi r @tap) lalt $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
   t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) ralt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) @asym $left-hand-keys)
 
-  h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) ralt $right-hand-keys)
+  h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) @asym $right-hand-keys)
   n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
   e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
   i (tap-hold-release-keys $tap-time $hold-time (multi i @tap) lalt $right-hand-keys)
