@@ -127,6 +127,9 @@
       flatpak # I install packages declaritively - this is just for running them
 
       bottles
+      git-credential-oauth
+      libsecret
+      github-desktop
   ];
 
   programs.starship = {
