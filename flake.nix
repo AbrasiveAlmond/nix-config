@@ -84,11 +84,20 @@
       };
 
       # 2010/11 MacBook Pro
-      rolling-slab = nixpkgs.lib.nixosSystem {
+      stone-tablet = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./hosts/rolling-slab/configuration.nix
+          ./hosts/stone-tablet/configuration.nix
+        ];
+      };
+
+      # Dell Inspiron 5502
+      mainframe = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/mainframe/configuration.nix
         ];
       };
     };
@@ -108,11 +117,20 @@
       };
 
       # 2010/11 MacBook Pro
-      "quinnieboi@rolling-slab" = home-manager.lib.homeManagerConfiguration {
+      "quinnieboi@stone-tablet" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./home/rolling-slab/home.nix
+          ./home/stone-tablet/home.nix
+        ];
+      };
+
+      # Dell Inspiron 5502
+      "busyboy@mainframe" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home/mainframe/home.nix
         ];
       };
     };

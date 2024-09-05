@@ -409,7 +409,7 @@ in
       };
 
       ${(extsn + "tiling-assistant")} = {
-        enable-tiling-popup = true; # Select second window to tile with
+        enable-tiling-popup = true; # Popup select second window to tile with
         dynamic-keybinding-behaviour = 2;
         tile-top-half =["<Super>u"];
         tile-bottom-half = ["<Super>e"];

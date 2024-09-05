@@ -13,10 +13,10 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # ../apps
-    ../kanata-service/default.nix
-    ./gnome_extensions.nix
-    ../programs/cli
-    ../programs/firefox
+    ../common/kanata-service/default.nix
+    ../common/gnome
+    ../common/programs/cli
+    ../common/programs/firefox
   ];
 
   home.packages = with pkgs; [
