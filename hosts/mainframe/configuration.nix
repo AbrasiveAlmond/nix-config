@@ -73,24 +73,31 @@
   specialisation = { 
     nvidia.configuration = {
       # Nvidia Configuration 
-      services.xserver.videoDrivers = [ "nvidia" ]; 
+      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ]; 
       # enable discrete GPU in 24.11 or unstable
       hardware.graphics.enable = true;
 
       hardware.nvidia = {
+        open = true;
         modesetting.enable = true;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        # # PRIME Arch Wiki
+        # # We also need to enable nvidia-persistenced.service to avoid the kernel tearing down the device state whenever the NVIDIA device resources are no longer in use.
+        # nvidiaPersistenced = true;
+
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
         prime = {
           # If enabled, the NVIDIA GPU will be always on and used for all rendering
           sync.enable = true; 
+          # reverseSync.enable = true;
+          # offload.enable = true;
+
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
         };
       };
       
-      
-      #open = true;
       #powerManagement.enable = true;
       #powerManagement.finegrained = true;    
     };
