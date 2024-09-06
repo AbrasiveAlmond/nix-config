@@ -37,6 +37,7 @@
         "hidetopbar@mathieu.bidon.ca"
       ];
     };
+  };
 
   home.packages = with pkgs; [
        # Gnome apps
