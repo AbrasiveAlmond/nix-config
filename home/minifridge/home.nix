@@ -14,10 +14,9 @@
     # ../apps
     ../common/kanata-service
     ../common/gnome
-    # ../programs/nvim
+
     ../common/programs/cli
     ../common/programs/firefox
-    # ./flatpak.nix
 
     ../common/programs/cli/fish.nix
     ../common/programs/cli/starship.nix
@@ -42,17 +41,6 @@
   services.kanata.enable = true;
 
   nixpkgs = {
-    # You can add overlays here
-    # overlays = [
-    #   # Add overlays your own flake exports (from overlays and pkgs dir):
-    #   outputs.overlays.additions
-    #   outputs.overlays.modifications
-    #   outputs.overlays.unstable-packages
-
-    #   # You can also add overlays exported from other flakes:
-    #   # neovim-nightly-overlay.overlays.default
-    # ];
-    # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = false;
@@ -77,14 +65,14 @@
       switcheroo    # Image converter
       hydrapaper    # Gnome utility for multi-screen wlpaper
       eyedropper    # Colour picker
-      devhelp # Local Docs browser
+      devhelp       # Local Docs browser
       vscodium
       citations
       planify
       mission-center
       flameshot
       drawing
-      papers
+      papers        # PDF Reader
       sysprof
 
       qalculate-gtk

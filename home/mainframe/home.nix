@@ -19,12 +19,35 @@
     ../common/programs/firefox
   ];
 
+  home = {
+    username = "busyboy";
+    homeDirectory = "/home/busyboy";
+  };
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "reboottouefi@ubaygd.com"
+        "blur-my-shell@aunetx"
+        "happy-appy-hotkey@jqno.nl"
+        "caffeine@patapon.info"
+        "middleclickclose@paolo.tranquilli.gmail.com"
+        "tiling-assistant@leleat-on-github"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "hidetopbar@mathieu.bidon.ca"
+      ];
+    };
+
   home.packages = with pkgs; [
        # Gnome apps
       plots         # Worse desmos
+      rnote
+      speedcrunch
       gnome-secrets # Passwords
       apostrophe    # Markdown Editor
       eyedropper    # Colour picker
+      papers        # PDF Reader
+      vscodium
 
       gnome-feeds   # RSS Feeds
 
@@ -39,42 +62,38 @@
       tree
       zoxide
       git
+      git-credential-oauth
+
+      flatpak
       
       # just in case it is more performant
       ungoogled-chromium
   ];
 
+  services.flatpak = {
+    enableModule = true;
+    packages = [
+      "flathub:app/dev.bragefuglseth.Keypunch/x86_64/stable"
+      "flathub:app/re.sonny.Workbench/x86_64/stable"
+    ];
+    
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    };
+    # https://flathub.org/apps/dev.bragefuglseth.Keypunch
+  };
+
   # accessed via home-manager modules
   services.kanata.enable = true;
 
   nixpkgs = {
-    # You can add overlays here
-    #overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-     # outputs.overlays.additions
-      #outputs.overlays.modifications
-      #outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-    #];
-    # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
       #allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify"];
     };
   };
-
-  # TODO: Set your username
-  home = {
-    username = "busyboy";
-    homeDirectory = "/home/busyboy";
-  };
-
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
