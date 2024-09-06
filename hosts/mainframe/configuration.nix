@@ -78,28 +78,30 @@
       hardware.graphics.enable = true;
 
       hardware.nvidia = {
-        open = true;
+        # open = true;
         modesetting.enable = true;
         nvidiaSettings = true;
 
         # # PRIME Arch Wiki
         # # We also need to enable nvidia-persistenced.service to avoid the kernel tearing down the device state whenever the NVIDIA device resources are no longer in use.
         # nvidiaPersistenced = true;
+        powerManagement.enable = true; # use with offload according to nixoptions
+        powerManagement.finegrained = true;   
 
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
         prime = {
           # If enabled, the NVIDIA GPU will be always on and used for all rendering
-          sync.enable = true; 
+          # sync.enable = true; 
           # reverseSync.enable = true;
-          # offload.enable = true;
+          offload.enable = true;
 
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
         };
+         
       };
       
-      #powerManagement.enable = true;
-      #powerManagement.finegrained = true;    
+      
     };
 
     integrated.configuration = {
@@ -111,6 +113,10 @@
 
       # # Whether to enable render offload support using the NVIDIA proprietary driver via PRIME.
       # hardware.nvidia.prime.offload.enable
+
+      nixpkgs.config.packageOverrides = pkgs: {
+        intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+      };
 
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
       hardware.nvidiaOptimus.disable = true;
