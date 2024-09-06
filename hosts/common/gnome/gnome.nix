@@ -30,4 +30,3 @@ let cfg = config.gnome; in {
     };
   };
 }
-  

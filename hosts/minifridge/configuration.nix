@@ -27,6 +27,35 @@
     inputs.hardware.nixosModules.common-ssd
   ];
 
+  gnome = {
+    # Enable the GNOME Desktop Environment.
+    enable = true;
+    # Exclude random apps I don't care about
+    apps.excludes.enable = true;
+  };
+
+  users.users = {
+    quinnieboi = {
+      isNormalUser = true;
+      # openssh.authorizedKeys.keys = [
+      #   # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+      # ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "i2c"
+        "uinput"
+        "input"
+      ];
+    };
+  };
+
+  networking = {
+    hostName = "smart-minifridge";
+    # Enable networkinge
+    networkmanager.enable = true;
+  };
+
   # fish completions provided by Nixpkgs along with HM
   programs.fish.enable = true;
 
@@ -37,13 +66,6 @@
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
 
-  gnome = {
-    # Enable the GNOME Desktop Environment.
-    enable = true;
-    # Exclude random apps I don't care about
-    apps.excludes.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     wget
     vim
@@ -51,16 +73,6 @@
   ];
 
   nixpkgs = {
-    # TODO: You can add overlays here
-    # overlays = [
-    #   # Add overlays your own flake exports (from overlays and pkgs dir):
-    #   outputs.overlays.additions
-    #   outputs.overlays.modifications
-    #   outputs.overlays.unstable-packages
-    #   # You can also add overlays exported from other flakes:
-    #   # neovim-nightly-overlay.overlays.default
-    # ];
-
     config = {
       allowUnfree = false;
     };
@@ -110,37 +122,17 @@
     initrd.verbose = false;
     loader.timeout = 1;
 
-    plymouth = {
-      enable = true;
-      theme = "rings";
-      themePackages = with pkgs; [
-        # By default we would install all themes
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ "rings" ];
-        })
-      ];
-    };
+    # plymouth = {
+    #   enable = true;
+    #   theme = "rings";
+    #   themePackages = with pkgs; [
+    #     # By default we would install all themes
+    #     (adi1090x-plymouth-themes.override {
+    #       selected_themes = [ "rings" ];
+    #     })
+    #   ];
+    # };
   };
-  
-  users.users = {
-    quinnieboi = {
-      isNormalUser = true;
-      # openssh.authorizedKeys.keys = [
-      #   # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      # ];
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-        "i2c"
-        "uinput"
-        "input"
-      ];
-    };
-  };
-
-  networking.hostName = "smart-minifridge";
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
