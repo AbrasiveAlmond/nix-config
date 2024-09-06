@@ -44,7 +44,12 @@
     initialPassword = "changeme";
     isNormalUser = true;
     description = "Quinn Pearson";
-    extraGroups = [ "networkmanager" "wheel" "input" "uinput" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "input"
+      "uinput"
+    ];
     packages = with pkgs; [
     #  thunderbird
     ];

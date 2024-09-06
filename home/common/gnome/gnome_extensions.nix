@@ -25,23 +25,6 @@ in
 
   
   dconf.settings = {
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "vertical-workspaces@G-dH.github.com"
-        "reboottouefi@ubaygd.com"
-        "blur-my-shell@aunetx"
-        "happy-appy-hotkey@jqno.nl"
-        #"ds4battery@slie.ru"
-        "quick-settings-tweaks@qwreey"
-        "caffeine@patapon.info"
-        "middleclickclose@paolo.tranquilli.gmail.com"
-        "tiling-assistant@leleat-on-github"
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "hidetopbar@mathieu.bidon.ca"
-        # "display-brightness-ddcutil@themightydeity.github.com"
-      ];
-    };
-
     ### gnomeExtensions customisation ####
 #  dconf.settings = {
       ${(extsn + "blur-my-shell")} = {
