@@ -23,6 +23,8 @@
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-gpu-nvidia
+    # Prime capabilities for hybrid graphics
   ];
   
   gnome = {
@@ -64,9 +66,41 @@
    tappingDragLock = true;
   };
   
-  # enable in 24.11 or unstable
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  # enable discrete GPU in 24.11 or unstable
+  # hardware.graphics.enable = true;
+  # services.xserver.videoDrivers = ["nvidia"];
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+    ];
+  };
+
+  # services.xserver.videoDrivers = [ "intel" ];
+  # services.xserver.deviceSection = ''
+  #   Option "DRI" "2"
+  #   Option "TearFree" "true"
+  # '';
+
+  # specialisation = { 
+  #   nvidia.configuration = { 
+  #     # Nvidia Configuration 
+  #     services.xserver.videoDrivers = [ "nvidia" ]; 
+  #     hardware.opengl.enable = true; 
+
+  #     # Optionally, you may need to select the appropriate driver version for your specific GPU. 
+  #     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable; 
+
+  #     # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway 
+  #     hardware.nvidia.modesetting.enable = true; 
+
+  #     hardware.nvidia.prime = { 
+  #       sync.enable = true; 
+  #       intelBusId = "PCI:0:2:0";
+  #       nvidiaBusId = "PCI:44:0:0";
+  #     };
+  #   };
+  # };
 
   hardware.nvidia = {
     prime = {
@@ -74,13 +108,16 @@
       nvidiaBusId = "PCI:44:0:0";
     };
 
-    modesetting.enable = true;
+    # modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     #open = true;
     #powerManagement.enable = true;
     #powerManagement.finegrained = true;    
   };
+
+  # Disable if stuff starts going wrong
+  
   
   environment.systemPackages = with pkgs; [
     wget
