@@ -12,15 +12,15 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     # ../apps
-    ../kanata-service/default.nix
-    ../gnome
+    ../common/kanata-service
+    ../common/gnome
     # ../programs/nvim
-    ../programs/cli
-    ../programs/firefox
+    ../common/programs/cli
+    ../common/programs/firefox
     # ./flatpak.nix
 
-    ../programs/cli/fish.nix
-    ../programs/cli/starship.nix
+    ../common/programs/cli/fish.nix
+    ../common/programs/cli/starship.nix
   ];
 
   
@@ -129,7 +129,7 @@
       bottles
       git-credential-oauth
       libsecret
-      github-desktop
+      # github-desktop
   ];
 
   programs.starship = {

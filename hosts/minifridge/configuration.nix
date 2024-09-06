@@ -12,28 +12,21 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+    # Import your generated (nixos-generate-config) hardware configuration
+    ./hardware-configuration.nix
+    ../common/ssh.nix
+    ../common/locale.nix
+    ../common/printing.nix
+
+    ../common/gnome
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-amd
-    # https://www.reddit.com/r/NixOS/comments/rbzhb1/if_you_have_a_ssd_dont_forget_to_enable_fstrim/
-    # inputs.hardware.nixosModules.common-ssd
-
-    ../common/locale.nix
-    ../common/printing.nix
-    # ../common/ssh.nix
-    ../common/gnome
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
+    inputs.hardware.nixosModules.common-ssd
   ];
 
-
-  # hardware.pulseaudio.extraConfig =''
-  #   .nofail
-  #   unload-module module-suspend-on-idle
-  #   .fail
-  # '';
   # fish completions provided by Nixpkgs along with HM
   programs.fish.enable = true;
 
