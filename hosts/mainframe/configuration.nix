@@ -23,8 +23,10 @@
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    # inputs.hardware.nixosModules.common-gpu-nvidia
     # Prime capabilities for hybrid graphics
+    # Failed assertions:
+    #    - When NVIDIA PRIME is enabled, the GPU bus IDs must be configured.
   ];
   
   gnome = {
@@ -66,60 +68,67 @@
    tappingDragLock = true;
   };
   
-  # enable discrete GPU in 24.11 or unstable
-  # hardware.graphics.enable = true;
-  # services.xserver.videoDrivers = ["nvidia"];
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      vpl-gpu-rt
-    ];
-  };
 
-  # services.xserver.videoDrivers = [ "intel" ];
-  # services.xserver.deviceSection = ''
-  #   Option "DRI" "2"
-  #   Option "TearFree" "true"
-  # '';
+  # creates a separate bootable config
+  specialisation = { 
+    nvidia.configuration = {
+      # Nvidia Configuration 
+      services.xserver.videoDrivers = [ "nvidia" ]; 
+      # enable discrete GPU in 24.11 or unstable
+      hardware.graphics.enable = true;
 
-  # specialisation = { 
-  #   nvidia.configuration = { 
-  #     # Nvidia Configuration 
-  #     services.xserver.videoDrivers = [ "nvidia" ]; 
-  #     hardware.opengl.enable = true; 
-
-  #     # Optionally, you may need to select the appropriate driver version for your specific GPU. 
-  #     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable; 
-
-  #     # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway 
-  #     hardware.nvidia.modesetting.enable = true; 
-
-  #     hardware.nvidia.prime = { 
-  #       sync.enable = true; 
-  #       intelBusId = "PCI:0:2:0";
-  #       nvidiaBusId = "PCI:44:0:0";
-  #     };
-  #   };
-  # };
-
-  hardware.nvidia = {
-    prime = {
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:44:0:0";
+      hardware.nvidia = {
+        modesetting.enable = true;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        prime = {
+          # If enabled, the NVIDIA GPU will be always on and used for all rendering
+          sync.enable = true; 
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:44:0:0";
+        };
+      };
+      
+      
+      #open = true;
+      #powerManagement.enable = true;
+      #powerManagement.finegrained = true;    
     };
 
-    # modesetting.enable = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    #open = true;
-    #powerManagement.enable = true;
-    #powerManagement.finegrained = true;    
+    integrated.configuration = {
+      # # Whether to enable configuring X to allow external NVIDIA GPUs when using Prime [Reverse] sync optimus .
+      # hardware.nvidia.prime.allowExternalGpu
+      
+      # # If enabled, the Intel/AMD GPU will be used for all rendering, while enabling output to displays attached only to the NVIDIA GPU without a multiplexer.
+      # hardware.nvidia.prime.reverseSync.enable
+
+      # # Whether to enable render offload support using the NVIDIA proprietary driver via PRIME.
+      # hardware.nvidia.prime.offload.enable
+
+      # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
+      hardware.nvidiaOptimus.disable = true;
+      hardware.graphics = {
+        enable = true;
+        extraPackages = with pkgs; [
+          vpl-gpu-rt
+        ];
+      };
+
+      # Corruption or unresponsiveness in Chromium and Firefox consult https://wiki.archlinux.org/title/Intel_graphics
+      services.xserver.videoDrivers = [ "intel" ];
+      # Direct Rendering Infrastructure
+      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption. 
+      services.xserver.deviceSection = ''
+        Option "DRI"             "2" 
+        Option "TearFree"        "false"
+        Option "TripleBuffer"    "false"
+        Option "SwapbuffersWait" "false"
+      '';
+    };
   };
 
-  # Disable if stuff starts going wrong
-  
-  
   environment.systemPackages = with pkgs; [
+    switcheroo-control # D-Bus service to check the availability of dual-GPU
     wget
     vim
     git
