@@ -131,6 +131,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           ./home/mainframe/home.nix
+          flatpaks.homeManagerModules.default
         ];
       };
     };
