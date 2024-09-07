@@ -2,14 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{ inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -19,12 +12,13 @@
     ../common/printing.nix
 
     ../common/gnome
+    ../common/firefox.nix
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-pc-ssd
   ];
 
   gnome = {
@@ -37,13 +31,7 @@
   users.users = {
     quinnieboi = {
       isNormalUser = true;
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-        "i2c"
-        "uinput"
-        "input"
-      ];
+      extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
     };
   };
 
@@ -63,20 +51,11 @@
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-    vim
-    git
-  ];
+  environment.systemPackages = with pkgs; [ wget vim git ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = false;
-    };
-  };
+  nixpkgs = { config = { allowUnfree = false; }; };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
     settings = {
       experimental-features = "nix-command flakes";
@@ -89,7 +68,7 @@
     channel.enable = false;
 
     # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
@@ -97,18 +76,14 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelModules = [
-      "i2c-dev"
-      "ddcci_backlight"
-      "uinput"
-      ]; 
-    extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+    kernelModules = [ "i2c-dev" "ddcci_backlight" "uinput" ];
+    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
     kernelParams = [
       "quiet"
       "splash"
       # quiet doesn't work - loglevel was still 4 
       # as seen in ./result/boot.json or ./result/kernel-params
-      "loglevel=3" 
+      "loglevel=3"
       "boot.shell_on_fail"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
