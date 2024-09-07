@@ -94,7 +94,10 @@
           # If enabled, the NVIDIA GPU will be always on and used for all rendering
           # sync.enable = true; 
           # reverseSync.enable = true;
-          offload.enable = true;
+          offload = { 
+            enable = true;
+            enableOffloadCmd = true;
+          };
 
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
