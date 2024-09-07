@@ -19,6 +19,7 @@
     ../common/power-management.nix
 
     ../common/gnome
+    ../common/firefox.nix
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
