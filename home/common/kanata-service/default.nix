@@ -4,7 +4,6 @@ let
   cfg = config.services.kanata;
   kanataFolder = "${../kanata-service}";
 in {
-  # Declare what settings a user of this "hello.nix" module CAN SET.
   options.services.kanata = {
     enable = mkEnableOption "enable kanata service";
   };

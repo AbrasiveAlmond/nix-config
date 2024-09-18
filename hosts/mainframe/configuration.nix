@@ -96,7 +96,7 @@
           # reverseSync.enable = true;
           offload = { 
             enable = true;
-            enableOffloadCmd = true;
+            enableOffloadCmd = true; # Provides `nvidia-offload` command.
           };
 
           intelBusId = "PCI:0:2:0";

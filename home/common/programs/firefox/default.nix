@@ -179,18 +179,20 @@ in {
             "TabsToolbar"
             "widget-overflow-fixed-list"
           ];
+          
           placements = {
             # PersonalToolbar = ["personal-bookmarks"];
             # TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
-            nav-bar = [
-              "back-button"
-              "forward-button"
-              "stop-reload-button"
-              "urlbar-container"
-              "downloads-button"
-              "ublock0_raymondhill_net-browser-action"
-              "unified-extensions-button"
-            ];
+            # # Needs spacers added due to lack of titlebar
+            # nav-bar = [
+            #   "back-button"
+            #   "forward-button"
+            #   "stop-reload-button"
+            #   "urlbar-container"
+            #   "downloads-button"
+            #   "ublock0_raymondhill_net-browser-action"
+            #   "unified-extensions-button"
+            # ];
             # toolbar-menubar = ["menubar-items"];
             unified-extensions-area = [ ];
             widget-overflow-fixed-list = [ ];

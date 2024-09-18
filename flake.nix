@@ -100,6 +100,14 @@
           ./hosts/mainframe/configuration.nix
         ];
       };
+
+      homelab = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/homelab/configuration.nix
+        ];
+      };
     };
 
     # Standalone home-manager configuration entrypoint

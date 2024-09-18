@@ -18,9 +18,12 @@
     ../common/programs/cli
     ../common/programs/firefox
 
-    ../common/programs/cli/fish.nix
-    ../common/programs/cli/starship.nix
+    # ../common/programs/cli/fish.nix
+    # ../common/programs/cli/starship.nix
   ];
+
+  # improved nix-shell wrapper
+  services.lorri.enable = true;
   
   dconf.settings = {
     "org/gnome/shell" = {
@@ -46,6 +49,8 @@
     packages = [
       "flathub:app/dev.bragefuglseth.Keypunch/x86_64/stable"
       "flathub:app/re.sonny.Workbench/x86_64/stable"
+      "flathub:app/io.github.lavenderdotpet.LibreQuake/x86_64/stable"
+      "flathub:app/org.gnome.Tau/x86_64/stable"
     ];
     
     remotes = {
@@ -74,68 +79,57 @@
 	fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
-       # Gnome apps
-      # plots       # Worse desmos
+      # bottles       # Windows app runner
+      # plots         # Worse desmos
+      # amberol       # Music player
+      # mission-center# Task manager 
+      # sysprof       # System Profiler
+
+      # Gnome apps
       fragments     # BitTorrent
       gnome-secrets # Passwords
-      amberol       # Music player
-      apostrophe    # Markdown Editor
       switcheroo    # Image converter
       hydrapaper    # Gnome utility for multi-screen wlpaper
       eyedropper    # Colour picker
-      devhelp       # Local Docs browser
-      vscodium
-      citations
-      planify
-      mission-center
-      flameshot
-      drawing
-      papers        # PDF Reader
-      sysprof
+      papers        # PDF reader
 
-      qalculate-gtk
-      speedcrunch
+      apostrophe    # Markdown editor
+      folio         # Note taker
+      planify       # Planning software
+      qalculate-gtk # Algebraic calculator
 
       # Social
       fractal       # Matrix Client
       gnome-feeds   # RSS Feeds
+      spotify
 
       # Image editing
-      # xournalpp
-      darktable
-      krita
-      inkscape
-      gimp
-      hugin
-      ffmpeg
-      identity
-      shotwell
-      rnote
+      darktable     # Photo manager and raw developer
+      shotwell      # Photo manager
+      inkscape      # Vector graphics editor
+      gimp          # GNU Image Manipulation Program
+      hugin         # Panorama stitcher
+      ffmpeg        # Audio/video cli tools
+      rnote         # Drawing software
 
       # Utilities
+      # Gui
       warp          # File sharing tool
       impression    # Disk image etcher
       pika-backup   # Backup manager
-      ddcui         # boot-kernel module "ddcci_backlight" for brightness control
-      ddcutil       # brightness
 
-      # When it is running it disables power_saving / auto_suspend / whatever makes audio take 5s to cut in
-      pwvucontrol # Better looking - same functionality
+      # No Gui
+      pwvucontrol   # Disables monitor audio sleep while running
+      ddcui         # Boot-kernel module "ddcci_backlight" for brightness control
+      ddcutil       # Brightness
 
-      # Keyboard remapping
-      kanata
-
+      # coding
+      vscodium
       gnome-builder
       gnome-extensions-cli
-      
-      # firefox
-      spotify
-      flatpak # I install packages declaritively - this is just for running them
-
-      bottles
-      git-credential-oauth
       libsecret
-      # github-desktop
+      git-credential-oauth
+      kanata        # Keyboard remapping
   ];
 
   programs.starship = {

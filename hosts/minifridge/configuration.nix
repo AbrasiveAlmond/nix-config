@@ -35,6 +35,9 @@
     };
   };
 
+  # enable flatpak configuration, apps are installed declaratively in homemanager using module
+  services.flatpak.enable = true; 
+
   networking = {
     hostName = "smart-minifridge";
     # Enable networkinge
