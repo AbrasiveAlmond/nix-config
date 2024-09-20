@@ -16,13 +16,14 @@
   cos (macro (c o s S-9 S-0 left))
   tan (macro (t a n S-9 S-0 left))
   log (macro (l o g S-9 S-0 left))
+  srt (macro (s q r t S-9 S-0 left))
   <= (macro (S-, =))
   >= (macro (S-. =))
 )
 
 (deflayer maths
-     _    @!   _    /    -    @sin @cos @+   @*   @^   @=
-     _    1    2    3    4    5    6    7    8    9    0    @sin
+     _    @!   @srt  /    -    @cos @sin @+   @*   @^   @=
+     _    @1    2    3    4    5    6    7    8    9    @0  _
      _    _    _    _    _    _    _    _    ,    .    /    _
      _    _    _              _              _    _    _
 )
@@ -34,3 +35,18 @@
 ;; top is somewhat symmetric with left/right having inverse operators
 ;; bottom row has many common variables, 
 ;; but no access to other common letters y, t, or n.
+
+(defalias
+
+  1 (tap-hold-release-keys $tap-time $slow-hold-time (multi 1 @tap) @hms $left-hand-keys)
+  ;;r (tap-hold-release-keys $tap-time $hold-time (multi r @tap) lalt $left-hand-keys)
+  ;;s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
+  ;;t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
+  ;;d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) @asym $left-hand-keys)
+
+  ;;h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) @asym $right-hand-keys)
+  ;;n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
+  ;;e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
+  ;;i (tap-hold-release-keys $tap-time $hold-time (multi i @tap) lalt $right-hand-keys)
+  0 (tap-hold-release-keys $tap-time $slow-hold-time (multi 0 @tap) @hms $right-hand-keys)
+)

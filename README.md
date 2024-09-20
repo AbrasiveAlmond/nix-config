@@ -1,15 +1,8 @@
 # Structure
 * flake.nix # defines overall structure
-* /home # configuration for each home manager instance
+* /home # subfolder for each home manager instance
     + /minifridge
-    + /rolling-slab
-    + /common/apps
-        - /gnome
-        - /hyprland
+    + /common/ # reusable configuration
 * /hosts # system/hardware configuration
     + /minifridge
-    + /macbook
-    + /common # reusable bits
-        - printing.nix
-        - locale.nix
-        - /gnome
+    + /common # reusable configuration

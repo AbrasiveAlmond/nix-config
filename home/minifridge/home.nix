@@ -38,7 +38,7 @@
         "middleclickclose@paolo.tranquilli.gmail.com"
         "tiling-assistant@leleat-on-github"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "hidetopbar@mathieu.bidon.ca"
+        # "hidetopbar@mathieu.bidon.ca"
         # "display-brightness-ddcutil@themightydeity.github.com"
       ];
     };

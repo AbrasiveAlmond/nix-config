@@ -9,11 +9,12 @@
 
 ;; Homerow mods
 (defvar
-  tap-time 200
+  tap-time 250
   hold-time 150
+  slow-hold-time 220
 
   ;; keys that trigger an early tap, i.e are not modified by the opposite hand
-  ;; rahhhhh they're in qwerty - that fixes some weird issues
+  ;; they must be in qwerty / defsrc
   left-hand-keys (
     q w e r t
     a s d f g
@@ -35,11 +36,11 @@
 
 (defalias
   tap (multi
-     (layer-switch nomods)
-     (on-idle-fakekey to-base tap 20)
+     ;;(layer-switch nomods)
+     (on-idle-fakekey to-base tap 5)
   )
 
-  a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
+  a (tap-hold-release-keys $tap-time $slow-hold-time (multi a @tap) lmet $left-hand-keys)
   r (tap-hold-release-keys $tap-time $hold-time (multi r @tap) lalt $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
   t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
@@ -49,5 +50,5 @@
   n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
   e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
   i (tap-hold-release-keys $tap-time $hold-time (multi i @tap) lalt $right-hand-keys)
-  o (tap-hold-release-keys $tap-time $hold-time (multi o @tap) rmet $right-hand-keys)
+  o (tap-hold-release-keys $tap-time $slow-hold-time (multi o @tap) rmet $right-hand-keys)
 )

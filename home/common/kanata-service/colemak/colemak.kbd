@@ -6,10 +6,12 @@
 
 ;; layer switching
 (defalias
-  cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
+  cps (tap-hold-press 150 150 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
   asym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held alt_symbols)) (layer-while-held alt_symbols))
+  ;; home row one-shot
+  hms (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held colemak)) (layer-while-held colemak))
 )
 
 (defsrc
@@ -32,7 +34,7 @@
   ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
   alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
   met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
-  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt)
+  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt) 
 )
 
 ;; include
