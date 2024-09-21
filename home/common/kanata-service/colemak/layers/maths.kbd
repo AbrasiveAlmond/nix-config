@@ -22,14 +22,15 @@
 )
 
 (deflayer maths
-     _    @!   @srt  /    -    @cos @sin @+   @*   @^   @=
-     _    @1    2    3    4    5    6    7    8    9    @0  _
+     _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
+     _    @1   @2   3    4    5    6    7    8    @9   @0  _
      _    _    _    _    _    _    _    _    ,    .    /    _
      _    _    _              _              _    _    _
 )
+
 ;; notes on experience thus far
 ;; much fewer occurances of sfbs than compared to num-pad style layouts.
-;; I am not the biggest fan of using dashes-when-typing-like-this
+;; dashes-between words much easier with alt_symbols layout
 ;; lefthand index finger feels like its flying
 
 ;; top is somewhat symmetric with left/right having inverse operators
@@ -38,8 +39,8 @@
 
 (defalias
 
-  1 (tap-hold-release-keys $tap-time $slow-hold-time (multi 1 @tap) @hms $left-hand-keys)
-  ;;r (tap-hold-release-keys $tap-time $hold-time (multi r @tap) lalt $left-hand-keys)
+  1 (tap-hold-release-keys $tap-time $slow-hold-time (multi 1 @tap) @asym $left-hand-keys)
+  2 (tap-hold-release-keys $tap-time $hold-time (multi 2 @tap) @hms $left-hand-keys)
   ;;s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
   ;;t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
   ;;d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) @asym $left-hand-keys)
@@ -47,6 +48,6 @@
   ;;h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) @asym $right-hand-keys)
   ;;n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
   ;;e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
-  ;;i (tap-hold-release-keys $tap-time $hold-time (multi i @tap) lalt $right-hand-keys)
-  0 (tap-hold-release-keys $tap-time $slow-hold-time (multi 0 @tap) @hms $right-hand-keys)
+  9 (tap-hold-release-keys $tap-time $hold-time (multi 9 @tap) @hms $right-hand-keys)
+  0 (tap-hold-release-keys $tap-time $slow-hold-time (multi 0 @tap) @asym $right-hand-keys)
 )

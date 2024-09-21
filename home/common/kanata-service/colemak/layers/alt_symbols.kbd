@@ -1,6 +1,11 @@
 (deflayer alt_symbols
-     _    _    _    _    _    _    _    _    _    _    =
-     _    S-[  @<   @>   S-]  S-`  S--  S-9  [    ]    S-0  _
-     _    _    _    _    S--  _    _    S--    _    _    _    _
+     _    _    tab  S-,  S-.  _    _    [    ]    tab  =
+     @cw  ret  -    S-[  S-]  _    _   S-9  S-0   -    ret  _
+     _    _    _    _    S--  _    bspc S--  _    _    _    _
      _    _    _              _              _    _    _
+)
+;; good left hand outwards rolls from opening brackets to return.
+;;
+(defalias
+  cw (caps-word 2000)
 )

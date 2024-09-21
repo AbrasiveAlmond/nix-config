@@ -18,7 +18,7 @@ in {
         WorkingDirectory = kanataFolder;
 
         Type = "exec";
-        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/./colemak/colemak.kbd -c ${kanataFolder}/./qwerty/qwerty.kbd";
+        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/colemak/colemak.kbd -c ${kanataFolder}/qwerty/qwerty.kbd";
         Restart = "no";
       };
     };

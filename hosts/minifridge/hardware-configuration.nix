@@ -16,7 +16,13 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/cb5d3e45-a898-46a0-88c8-8d86fb2bec9a";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "noatime" "nodiratime" "discard" "lazytime"];
+    };
+
+  fileSystems."/mnt/Backups" =
+    { device = "/dev/disk/by-uuid/e9362e7d-7d8b-4bee-801a-d08a78790ad7";
+      fsType = "ext4";
+      options = [ "lazytime" "discard"];
     };
 
   fileSystems."/boot" =
