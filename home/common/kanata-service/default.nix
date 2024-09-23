@@ -29,14 +29,22 @@ in {
         # Make configuration split between multiple files work
         # It’s worth noting that the %h modifier stands for the user’s home directory. 
         # https://www.baeldung.com/linux/systemd-create-user-services
-        WorkingDirectory = "%h/.kanata/";
+        # Not a sym-link, and so still requires hm rebuild when you change config
+        # perhaps try ExecStartPre="ln -s ${kanataFolder} /store/... "
+        # WorkingDirectory = "%h/.kanata/"; 
+        # ExecStart = (pkgs.kanata) + "/bin/kanata -c ./colemak/colemak.kbd -c ./qwerty/qwerty.kbd";
+        
+        
+        # Move config into nix store then harden by disabling access to home directory
+        WorkingDirctory = kanataFolder; 
+        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/colemak/colemak.kbd -c ${kanataFolder}/qwerty/qwerty.kbd";
 
         Type = "exec";
-        ExecStart = (pkgs.kanata) + "/bin/kanata -c ./colemak/colemak.kbd -c ./qwerty/qwerty.kbd";
         Restart = "no";
 
         ## Hardening
         ## System
+        ProtectHome = true;
         RestrictNamespaces=true;         		# Disable creating namespaces
         LockPersonality=true;            		# Locks personality system call
         NoNewPrivileges=true;            		# Service may not acquire new privileges

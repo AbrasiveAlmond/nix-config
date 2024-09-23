@@ -14,6 +14,7 @@
     ./hardware-configuration.nix
     ../common/locale.nix
     ../common/gnome
+    ./simple-immitch.nix
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
