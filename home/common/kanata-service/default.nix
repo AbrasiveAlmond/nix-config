@@ -4,6 +4,12 @@ let
   cfg = config.services.kanata;
   kanataFolder = "${../kanata-service}";
 in {
+  home.file.kantaconfig = {
+    recursive = true;
+    source = kanataFolder;
+    enable = true;
+  };
+
   options.services.kanata = {
     enable = mkEnableOption "enable kanata service";
   };
