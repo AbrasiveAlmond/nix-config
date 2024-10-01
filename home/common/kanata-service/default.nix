@@ -36,7 +36,7 @@ in {
         
         
         # Move config into nix store then harden by disabling access to home directory
-        WorkingDirctory = kanataFolder; 
+        WorkingDirectory = kanataFolder; 
         ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/colemak/colemak.kbd -c ${kanataFolder}/qwerty/qwerty.kbd";
 
         Type = "exec";
@@ -61,7 +61,10 @@ in {
 
         ## Capabilities and syscalls
         CapabilityBoundingSet="";
-        SystemCallFilter="@system-service"; #“set of system calls used by common services, excluding any special purpose calls”
+        SystemCallFilter=[
+          "@system-service"
+          "~@privileged"
+        ]; #“set of system calls used by common services, excluding any special purpose calls”
 
         ## File System
         ProtectSystem="strict";		          # strict read-only access to the OS file hierarchy       

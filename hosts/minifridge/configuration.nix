@@ -13,6 +13,8 @@
 
     ../common/gnome
     ../common/firefox.nix
+
+    # ./immich-app/docker-compose.nix
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 

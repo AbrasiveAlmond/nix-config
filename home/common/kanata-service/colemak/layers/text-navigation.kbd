@@ -1,6 +1,40 @@
 (deflayer arrows
-     _    esc  tab  _    S--  _    pgup home up   end  _
+     _    esc  @cut @cpy @pst _    pgup home up   end  _
      _    @met @alt @ctl @sft _    pgdn left down rght @bwd _
-     _    _    _    _    _    _    bspc del  _    _    @alg _
-     _    _    caps            _             lrld _    lrnx
+     _    _    _    @met _    _    bspc del  _    _    @alg _
+     _    _    caps           _             lrld _    lrnx
 )
+
+(defalias
+  cut C-x
+  cpy C-c
+  pst C-v
+)
+
+;;SELECT_WORD_TIMEOUT 2000  // When idle, clear state after 2 seconds.
+;;
+;;;; word selection
+;;fork (
+;;  held (
+;;    C-S-right
+;;  )
+;;
+;;  not ( 
+;;    macro (
+;;      C-right C-left C-S-right
+;;    )
+;;  )
+;;)
+;;
+;;;; line selection
+;;fork (
+;;  within timeout (
+;;    S-down
+;;  )
+;;
+;;  not ( 
+;;    macro (
+;;      home S-end down
+;;    )
+;;  )
+;;)

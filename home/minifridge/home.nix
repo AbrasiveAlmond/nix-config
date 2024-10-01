@@ -14,6 +14,7 @@
     # ../apps
     ../common/kanata-service
     ../common/gnome
+    ../common/keybinds
 
     ../common/programs/cli
     ../common/programs/firefox

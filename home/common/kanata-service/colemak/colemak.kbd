@@ -15,17 +15,17 @@
 )
 
 (defsrc
-    tab  q    w    e    r    t    y    u    i    o    p
-    caps a    s    d    f    g    h    j    k    l    ;    '
-    lsft z    x    c    v    b    n    m    ,    .    /    rsft
-    lctl lmet lalt           spc            ralt rmet rctl
+  tab  q    w    e    r    t    y    u    i    o    p
+  caps a    s    d    f    g    h    j    k    l    ;    '
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
 
 (deflayer colemak
-     tab  q    w    f    p    b    j    l    u    y    ;
-     @cps @a   @r   @s   @t   g    m    @n   @e   @i   @o   '
-     @sym z    x    c    @d   v    k    @h   ,    .    /    @sym
-     lctl lmet lalt          @spc            @alg rmet rctl
+  tab  q    w    f    p    b    j    l    u    y    ;
+  @cps @a   @r   @s   @t   g    m    @n   @e   @i   @o   '
+  @sym z    x    @c    d   v    k    @h   ,    .    /    @sym
+  lctl lmet lalt          @spc            @alg rmet rctl
 )
 
 (defalias

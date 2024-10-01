@@ -1,9 +1,41 @@
 { config, pkgs, ... }:
 
 {
+  users.users.immich = {
+    isNormalUser = true;
+    group = immich;
+    home = "/var/lib/containers/immich";
+    createHome = true;
+    description = "User for container immich";
+    subUidRanges = [ { count = 65536; startUid = 615536; } ];
+    subGidRanges = [ { count = 65536; startGid = 615536; } ];
+    linger = true;
+  };
+  # Create a group for each container
+  users.groups.immich = {  };
+
+  # virtualisation.docker.enable = true;
+  # virtualisation.podman.enable = true;
+  virtualisation = {
+    oci-containers.backend = "podman";
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
   
+  # add podman and podman-compose to the system
+  environment.systemPackages = with pkgs; [
+    podman podman-compose runc conmon skopeo slirp4netns fuse-overlayfs
+  ];
+
   systemd.services.init-filerun-network-and-files = {
-    description = "Create the network bridge for Immich.";
+    description = "Create the network bridge for Immich";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     
@@ -26,9 +58,10 @@
       autoStart = true;
       image = "ghcr.io/imagegenius/immich:latest";
       volumes = [
-        "/mnt/tank/Containers/Immich/config:/config"
-        "/mnt/tank/Containers/Immich/photos:/photos"
-        "/mnt/tank/Containers/Immich/config/machine-learning:/config/machine-learning"
+        "/immitch/config:/config"
+        "/immitch/photos:/photos"
+        "/immitch/config/machine-learning:/config/machine-learning"
+        # /mnt/tank/Containers/Immich
       ];
       ports = [ "2283:8080" ];
       environment = {

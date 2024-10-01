@@ -21,35 +21,6 @@ with lib.hm.gvariant;
       ];
     };
 
-    "org/gnome/desktop/peripherals/keyboard" = {
-      delay = 250;
-    };
-
-    "org/gnome/desktop/wm/keybindings" = {
-      activate-window-menu = [];
-      close = [ "<Super>c" ];
-      switch-applications = [];
-      switch-applications-backward = [];
-      switch-group = [ "<Super>Tab" ];
-      switch-group-backward = [ "<Shift><Super>Tab" ];
-      switch-input-source = [ "<Alt><Super>space" ];
-      switch-input-source-backward = [ "<Shift><Alt><Super>space" ];
-      toggle-maximized = [ "<Super>m" ];
-      unmaximize = [];
-      maximize = [];
-    };
-
-    # Night light config
-    "org/gnome/settings-daemon/plugins/media-keys" = {
-      next = [ "<Alt>y" ];
-      play = [ "<Alt>k" ];
-      previous = [ "<Alt>l" ];
-      screensaver = [];
-      volume-down = [ "<Alt>m" ];
-      volume-up = [ "<Alt>j" ];
-      www = [];
-    };
-
     # Night light config
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;

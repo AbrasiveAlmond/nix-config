@@ -1,0 +1,18 @@
+#root {
+    /* I tried to find official adwaita colours but everything uses 
+    very slightly different shades and I hate it. I decided it would be more
+    simple to hardcode matching colours to what the headerbar already uses
+    rather than some more complex setup where they share colours (which
+    would then work with light theme as well) */
+    --gnome-unfocused:rgb(36, 36, 36);
+    --gnome-focused: rgb(54, 54, 54);
+}
+
+#nav_bar {
+    background-color: var(--gnome-focused);
+}
+
+/* Hidden state: Hide native tabs strip */
+#main-window[titlepreface*="​"] #titlebar { height: 0 !important; }
+/* Hidden state: Fix z-index of active pinned tabs */
+#main-window[titlepreface*="​"] #tabbrowser-tabs { z-index: 0 !important; }

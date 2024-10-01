@@ -5,8 +5,9 @@ let
 in {
   home.file."${firefox-profile}/firefox-gnome-theme".source =
     inputs.firefox-gnome-theme;
-  home.file."${firefox-profile}/customChrome.css".source = ./customChrome.css;
-  home.file."${firefox-profile}/customContent.css".source = ./customContent.css;
+  # home.file."${firefox-profile}/customChrome.css".source = ./customChrome.css;
+  # home.file."${firefox-profile}/customContent.css".source = ./customContent.css;
+  home.file."${firefox-profile}".source = ./chrome;
 
   programs.firefox = {
     enable = true;

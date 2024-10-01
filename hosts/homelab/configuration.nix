@@ -14,7 +14,8 @@
     ./hardware-configuration.nix
     ../common/locale.nix
     ../common/gnome
-    ./simple-immitch.nix
+    # ./simple-immitch.nix
+    # ./even-more-simple-immich
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
@@ -22,6 +23,7 @@
     # inputs.hardware.nixosModules.common-gpu-nvidia
   ];
 
+  # boot.kernel.sysctl = { "vm.overcommit_memory" = 1; };
   # security.sudo.execWheelOnly = true;
   # security.sudo.enable = false;
   # security.lockKernelModules = true;
