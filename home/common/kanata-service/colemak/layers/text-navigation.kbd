@@ -1,5 +1,5 @@
 (deflayer arrows
-     _    esc  @cut @cpy @pst _    pgup home up   end  _
+     _    esc  @cut @cpy @pst _    pgup home up   end  @lineend
      _    @met @alt @ctl @sft _    pgdn left down rght @bwd _
      _    _    _    @met _    _    bspc del  _    _    @alg _
      _    _    caps           _             lrld _    lrnx
@@ -9,6 +9,7 @@
   cut C-x
   cpy C-c
   pst C-v
+  lineend (macro (end ;))
 )
 
 ;;SELECT_WORD_TIMEOUT 2000  // When idle, clear state after 2 seconds.
