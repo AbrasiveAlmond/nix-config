@@ -8,10 +8,14 @@
       "app-1" = "Files";
       "app-2" = "Firefox";
       "app-3" = "Eyedropper";
+      "app-4" = "VSCodium";
+      "app-5" = "Spotify";
       "hotkey-0" = ["<Super>t"];
       "hotkey-1" = ["<Super>f"];
       "hotkey-2" = ["<Super>b"];
       "hotkey-3" = ["<Shift><Super>c"];
+      "hotkey-4" = ["<Super>e"];
+      "hotkey-5" = ["<Super>s"];
     };
 
     "org/gnome/shell/extensions/tiling-assistant" = {
