@@ -83,7 +83,7 @@
       # bottles       # Windows app runner
       # plots         # Worse desmos
       # amberol       # Music player
-      # mission-center# Task manager 
+      mission-center  # Task manager 
       # sysprof       # System Profiler
 
       # Gnome apps
