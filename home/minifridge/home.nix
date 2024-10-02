@@ -126,8 +126,8 @@
 
       # coding
       vscodium
-      gnome-builder
-      gnome-extensions-cli
+      # gnome-builder
+      # gnome-extensions-cli
       libsecret
       git-credential-oauth
       kanata        # Keyboard remapping

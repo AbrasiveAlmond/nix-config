@@ -19,6 +19,7 @@
 
     ../common/programs/cli
     ../common/programs/firefox
+    ../common/shellAliases.nix
   ];
 
   home = {

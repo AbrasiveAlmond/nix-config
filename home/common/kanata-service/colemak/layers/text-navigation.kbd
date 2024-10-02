@@ -1,14 +1,15 @@
 (deflayer arrows
-     _    esc  @cut @cpy @pst _    pgup home up   end  @lineend
-     _    @met @alt @ctl @sft _    pgdn left down rght @bwd _
-     _    _    _    @met _    _    bspc del  _    _    @alg _
+     _    @und @cut @cpy @pst _   pgup home up   end  @lineend
+     _    @met @alt @ctl @sft _   pgdn left down rght ret _
+     _    _    _    @met _    _   bspc del  pgdn pgup @alg _
      _    _    caps           _             lrld _    lrnx
 )
 
 (defalias
-  cut C-x
-  cpy C-c
   pst C-v
+  cpy C-c
+  cut C-x
+  und C-z
   lineend (macro (end ;))
 )
 
@@ -29,7 +30,7 @@
 ;;
 ;;;; line selection
 ;;fork (
-;;  within timeout (
+;;  within timeout (cd
 ;;    S-down
 ;;  )
 ;;

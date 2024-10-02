@@ -8,8 +8,21 @@
     --gnome-focused: rgb(54, 54, 54);
 }
 
-#nav_bar {
-    background-color: var(--gnome-focused);
+#sidebar-header {
+    display: none;
+}
+
+/* Make the sidebar resize bar wider and correct colour */
+#sidebar-splitter {
+	background: rgb(48, 48, 48) !important;
+	border: 0 !important;
+	border-right: none !important;
+    width: 8px !important; /* Basically functions as padding-right for sidebar */
+}
+
+.sidebar-splitter {
+    border: none;
+    border-style: none;
 }
 
 /* Hidden state: Hide native tabs strip */

@@ -1,41 +1,19 @@
 @import "./gnome-sidebery.css";
 
-#sidebar-header {
-    display: none;
-}
 
 #main-window #titlebar {
     overflow: hidden;
     transition: height 0.3s 0.3s !important;
-  }
+}
 
 /* Default state: Set initial height to enable animation */
 #main-window #titlebar { height: 3em !important; }
 #main-window[uidensity="touch"] #titlebar { height: 3.35em !important; }
 #main-window[uidensity="compact"] #titlebar { height: 2.7em !important; }
 
-/* 
-code that controls colour of title bar
-#nav-bar {
-    background: var(--gnome-headerbar-background) !important;
-} */
-
 /* Remove ugly black border under titlebar*/
 #navigator-toolbox {
     border: none !important;
-}
-
-/* Make the sidebar resize bar wider and correct colour */
-#sidebar-splitter {
-	background: rgb(48, 48, 48) !important;
-	border: 0 !important;
-	border-right: none !important;
-    width: 8px !important; /* Basically functions as padding-right for sidebar */
-}
-
-.sidebar-splitter {
-    border: none;
-    border-style: none;
 }
 
 /* That rounded outline around website content */
@@ -49,23 +27,3 @@ code that controls colour of title bar
     border-radius: 16px;
     background-color: rgb(48, 48, 48) !important;
 }
-
-/* Taken from tab-center-reborn.css
-:root {
-    --delay: 0s;
-    --transition-time: 0.2s;
-    --positionX1: 48px;
-    --positionX2: absolute;
-}
-
-#browser {
-    position: relative;
-}
-
-#tabbrowser-tabbox {
-    z-index: 0 !important;
-}
-
-#navigator-toolbox {
-    z-index: 10 !important;
-} */

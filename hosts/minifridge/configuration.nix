@@ -41,7 +41,7 @@
   services.flatpak.enable = true; 
 
   networking = {
-    hostName = "smart-minifridge";
+    hostName = "minifridge";
     # Enable networkinge
     networkmanager.enable = true;
   };
