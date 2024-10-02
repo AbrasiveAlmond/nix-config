@@ -18,7 +18,8 @@
 
     ../common/programs/cli
     ../common/programs/firefox
-
+    ../common/shellAliases.nix
+    
     # ../common/programs/cli/fish.nix
     # ../common/programs/cli/starship.nix
   ];
@@ -72,10 +73,10 @@
     };
   };
 
-  systemd.user.sessionVariables = {
-		EDITOR = "helix";
-		TERM = "fish";
-	};
+  # systemd.user.sessionVariables = {
+	# 	EDITOR = "helix";
+	# 	TERM = "fish";
+	# };
 
 	fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
