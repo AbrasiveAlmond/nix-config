@@ -22,9 +22,9 @@
 )
 
 (deflayer colemak
-  tab  q    w    f    p    b    j    l    u    y    '
-  @cps @a   @r   @s   @t   g    m    @n   @e   @i   @o   ;
-  @sym z    x    @c    d   v    k    @h   ,    .    /    @sym
+  tab  q    w    f    p    b    j    l    u    y    ;
+  @cps @a   @r   @s   @t   g    m    @n   @e   @i   @o   '
+  @sym @z    x    c    d   v    k    h    ,    .    @/   @sym
   lctl lmet lalt          @spc            @alg rmet rctl
 )
 
@@ -38,25 +38,22 @@
 )
 
 ;; include
-(include ./layers/homerow-mods.kbd)
+;;(include ./layers/homerow-mods.kbd)
 (include ./layers/maths.kbd)
 (include ./layers/symbols.kbd)
 (include ./layers/text-navigation.kbd)
 (include ./layers/alt_symbols.kbd)
+(include ./layers/homerow-mods-template.kbd)
 
+;; home-row
+(template-expand home-row-mod-taps
+ a r s t n e i o
+)
 
-
-;; TODO:
-;; anchor shift by holding space and immediately tapping the left shift
-;; key. Shift will remain active until the space-bar is released.
-;; disable kanata startup delay
-;; Another variant is the list action lrld-num. This reloads the configuration file specified by the number, according to the order that the configuration file arguments are passed into kanata’s startup command.
-;;Example:
-;;
-;;(deflayer has-live-reloads
-;;  lrld lrpv lrnx (lrld-num 3)
-;;)
-;;
-;;Example specifying multiple config files in the command line:
-;;
-;;kanata -c startup.cfg -c 2nd.cfg -c 3rd.cfg
+;; extra pinky mod taps below homerow
+(template-expand mod-tap
+ $slow-hold-time z lmet $left-hand-keys
+)
+(template-expand mod-tap
+ $slow-hold-time / lmet $right-hand-keys
+)

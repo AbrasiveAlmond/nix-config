@@ -1,0 +1,47 @@
+;; Homerow mods
+(defvar
+  tap-time 250
+  hold-time 150
+  slow-hold-time 220
+  tt $tap-time
+  ht $hold-time
+  sht $slow-hold-time
+
+  ;; keys that trigger an early tap, i.e are not modified by the opposite hand
+  ;; they must be in qwerty / defsrc - so they work across layers
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+    ;;bspc esc ;;mlft mrgt spc tab 
+  ) ;; it takes less time to activate spc and tab when they're commented out
+
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    m , . /       ;; mouse buttons
+    ;;bspc esc mlft mrgt spc tab 
+  )
+)
+
+;; define quick template to use on each layer that turns home row into mod-taps
+(deftemplate home-row-mod-taps (k1 k2 k3 k4 k5 k6 k7 k8)
+    (defalias
+        $k1 (tap-hold-release-keys $tt $sht $k1 @asym $left-hand-keys)
+        $k2 (tap-hold-release-keys $tt $ht $k2 lctl $left-hand-keys)
+        $k3 (tap-hold-release-keys $tt $ht $k3 lalt $left-hand-keys)
+        $k4 (tap-hold-release-keys $tt $ht $k4 lsft $left-hand-keys)
+        
+        $k5 (tap-hold-release-keys $tt $ht $k5 lsft $right-hand-keys)
+        $k6 (tap-hold-release-keys $tt $ht $k6 lctl $right-hand-keys)
+        $k7 (tap-hold-release-keys $tt $ht $k7 lalt $right-hand-keys)
+        $k8 (tap-hold-release-keys $tt $sht $k8 @asym $right-hand-keys)
+    ) 
+)
+
+;; this is separate because otherwise I was getting duplicate aliases between layers which shared atleast one common mod-tap
+(deftemplate mod-tap (hold-time key mod left-right)
+    (defalias
+        $key (tap-hold-release-keys $tap-time $hold-time $key $mod $left-right)
+    )
+)

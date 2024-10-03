@@ -45,8 +45,8 @@
   s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lctl $left-hand-keys)
   t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lsft $left-hand-keys)
 
-  c (tap-hold-release-keys $tap-time $hold-time (multi c @tap) lmet $left-hand-keys)
-  h (tap-hold-release-keys $tap-time $hold-time (multi h @tap) rmet $right-hand-keys)
+  z (tap-hold-release-keys $tap-time $hold-time (multi z @tap) lmet $left-hand-keys)
+  / (tap-hold-release-keys $tap-time $hold-time (multi / @tap) rmet $right-hand-keys)
 
   n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rsft $right-hand-keys)
   e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) rctl $right-hand-keys)
