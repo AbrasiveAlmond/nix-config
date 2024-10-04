@@ -68,7 +68,7 @@
   nixpkgs = {
     config = {
       # Disable if you don't want unfree packages
-      allowUnfree = false;
+      allowUnfree = true;
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify"];
     };
   };

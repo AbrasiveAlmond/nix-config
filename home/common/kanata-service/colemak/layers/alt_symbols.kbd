@@ -5,6 +5,13 @@
 ;;  _    _    _              _              _    _    _
 ;;)
 
+;;(deflayer alt_symbols
+;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
+;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
+;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _    _
+;;  _    _    _              _              _    _    _
+;;)
+
 (deflayer alt_symbols
   _    _    esc  S-,  S-.  \   _   [     ]    _    _
   @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _

@@ -38,6 +38,7 @@
       # to have all behaviour in one place. see above config
       activate-window-menu = [];
       unmaximize = [];
+      toggle-quick-settings = []; # conflict with M-s spotify shortcut
 
       close = [ "<Super>c" ];
       switch-applications = [];
