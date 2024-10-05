@@ -29,6 +29,12 @@
      _    _    _              _              _    _    _
 )
 
+(defalias
+  (template-expand home-row-mod-taps
+    1 2 3 4 7 8 9 0
+  )
+)
+
 ;; notes on experience thus far
 ;; much fewer occurances of sfbs than compared to num-pad style layouts.
 ;; dashes-between words much easier with alt_symbols layout
@@ -52,6 +58,3 @@
 ;;  0 (tap-hold-release-keys $tap-time $slow-hold-time (multi 0 @tap) @asym $right-hand-keys)
 ;;)
 
-(template-expand home-row-mod-taps
- 1 2 3 4 7 8 9 0
-)

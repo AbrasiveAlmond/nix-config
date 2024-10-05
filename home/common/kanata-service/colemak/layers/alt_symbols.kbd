@@ -1,7 +1,7 @@
 ;;(deflayer alt_symbols
 ;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
 ;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
-;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _    _
+;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _   _
 ;;  _    _    _              _              _    _    _
 ;;)
 
@@ -13,18 +13,53 @@
 ;;)
 
 (deflayer alt_symbols
-  _    _    esc  S-,  S-.  \   _   [     ]    _    _
-  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
-  _    _    _    _    S--  _   @|  S-[   S-]   _    _    _
-  _    _    _              _              _    _    _
+     _    '    @<   @>   @quo `    @&   @->  [    ]    @%
+     @cpw @!   @-   @plus @eq @#   @|   @col @lbkt S-0  ret  _
+     _    @^   /    @*   \    @bk  @~   @<-   @{   @}   S-2  _
+     _    _    _              _              _    _    _
 )
-
-;; good left hand outwards rolls from opening brackets to return
-;; () on left hand prevents how overused right hand is on maths layer
-;; maybe just throw brackets onto maths layer to make it self sufficient
-;; actually research symbols layers, like that vim optimised one
 
 (defalias
   cpw (caps-word 2000)
   | S-\
+  & S-7
+  # S-3 
+  $ S-4
+  % S-5
+  quo S-'
+  bk (macro . . /)
+  - (unshift -)
+  -> (fork 
+          (macro (- S-.))
+          (macro (eql S-.))
+          (nop2)
+     )
+
+  <- (fork 
+          (macro (S-, -))
+          (macro (S-, S--))
+          (nop2)
+     )
+
+  <-> (fork
+          @->
+          @<-
+          (nop1)
+      )
+
+  (template-expand mod-tap
+     $hold-time eq eql nop1 $left-hand-keys
+  )
+  
+  (template-expand mod-tap
+     $hold-time col S-; nop1 $right-hand-keys
+  )
+
+  (template-expand mod-tap
+     $hold-time plus @+ nop2 $left-hand-keys
+  )
+  
+  (template-expand mod-tap
+     $hold-time lbkt S-9 nop2  $right-hand-keys
+  )
 )

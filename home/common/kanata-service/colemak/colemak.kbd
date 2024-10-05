@@ -22,12 +22,12 @@
 )
 
 (deflayer colemak
-  tab  q    w    f    p    b    j    l    u    y    ;
-  @cps @a   @r   @s   @t   g    m    @n   @e   @i   @o   '
+  tab  q    @cw    @cf    @cp    b    j    l    u    y    ;
+  @cps @a   @r   @s   @t   g    m    @cn   @ce   @ci   @o   '
   @sym @z    x    c    d   v    k    h    ,    .    @/   @sym
   lctl lmet lalt          @spc            @alg rmet rctl
 )
-
+ 
 (defalias
   bwd C-bspc
   sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
@@ -45,15 +45,50 @@
 (include ./layers/alt_symbols.kbd)
 (include ./layers/homerow-mods-template.kbd)
 
-;; home-row
-(template-expand home-row-mod-taps
- a r s t n e i o
+(defalias
+  ;; home-row
+  (template-expand home-row-mod-taps
+    a r s t n e i o
+  )
+
+  ;; extra pinky mod taps below homerow
+  (template-expand mod-tap
+    $slow-hold-time z z lmet $left-hand-keys
+  )
+
+  (template-expand mod-tap
+    $slow-hold-time / / lmet $right-hand-keys
+  )
 )
 
-;; extra pinky mod taps below homerow
-(template-expand mod-tap
- $slow-hold-time z lmet $left-hand-keys
+(defalias
+  cn (chord example n)
+  ce (chord example e)
+  ci (chord example i)
 )
-(template-expand mod-tap
- $slow-hold-time / lmet $right-hand-keys
+
+(defchords example 100
+  (n      ) @n
+  (   e   ) @e
+  (      i) @i
+
+  (n  e  i) @bkt
+) 
+  ;;(n     i) ret
+  ;;(n  e   ) S-9
+  ;;(   e  i) S-0
+
+
+(defalias
+  cw (chord nav w)
+  cf (chord nav f)
+  cp (chord nav p)
+)
+
+(defchords nav 500
+  (w      ) w
+  (   f   ) f
+  (      p) p
+  (w  f   ) S-C-tab
+  (   f  p) C-tab
 )
