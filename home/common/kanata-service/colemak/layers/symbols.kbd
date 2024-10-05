@@ -1,64 +1,77 @@
-(deflayer symbols_oneshot
-     _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  _    =
-     _    nop0 @{   @[   @ob  @<   @>   @cb  @]   @}   nop0 _
-     _    _    _    _    _    _    _    _    _    _    \    _
-     _    _    _              _              _    _    _
-)
+;;(deflayer symbols
+;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
+;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
+;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _   _
+;;  _    _    _              _              _    _    _
+;;)
+
+;;(deflayer symbols
+;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
+;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
+;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _    _
+;;  _    _    _              _              _    _    _
+;;)
 
 (deflayer symbols
-     _    _    _    _    _    _    _    _    _    _    _ 
-     _    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  _    _    _
-     _    _    S-[  [    S-9  S-,  S-.  S-0   ]    S-]  \    _
+     _    '    @<   @>   @quo `    @&   @->  [    ]    @%
+     @cpw @!   @-   @plus @eq @#   @|   @col @lbkt S-0  ret  _
+     _    @^   /    @*   \    @bk  @~   @<-   @{   @}   S-2  _
      _    _    _              _              _    _    _
 )
 
-;; Bracket shit 
-(defalias 
-     ob (fork 
-          (macro (S-9 S-0 left))
-          S-9
-          (nop0)
+(defalias
+  cpw (caps-word 2000)
+  | S-\
+  & S-7
+  # S-3 
+  $ S-4
+  % S-5
+  quo S-'
+  bk (macro . . /)
+  - (unshift -)
+  -> (fork 
+          (macro (- S-.))
+          (macro (eql S-.))
+          (nop2)
      )
 
-     cb (fork 
-          S-0
-          (macro (S-0 left))
-          (nop0)
+  <- (fork 
+          (macro (S-, -))
+          (macro (S-, S--))
+          (nop2)
      )
 
-     [ (fork 
-          (macro ([ ] left))
-          [
-          (nop0)
-     )
+  <-> (fork
+          @->
+          @<-
+          (nop1)
+      )
 
-     ] (fork 
-          ]
-          (macro (] left))
-          (nop0)
-     )
+  (template-expand mod-tap
+     eq
+     eql
+     nop1
+     $hold-time $left-hand-keys
+  )
+  
+  (template-expand mod-tap
+     col
+     S-;
+     nop1
+     $hold-time $right-hand-keys
+  )
 
-     { (fork 
-          (macro (S-[ S-] left))
-          S-[
-          (nop0)
-     )
-
-     } (fork 
-          S-]
-          (macro (S-] left))
-          (nop0)
-     )
-
-     < (fork 
-          (macro (S-, S-. left))
-          S-,
-          (nop0)
-     )
-
-     > (fork 
-          S-.
-          (macro (S-. left))
-          (nop0)
-     )
+  (template-expand mod-tap
+     plus
+     @+
+     nop2
+     $hold-time $left-hand-keys
+  )
+  
+  (template-expand mod-tap
+     lbkt
+     S-9
+     nop2
+     $hold-time $right-hand-keys
+  )
 )

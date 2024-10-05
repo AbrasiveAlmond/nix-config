@@ -8,8 +8,8 @@
 (defalias
   cps (tap-hold-press 150 150 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
+  sft (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held shift_symbols)) (layer-while-held shift_symbols))
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
-  asym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held alt_symbols)) (layer-while-held alt_symbols))
   ;; home row one-shot
   hms (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held colemak)) (layer-while-held colemak))
 )
@@ -23,14 +23,13 @@
 
 (deflayer colemak
   tab  q    @cw  @cf  @cp   b    j    l    u    y    ;
-  @cps @a   @r   @s   @t    g    m    @n   @e  @i   @o   '
-  @sym @z   x    c    d     v    k    h    ,    .    @/   @sym
+  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
+  @sft @Mz  x    c    d     v    k    h    ,    .    @M/   @sft
   lctl lmet lalt          @spc            @alg rmet rctl
 )
  
 (defalias
   bwd C-bspc
-  sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
   ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
   alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
   met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
@@ -38,26 +37,34 @@
 )
 
 ;; include
-;;(include ./layers/homerow-mods.kbd)
 (include ./layers/maths.kbd)
-(include ./layers/symbols.kbd)
+(include ./layers/shift-symbols.kbd)
 (include ./layers/text-navigation.kbd)
-(include ./layers/alt_symbols.kbd)
+(include ./layers/symbols.kbd)
 (include ./layers/homerow-mods-template.kbd)
 
 (defalias
   ;; home-row
   (template-expand home-row-mod-taps
-    a r s t n e i o
+     sa   Ar   Cs   St   Sn   Ce   Ai   so
+     a    r    s    t    n    e    i    o
+     @sym lalt lctl lsft rsft rctl lalt @sym
   )
 
   ;; extra pinky mod taps below homerow
   (template-expand mod-tap
-    $slow-hold-time z z lmet $left-hand-keys
+    Mz 
+    z 
+    lmet 
+    $slow-hold-time $left-hand-keys
   )
 
+  ;; extra pinky mod taps below homerow
   (template-expand mod-tap
-    $slow-hold-time / / lmet $right-hand-keys
+    M/ 
+    /
+    lmet 
+    $slow-hold-time $left-hand-keys
   )
 )
 

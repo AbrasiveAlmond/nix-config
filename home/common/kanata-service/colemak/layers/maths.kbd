@@ -24,14 +24,16 @@
 
 (deflayer maths
      _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
-     _    @1   @2   @3   @4   5    6   @7   @8   @9   @0  _
-     _    _    _    _    @bkt _    _   @bkt _    _    _    _
+     _    @s1  @A2  @C3  @S4  5    6    @S7  @C8  @A9  @s0  _
+     _    _    _    _    @bkt _    _   @bkt  _    _    _    _
      _    _    _              _              _    _    _
 )
 
 (defalias
   (template-expand home-row-mod-taps
-    1 2 3 4 7 8 9 0
+     s1   A2   C3   S4   S7   C8   A9   s0
+     1    2    3    4    7    8    9    0
+     @sym lalt lctl lsft rsft rctl lalt @sym  
   )
 )
 

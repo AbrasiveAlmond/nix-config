@@ -25,19 +25,31 @@
 )
 
 ;; define quick template to use on each layer that turns home row into mod-taps
-(deftemplate home-row-mod-taps (k1 k2 k3 k4 k5 k6 k7 k8)
-  $k1 (tap-hold-release-keys $tt $sht $k1 @asym $left-hand-keys)
-  $k2 (tap-hold-release-keys $tt $ht $k2 lalt $left-hand-keys)
-  $k3 (tap-hold-release-keys $tt $ht $k3 lctl $left-hand-keys)
-  $k4 (tap-hold-release-keys $tt $ht $k4 lsft $left-hand-keys)
+
+
+
+(deftemplate home-row-mod-taps (
+    n1 n2 n3 n4 n5 n6 n7 n8  ;; Names
+    a1 a2 a3 a4 a5 a6 a7 a8  ;; Actions
+    m1 m2 m3 m4 m5 m6 m7 m8  ;; Modifiers
+  )
+  $n1 (tap-hold-release-keys $tt $sht $a1 $m1 $left-hand-keys)
+  $n2 (tap-hold-release-keys $tt $ht  $a2 $m2 $left-hand-keys)
+  $n3 (tap-hold-release-keys $tt $ht  $a3 $m3 $left-hand-keys)
+  $n4 (tap-hold-release-keys $tt $ht  $a4 $m4 $left-hand-keys)
   
-  $k5 (tap-hold-release-keys $tt $ht $k5 lsft $right-hand-keys)
-  $k6 (tap-hold-release-keys $tt $ht $k6 lctl $right-hand-keys)
-  $k7 (tap-hold-release-keys $tt $ht $k7 lalt $right-hand-keys)
-  $k8 (tap-hold-release-keys $tt $sht $k8 @asym $right-hand-keys)
+  $n5 (tap-hold-release-keys $tt $ht  $a5 $m5 $right-hand-keys)
+  $n6 (tap-hold-release-keys $tt $ht  $a6 $m6 $right-hand-keys)
+  $n7 (tap-hold-release-keys $tt $ht  $a7 $m7 $right-hand-keys)
+  $n8 (tap-hold-release-keys $tt $sht $a8 $m8 $right-hand-keys)
 )
 
 ;; this is separate because otherwise I was getting duplicate aliases between layers which shared atleast one common mod-tap
-(deftemplate mod-tap (hold-time name key mod left-right)
+(deftemplate mod-tap (
+    name
+    key
+    mod
+    hold-time left-right
+  )
   $name (tap-hold-release-keys $tap-time $hold-time $key $mod $left-right)
 )
