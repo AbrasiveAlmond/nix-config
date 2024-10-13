@@ -6,6 +6,13 @@
 )
 
 (defalias
+  bwd C-bspc
+  sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
+  ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
+  alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
+  met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
+  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt) 
+
   pst C-v
   cpy C-c
   cut C-x
@@ -13,8 +20,7 @@
   lineend (macro (end ;))
 )
 
-;;SELECT_WORD_TIMEOUT 2000  // When idle, clear state after 2 seconds.
-;;
+;;SELECT_WORD_TIMEOUT 2000  // When idle, clear state after 2 seconds., do this with oneshot hold of nopx
 ;;;; word selection
 ;;fork (
 ;;  held (

@@ -8,10 +8,9 @@
 (defalias
   cps (tap-hold-press 150 150 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
-  sft (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held shift_symbols)) (layer-while-held shift_symbols))
+  smb (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held shift_symbols)) (layer-while-held shift_symbols))
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
-  ;; home row one-shot
-  hms (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held colemak)) (layer-while-held colemak))
+
 )
 
 (defsrc
@@ -22,18 +21,10 @@
 )
 
 (deflayer colemak
-  tab  q    @cw  @cf  @cp   b    j    l    u    y    ;
+  tab  q    w   f   p   b    j    l    u    y    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
-  @sft @Mz  x    c    d     v    k    h    ,    .    @M/   @sft
+  @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
   lctl lmet lalt          @spc            @alg rmet rctl
-)
- 
-(defalias
-  bwd C-bspc
-  ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
-  alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
-  met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
-  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt) 
 )
 
 ;; include
@@ -56,7 +47,7 @@
     Mz 
     z 
     lmet 
-    $slow-hold-time $left-hand-keys
+    $hold-time $left-hand-keys
   )
 
   ;; extra pinky mod taps below homerow
@@ -64,20 +55,6 @@
     M/ 
     /
     lmet 
-    $slow-hold-time $left-hand-keys
+    $hold-time $left-hand-keys
   )
-)
-
-(defalias
-  cw (chord nav w)
-  cf (chord nav f)
-  cp (chord nav p)
-)
-
-(defchords nav 500
-  (w      ) w
-  (   f   ) f
-  (      p) p
-  (w  f   ) S-C-tab
-  (   f  p) C-tab
 )
