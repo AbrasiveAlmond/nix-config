@@ -21,7 +21,7 @@
 )
 
 (deflayer colemak
-  tab  q    w   f   p   b    j    l    u    y    ;
+  tab  q    w    f    p     b    j    l    u   y    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
   @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
   lctl lmet lalt          @spc            @alg rmet rctl

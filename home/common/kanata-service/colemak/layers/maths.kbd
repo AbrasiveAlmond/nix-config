@@ -1,8 +1,15 @@
+(deflayer maths
+     _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
+     _    @s1  @ch2  @ch3  @ch4  5    6    @S7  @C8  @H9  @s0  @hms
+     _    _    _    _    @bkt _    _    @bkt _    _    _    _
+     _    _    _              _              _    _    _
+)
+
 ;; Symbols for maths
 (defalias
   ^ S-6
   * S-8
-  + S-=
+  + S-= 
   ! S-1
   = (macro (unmod =) =) ;; cannot roll += without this
   ~ S-`
@@ -20,13 +27,6 @@
 
     ;;home row one-shot
   hms (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held colemak)) (layer-while-held colemak))
-)
-
-(deflayer maths
-     _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
-     _    @s1  @ch2  @ch3  @ch4  5    6    @S7  @C8  @H9  @s0  @hms
-     _    _    _    _    @bkt _    _    @bkt _    _    _    _
-     _    _    _              _              _    _    _
 )
 
 (defalias

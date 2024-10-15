@@ -13,9 +13,9 @@
 ;;)
 
 (deflayer symbols
-     _    '    @<   @>   @quo `    @&   @->  [    ]    @%
-     @cpw @!   @-   @plus @eq @#   @|   @col @lbkt S-0  ret  _
-     _    @^   /    @*   \    @bk  @~   @<-   @{   @}   S-2  _
+     _    '    @<   @>    @quo .    @&   @::  [    ]    @%
+     @cpw @!   @-   @plus @=   @#   @|   @: @lbkt S-0  ret  `
+     _    @^   /    @*    \    @bk  @~   @$   @{   @}   S-2  _
      _    _    _              _              _    _    _
 )
 
@@ -26,6 +26,9 @@
   # S-3 
   $ S-4
   % S-5
+  : S-;
+  :: (macro (@: @:))
+  ? S-/
   quo S-'
   bk (macro . . /)
   - (unshift -)
@@ -47,19 +50,19 @@
           (nop1)
       )
 
-  (template-expand mod-tap
-     eq
-     eql
-     nop1
-     $hold-time $left-hand-keys
-  )
-  
-  (template-expand mod-tap
-     col
-     S-;
-     nop1
-     $hold-time $right-hand-keys
-  )
+  ;;(template-expand mod-tap
+  ;;   eq
+  ;;   eql
+  ;;   nop1
+  ;;   $hold-time $left-hand-keys
+  ;;)
+  ;;
+  ;;(template-expand mod-tap
+  ;;   :
+  ;;   S-;
+  ;;   nop1
+  ;;   $hold-time $right-hand-keys
+  ;;)
 
   (template-expand mod-tap
      plus
