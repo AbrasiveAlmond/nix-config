@@ -66,13 +66,13 @@
   hy (chord enter y)
 )
 
-(defchords tab
+(defchords tab 40
   (w   ) w
   (   f) f
   (w  f) tab
 )
 
-(defchords enter
+(defchords enter 40
   (u   ) u
   (   y) y
   (u  y) ret
