@@ -50,10 +50,16 @@
     $hold-time $left-hand-keys
   )
 
+  /_ (fork 
+    /
+    -
+    (lsft)
+  )
+  
   ;; extra pinky mod taps below homerow
   (template-expand mod-tap
     M/ 
-    /
+    @/_
     lmet 
     $hold-time $left-hand-keys
   )

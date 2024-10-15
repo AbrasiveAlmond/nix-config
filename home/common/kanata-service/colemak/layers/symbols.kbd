@@ -14,7 +14,7 @@
 
 (deflayer symbols
      _    '    @<   @>    @quo .    @&   @::  [    ]    @%
-     @cpw @!   @-   @plus @=   @#   @|   @: @lbkt S-0  ret  `
+     @cpw @!   @-   @plus @=   @#   @|   @: @lbkt S-0   @?   `
      _    @^   /    @*    \    @bk  @~   @$   @{   @}   S-2  _
      _    _    _              _              _    _    _
 )
