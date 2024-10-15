@@ -21,7 +21,7 @@
 )
 
 (deflayer colemak
-  tab  q    w    f    p     b    j    l    u   y    ;
+  tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
   @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
   lctl lmet lalt          @spc            @alg rmet rctl
@@ -57,4 +57,23 @@
     lmet 
     $hold-time $left-hand-keys
   )
+)
+
+(defalias
+  hw (chord tab w)
+  hf (chord tab f)
+  hu (chord enter u)
+  hy (chord enter y)
+)
+
+(defchords tab
+  (w   ) w
+  (   f) f
+  (w  f) tab
+)
+
+(defchords enter
+  (u   ) u
+  (   y) y
+  (u  y) ret
 )
