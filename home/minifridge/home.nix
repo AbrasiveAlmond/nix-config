@@ -26,7 +26,7 @@
 
   # improved nix-shell wrapper
   services.lorri.enable = true;
-  
+
   dconf.settings = {
     "org/gnome/shell" = {
       enabled-extensions = [
@@ -69,7 +69,7 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify"];
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify" "discord"];
     };
   };
 
@@ -124,6 +124,9 @@
       pwvucontrol   # Disables monitor audio sleep while running
       ddcui         # Boot-kernel module "ddcci_backlight" for brightness control
       ddcutil       # Brightness
+
+      discord
+      ungoogled-chromium # for limnu
 
       # coding
       vscodium

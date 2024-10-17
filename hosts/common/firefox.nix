@@ -70,6 +70,7 @@ in {
             Value = "strict";
             Status = "locked";
           };
+          "permissions.default.shortcuts" = 3; # https://support.mozilla.org/en-US/questions/1241294#answer-1175070
           "extensions.pocket.enabled" = lock-false;
           "browser.topsites.contile.enabled" = lock-false;
           # "browser.search.suggest.enabled" = lock-false;

@@ -13,6 +13,8 @@ let cfg = config.gnome; in {
     services.xserver.desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
+    # on initial boot this uses the correct layout for entering
+    # passwords n stuff, since I set kanata to start with the shell/user
     services.xserver = {
       xkb.layout = "us";
       xkb.variant = "colemak_dh_ortho";

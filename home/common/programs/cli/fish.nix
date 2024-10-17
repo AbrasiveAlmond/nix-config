@@ -3,6 +3,7 @@
 {
 	home.packages = with pkgs; [
 		fish
+        grc
 	];
 
   programs.fish = {

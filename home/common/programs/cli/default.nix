@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./tmux.nix
+    ./fish.nix
   ];
 
   home.packages = with pkgs; [
