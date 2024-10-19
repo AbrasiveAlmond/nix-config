@@ -14,7 +14,7 @@
     ./hardware-configuration.nix
     ../common/locale.nix
     ../common/gnome
-    # ./simple-immitch.nix
+    ./services/immich.nix
     # ./even-more-simple-immich
 
     # modules from nixos-hardware repo:
