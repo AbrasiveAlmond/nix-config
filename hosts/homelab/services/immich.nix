@@ -2,6 +2,7 @@
 {
   services.immich  = {
     enable = true;
+    host = "192.168.1.8";
     mediaLocation = "/var/lib/immich";
   };
   # for hardware accelerated video transcoding using VA-API
