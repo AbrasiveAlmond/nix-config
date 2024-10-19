@@ -15,7 +15,6 @@
     ../common/locale.nix
     ../common/gnome
     ./services/immich.nix
-    # ./even-more-simple-immich
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
@@ -23,7 +22,6 @@
     # inputs.hardware.nixosModules.common-gpu-nvidia
   ];
 
-  # boot.kernel.sysctl = { "vm.overcommit_memory" = 1; };
   # security.sudo.execWheelOnly = true;
   # security.sudo.enable = false;
   # security.lockKernelModules = true;
@@ -33,6 +31,15 @@
     hostName = "homelab";
     networkmanager.enable = true;
     # firewall.enable = true;
+  };
+  
+  users.users.homelab = {
+    initialPassword = "changeme";
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
 
   services.openssh = {
