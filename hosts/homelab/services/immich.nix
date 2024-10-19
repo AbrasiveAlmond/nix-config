@@ -4,6 +4,7 @@
     enable = true;
     host = "192.168.1.8";
     mediaLocation = "/var/lib/immich";
+    openFirewall = true;
   };
   # for hardware accelerated video transcoding using VA-API
   # users.users.immich.extraGroups = [ "video" "render" ];
