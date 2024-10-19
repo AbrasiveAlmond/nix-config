@@ -4,7 +4,7 @@ let
   extsn = "org/gnome/shell/extensions/";
 in
 {
-  home.packages = with pkgs.gnomeExtensions; [
+  home.packages = with pkgs-unstable.gnomeExtensions; [
     vertical-workspaces    # Nicer workspaces overview
     reboottouefi           # Adds uefi boot option
 

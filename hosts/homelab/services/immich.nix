@@ -3,7 +3,7 @@
   services.immich  = {
     enable = true;
     mediaLocation = "/var/lib/immich";
-  }
+  };
   # for hardware accelerated video transcoding using VA-API
   # users.users.immich.extraGroups = [ "video" "render" ];
 

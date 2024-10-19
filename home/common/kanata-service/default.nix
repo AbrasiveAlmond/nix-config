@@ -15,11 +15,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".kanata" = {
-      source = kanataFolder;
-      recursive = true;
-      enable = true;
-    };
+    # Hardened with ProtectHome = true;
+    # so this method wouldn't work
+    # home.file.".kanata" = {
+    #   source = kanataFolder;
+    #   recursive = true;
+    #   enable = true;
+    # };
 
     systemd.user.services.kanata = {
       Unit.Description = "Kanata Daemon";
