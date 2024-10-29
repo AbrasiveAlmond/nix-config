@@ -27,3 +27,9 @@
     border-radius: 16px;
     background-color: rgb(48, 48, 48) !important;
 }
+
+/* style urlbar */
+#urlbar-container {
+	width: 50% !important;
+	flex-grow: 0;
+}

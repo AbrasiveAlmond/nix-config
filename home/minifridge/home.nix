@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other home-manager modules here
   imports = [
     # outputs.homeManagerModules
@@ -19,13 +20,10 @@
     ../common/programs/cli
     ../common/programs/firefox
     ../common/shellAliases.nix
-    
+
     # ../common/programs/cli/fish.nix
     # ../common/programs/cli/starship.nix
   ];
-
-  # improved nix-shell wrapper
-  services.lorri.enable = true;
 
   dconf.settings = {
     "org/gnome/shell" = {
@@ -54,7 +52,7 @@
       "flathub:app/io.github.lavenderdotpet.LibreQuake/x86_64/stable"
       "flathub:app/org.gnome.Tau/x86_64/stable"
     ];
-    
+
     remotes = {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
@@ -69,87 +67,94 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify" "discord"];
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "spotify"
+          "discord"
+        ];
     };
   };
 
   # systemd.user.sessionVariables = {
-	# 	EDITOR = "helix";
-	# 	TERM = "fish";
-	# };
-
-	fonts.fontconfig.enable = true;
+  # 	EDITOR = "helix";
+  # 	TERM = "fish";
+  # };
+  #home.file.".vimrc".text = "inoremap st";
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
-      # bottles       # Windows app runner
-      # plots         # Worse desmos
-      # amberol       # Music player
-      mission-center  # Task manager 
-      # sysprof       # System Profiler
+    (nerdfonts.override {
+      fonts = [
+        "Hack"
+        "0xProto"
+      ];
+    })
+    inputs.nixvim.packages.x86_64-linux.default
+    # bottles       # Windows app runner
+    # plots         # Worse desmos
+    # amberol       # Music player
+    mission-center # Task manager
+    # sysprof       # System Profiler
 
-      # Gnome apps
-      fragments     # BitTorrent
-      gnome-secrets # Passwords
-      switcheroo    # Image converter
-      hydrapaper    # Gnome utility for multi-screen wlpaper
-      eyedropper    # Colour picker
-      papers        # PDF reader
+    # Gnome apps
+    fragments # BitTorrent
+    gnome-secrets # Passwords
+    switcheroo # Image converter
+    hydrapaper # Gnome utility for multi-screen wlpaper
+    eyedropper # Colour picker
+    papers # PDF reader
 
-      apostrophe    # Markdown editor
-      folio         # Note taker
-      planify       # Planning software
-      qalculate-gtk # Algebraic calculator
+    apostrophe # Markdown editor
+    folio # Note taker
+    planify # Planning software
+    qalculate-gtk # Algebraic calculator
 
-      # Social
-      fractal       # Matrix Client
-      gnome-feeds   # RSS Feeds
-      spotify
+    # Social
+    fractal # Matrix Client
+    gnome-feeds # RSS Feeds
+    spotify
 
-      # Image editing
-      darktable     # Photo manager and raw developer
-      shotwell      # Photo manager
-      inkscape      # Vector graphics editor
-      gimp          # GNU Image Manipulation Program
-      hugin         # Panorama stitcher
-      ffmpeg        # Audio/video cli tools
-      rnote         # Drawing software
+    # Image editing
+    darktable # Photo manager and raw developer
+    shotwell # Photo manager
+    inkscape # Vector graphics editor
+    gimp # GNU Image Manipulation Program
+    hugin # Panorama stitcher
+    ffmpeg # Audio/video cli tools
+    rnote # Drawing software
 
-      # Utilities
-      # Gui
-      warp          # File sharing tool
-      impression    # Disk image etcher
-      pika-backup   # Backup manager
+    # Utilities
+    # Gui
+    warp # File sharing tool
+    impression # Disk image etcher
+    pika-backup # Backup manager
 
-      # No Gui
-      pwvucontrol   # Disables monitor audio sleep while running
-      ddcui         # Boot-kernel module "ddcci_backlight" for brightness control
-      ddcutil       # Brightness
+    # No Gui
+    pwvucontrol # Disables monitor audio sleep while running
+    ddcui # Boot-kernel module "ddcci_backlight" for brightness control
+    ddcutil # Brightness
 
-      discord
-      ungoogled-chromium # for limnu
+    discord
+    ungoogled-chromium # for limnu
 
-      # coding
-      vscodium
-      # gnome-builder
-      # gnome-extensions-cli
-      libsecret
-      git-credential-oauth
-      kanata        # Keyboard remapping
+    # coding
+    vscodium
+    # gnome-builder
+    # gnome-extensions-cli
+    libsecret
+    git-credential-oauth
+    kanata # Keyboard remapping
   ];
 
-  programs.starship = {
-    enable = lib.mkDefault true;
-    # enableZshIntegration = true;
-  };
+  #programs.starship = {
+  #  enable = lib.mkDefault true;
+  # enableZshIntegration = true;
+  #};
 
   home = {
     username = "quinnieboi";
     homeDirectory = "/home/quinnieboi";
   };
-
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

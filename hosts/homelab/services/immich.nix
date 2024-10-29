@@ -2,12 +2,22 @@
 {
   services.immich  = {
     enable = true;
-    host = "192.168.1.8";
+    host = "localhost";
+    port = 2283;
     mediaLocation = "/var/lib/immich";
     openFirewall = true;
+
+    user = "immich";
+    group = "immich";
   };
+
+  # enable the firewall, immich.openFirewall opens the relevant ports already
+  networking.firewall.enable = true;
+  # TODO: change to "root"
+  nix.settings.allowed-users = ["@wheel"];
+
   # for hardware accelerated video transcoding using VA-API
-  # users.users.immich.extraGroups = [ "video" "render" ];
+  users.users.immich.extraGroups = [ "video" "render" ];
 
   # fileSystems."/var/lib/immich" = {
   #   device = "/dev/disk/by-uuid/4f999afe-6114-4531-ba37-4bf4a00efd9e";

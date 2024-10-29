@@ -11,15 +11,15 @@ in {
   # a user of this "hello.nix" module ENABLED this module 
   # by setting "services.hello.enable = true;".
   config = mkIf cfg.enable {
-    environment.gnome.excludePackages = with pkgs.gnome; [
-      pkgs.snapshot # Camera
-      pkgs.simple-scan # Document Scanner for hardware scanners
-      pkgs.seahorse # Password manager
-      pkgs.yelp # Help Viewer
-      pkgs.gnome-tour
+    environment.gnome.excludePackages = with pkgs; [
+      snapshot # Camera
+      simple-scan # Document Scanner for hardware scanners
+      seahorse # Password manager
+      yelp # Help Viewer
+      gnome-tour
       gnome-music 
       gnome-contacts
-      pkgs.gnome-calendar
+      gnome-calendar
       gnome-weather
     ];
   };

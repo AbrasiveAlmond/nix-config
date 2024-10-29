@@ -14,7 +14,9 @@
     ../common/gnome
     ../common/firefox.nix
 
-    ./immich-app
+    ../homelab/services/immich.nix
+
+    #./immich-app
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
