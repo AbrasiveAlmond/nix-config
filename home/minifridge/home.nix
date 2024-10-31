@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -13,7 +14,7 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     # ../apps
-    ../common/kanata-service
+    # ../common/kanata-service
     ../common/gnome
     ../common/keybinds
 
@@ -32,14 +33,11 @@
         "reboottouefi@ubaygd.com"
         "blur-my-shell@aunetx"
         "happy-appy-hotkey@jqno.nl"
-        #"ds4battery@slie.ru"
         "quick-settings-tweaks@qwreey"
         "caffeine@patapon.info"
         "middleclickclose@paolo.tranquilli.gmail.com"
         "tiling-assistant@leleat-on-github"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        # "hidetopbar@mathieu.bidon.ca"
-        # "display-brightness-ddcutil@themightydeity.github.com"
       ];
     };
   };
@@ -60,9 +58,6 @@
     # https://flathub.org/apps/dev.bragefuglseth.Keypunch
   };
 
-  # accessed via home-manager modules
-  services.kanata.enable = true;
-
   nixpkgs = {
     config = {
       # Disable if you don't want unfree packages
@@ -82,7 +77,8 @@
   # };
   #home.file.".vimrc".text = "inoremap st";
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
+  home.packages = 
+   (with pkgs; [
     (nerdfonts.override {
       fonts = [
         "Hack"
@@ -143,13 +139,11 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
-    kanata # Keyboard remapping
-  ];
-
-  #programs.starship = {
-  #  enable = lib.mkDefault true;
-  # enableZshIntegration = true;
-  #};
+   ]);
+  #  ++
+  #  (with pkgs-unstable; [
+  #   kanata
+  #  ]);
 
   home = {
     username = "quinnieboi";

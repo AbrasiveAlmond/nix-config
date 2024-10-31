@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, pkgs-unstable, ... }: {
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -14,7 +14,7 @@
     ../common/gnome
     ../common/firefox.nix
 
-    ../homelab/services/immich.nix
+    # ../homelab/services/immich.nix
 
     #./immich-app
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -36,6 +36,18 @@
     quinnieboi = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
+    };
+  };
+
+  # accessed via home-manager modules
+  services.kanata = {
+    enable = true;
+    package = pkgs-unstable.kanata;
+    keyboards = {
+      main = {
+        devices = [ "/dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd" ];
+        configFile = ../../home/common/kanata-service/colemak/colemak.kbd;
+      };
     };
   };
 

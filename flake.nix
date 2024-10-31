@@ -6,13 +6,9 @@
   # nix build .#homeConfigurations.me.activationPackage && result/activate
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-    nixvim = {
-      url = "github:dc-tec/nixvim";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -33,18 +29,16 @@
 
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
 
-    # inputs.nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-    #   # url = "github:nix-community/nixvim/nixos-24.05";
-
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    nixvim = {
+      url = "github:dc-tec/nixvim";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     systems,
     flatpaks,
@@ -52,13 +46,14 @@
   } @ inputs: let
     inherit (self) outputs;
     # Supported systems for your flake packages, shell, etc.
-    systems = [
-      # "aarch64-linux"
-      # "i686-linux"
-      "x86_64-linux"
-      # "aarch64-darwin"
-      # "x86_64-darwin"
-    ];
+    # systems = [
+    #   # "aarch64-linux"
+    #   # "i686-linux"
+    #   "x86_64-linux"
+    #   # "aarch64-darwin"
+    #   # "x86_64-darwin"
+    # ];
+    system = "x86_64-linux";
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -66,7 +61,7 @@
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system})
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -86,16 +81,27 @@
     nixosConfigurations = {
       # Main desktop
       minifridge = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+
         modules = [
           # > Our main nixos configuration file <
           ./hosts/minifridge/configuration.nix
         ];
+
       };
 
       # 2010/11 MacBook Pro
       stone-tablet = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
         modules = [
           # > Our main nixos configuration file <
           ./hosts/stone-tablet/configuration.nix
@@ -104,7 +110,10 @@
 
       # Dell Inspiron 5502
       mainframe = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
         modules = [
           # > Our main nixos configuration file <
           ./hosts/mainframe/configuration.nix
@@ -126,7 +135,13 @@
       # Personal Desktop
       "quinnieboi@minifridge" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
         modules = [
           # > Our main home-manager configuration file <
           ./home/minifridge/home.nix
@@ -146,7 +161,9 @@
       # Dell Inspiron 5502
       "busyboy@mainframe" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
         modules = [
           ./home/mainframe/home.nix
           flatpaks.homeManagerModules.default
