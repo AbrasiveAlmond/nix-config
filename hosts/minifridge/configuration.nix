@@ -40,16 +40,17 @@
   };
 
   # accessed via home-manager modules
-  services.kanata = {
-    enable = true;
-    package = pkgs-unstable.kanata;
-    keyboards = {
-      main = {
-        devices = [ "/dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd" ];
-        configFile = ../../home/common/kanata-service/colemak/colemak.kbd;
-      };
-    };
-  };
+  # TODO: Configuration requires single file, not directory
+  # services.kanata = {
+  #   enable = true;
+  #   package = pkgs-unstable.kanata;
+  #   keyboards = {
+  #     main = {
+  #       devices = [ "/dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd" ];
+  #       configFile = ../../home/common/kanata-service/colemak/colemak.kbd;
+  #     };
+  #   };
+  # };
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true; 

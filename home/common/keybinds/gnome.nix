@@ -1,12 +1,6 @@
 { 
   # lib.mkIf 
   dconf.settings = {
-    # fix Ctrl-bspc not working in gtk apps
-    # https://gitlab.gnome.org/GNOME/gtk/-/issues/570#note_742261
-    "org/gnome/desktop/input-sources" = {
-      "xkb-options" = "lv3:ralt_switch";
-    };
-
     "org/gnome/shell/extensions/happy-appy-hotkey" = {
       number = 3;
       restrict-to-current-workspace = true;

@@ -27,7 +27,7 @@
       flake = false;
     };
 
-    flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     nixvim = {
@@ -41,7 +41,7 @@
     nixpkgs-unstable,
     home-manager,
     systems,
-    flatpaks,
+    nix-flatpak,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -136,7 +136,7 @@
       "quinnieboi@minifridge" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs nix-flatpak;
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
@@ -145,7 +145,7 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home/minifridge/home.nix
-          flatpaks.homeManagerModules.default
+          nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
 
@@ -166,7 +166,7 @@
         };
         modules = [
           ./home/mainframe/home.nix
-          flatpaks.homeManagerModules.default
+          # flatpaks.homeManagerModules.default
         ];
       };
     };

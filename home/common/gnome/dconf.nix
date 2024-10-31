@@ -4,9 +4,16 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
+    # prevent bug where ctrl-bspc doesn't work in gtk apps
+    # due to conflict with x-server bind
+    # https://gitlab.gnome.org/GNOME/gtk/-/issues/570#note_742261
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = lib.mkForce ""; # force since something is overriding it
+    };
+
     "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
+      color-scheme = "prefer-dark";
+    };
 
     "org/gnome/shell" = {
       always-show-log-out = true;

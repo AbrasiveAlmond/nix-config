@@ -13,8 +13,9 @@
     # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
+    # inputs.nix-flatpak.homeManagerModules.nix-flatpak
     # ../apps
-    # ../common/kanata-service
+    ../common/kanata-service
     ../common/gnome
     ../common/keybinds
 
@@ -43,19 +44,43 @@
   };
 
   services.flatpak = {
-    enableModule = true;
-    packages = [
-      "flathub:app/dev.bragefuglseth.Keypunch/x86_64/stable"
-      "flathub:app/re.sonny.Workbench/x86_64/stable"
-      "flathub:app/io.github.lavenderdotpet.LibreQuake/x86_64/stable"
-      "flathub:app/org.gnome.Tau/x86_64/stable"
+    enable = true;
+    update.auto = {
+      enable = true;
+      onCalendar = "daily";
+    };
+
+    packages = [ # All installing from flathub stable by default
+      "dev.bragefuglseth.Keypunch"
+      "re.sonny.Workbench"
+      "io.github.lavenderdotpet.LibreQuake"
+      "io.gitlab.librewolf-community"
+      # can't figure it out declaratively so harden librewolf via this
+      # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
+      # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
+      "com.github.tchx84.Flatseal" 
     ];
 
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
+    ];
+
+    overrides = {
+      "io.gitlab.librewolf-community".Context = {
+        filesystems = [
+          "~/Downloads:rw" # downloads
+          "~/Documents:ro" # expose documents for uploading
+        ];        
+
+      };
     };
-    # https://flathub.org/apps/dev.bragefuglseth.Keypunch
   };
 
   nixpkgs = {
@@ -70,6 +95,8 @@
         ];
     };
   };
+
+  services.kanata.enable = true;
 
   # systemd.user.sessionVariables = {
   # 	EDITOR = "helix";
