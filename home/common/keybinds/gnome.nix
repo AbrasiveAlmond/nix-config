@@ -14,7 +14,7 @@
       "hotkey-1" = ["<Super>f"];
       "hotkey-2" = ["<Super>b"];
       "hotkey-3" = ["<Shift><Super>c"];
-      "hotkey-4" = ["<Super>e"];
+      "hotkey-4" = ["<Super>c"];
       "hotkey-5" = ["<Super>s"];
     };
 

@@ -4,6 +4,8 @@
   # home-manager switch --flake .#username@hostname
   # when console yells that hm config is different version, try using
   # nix build .#homeConfigurations.me.activationPackage && result/activate
+  #
+
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -64,7 +66,7 @@
     # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system})
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays

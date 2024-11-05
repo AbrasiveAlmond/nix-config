@@ -6,7 +6,7 @@
 
 ;; layer switching
 (defalias
-  cps (tap-hold-press 150 150 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
+  cps (tap-hold-press 150 150 esc (layer-toggle arrows))
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
   smb (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held shift_symbols)) (layer-while-held shift_symbols))
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
@@ -44,23 +44,23 @@
 
   ;; extra pinky mod taps below homerow
   (template-expand mod-tap
-    Mz 
-    z 
-    lmet 
+    Mz
+    z
+    lmet
     $hold-time $left-hand-keys
   )
 
-  /_ (fork 
+  /_ (fork
     /
     -
     (lsft)
   )
-  
+
   ;; extra pinky mod taps below homerow
   (template-expand mod-tap
-    M/ 
+    M/
     @/_
-    lmet 
+    lmet
     $hold-time $right-hand-keys
   )
 )

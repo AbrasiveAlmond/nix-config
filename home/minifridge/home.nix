@@ -54,7 +54,8 @@
       "dev.bragefuglseth.Keypunch"
       "re.sonny.Workbench"
       "io.github.lavenderdotpet.LibreQuake"
-      "io.gitlab.librewolf-community"
+      # "io.gitlab.librewolf-community"
+      "org.mozilla.firefox" # deal with switching later if I care
       # can't figure it out declaratively so harden librewolf via this
       # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
       # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
@@ -138,7 +139,7 @@
     spotify
 
     # Image editing
-    darktable # Photo manager and raw developer
+    # darktable # Photo manager and raw developer
     shotwell # Photo manager
     inkscape # Vector graphics editor
     gimp # GNU Image Manipulation Program
@@ -166,11 +167,12 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
+   ])
+   ++
+   (with pkgs-unstable; [
+    kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
+    darktable # Photo manager and raw developer
    ]);
-  #  ++
-  #  (with pkgs-unstable; [
-  #   kanata
-  #  ]);
 
   home = {
     username = "quinnieboi";
