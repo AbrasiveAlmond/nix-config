@@ -2,7 +2,7 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {pkgs, ...}: {
   # List your module files here
-  # immich = import ./immich.nix;
+  immich-server = import ./immich-server.nix;
   # imports = [
   #   ./drivers.nix
   # ];

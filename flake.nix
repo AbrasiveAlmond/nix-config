@@ -102,6 +102,7 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/minifridge/configuration.nix
+          # home-manager.nixosModules.home-manager
         ];
 
       };

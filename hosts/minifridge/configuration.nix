@@ -72,6 +72,7 @@
 
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
+  
   # home-manager so the user install stays synced even when changing between channels n stuff
   # user should still be able to easily override the version if they REALLY wanted.
   # hm stays as seperate user controlled app, the system just handles the flake and gives
