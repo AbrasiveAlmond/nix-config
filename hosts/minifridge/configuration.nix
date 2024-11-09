@@ -14,7 +14,7 @@
     ../common/gnome
     ../common/firefox.nix
 
-    # ../homelab/services/immich.nix
+    ../homelab/services/immich.nix
 
     #./immich-app
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -38,6 +38,8 @@
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
     };
   };
+  services.ddccontrol.enable = true;
+  hardware.i2c.enable = true;
 
   # accessed via home-manager modules
   # TODO: Configuration requires single file, not directory
@@ -51,12 +53,13 @@
   #     };
   #   };
   # };
-  
+
   # Noticed zero difference with this on
-  hardware.opengl.enable = true;
+  # hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
-  services.flatpak.enable = true; 
+  services.flatpak.enable = true;
 
   networking = {
     hostName = "minifridge";
@@ -107,7 +110,7 @@
     kernelParams = [
       "quiet"
       "splash"
-      # quiet doesn't work - loglevel was still 4 
+      # quiet doesn't work - loglevel was still 4
       # as seen in ./result/boot.json or ./result/kernel-params
       "loglevel=3"
       "boot.shell_on_fail"
@@ -135,4 +138,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 }
-

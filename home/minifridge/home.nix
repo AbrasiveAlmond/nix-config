@@ -117,6 +117,7 @@
     # bottles       # Windows app runner
     # plots         # Worse desmos
     # amberol       # Music player
+    shortwave       # Internet radio player
     mission-center # Task manager
     # sysprof       # System Profiler
 

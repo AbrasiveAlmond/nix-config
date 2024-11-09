@@ -8,7 +8,8 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     # Home manager
@@ -47,6 +48,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
     # Supported systems for your flake packages, shell, etc.
     # systems = [
     #   # "aarch64-linux"
@@ -71,9 +73,11 @@
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
+    
+    # immich = import ./pkgs
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
-    # nixosModules = import ./modules/nixos;
+    nixosModules = import ./modules/nixos;
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     # homeManagerModules = import ./modules/home-manager;
@@ -85,10 +89,7 @@
       minifridge = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          # inherit overlays;
         };
 
         modules = [

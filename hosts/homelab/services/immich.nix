@@ -1,18 +1,20 @@
-{lib, pkgs, config, ... }:
+{inputs, outputs, lib, pkgs, pkgs-unstable, config, channels, ... }:
 {
+  imports  = [
+    ./immich-nginx.nix
+  ];
+
   services.immich  = {
     enable = true;
     host = "localhost";
     port = 2283;
     mediaLocation = "/var/lib/immich";
-    openFirewall = true;
+    openFirewall = false;
 
     user = "immich";
     group = "immich";
   };
 
-  # enable the firewall, immich.openFirewall opens the relevant ports already
-  networking.firewall.enable = true;
   # TODO: change to "root"
   nix.settings.allowed-users = ["@wheel"];
 

@@ -19,6 +19,7 @@ in
     tiling-assistant
     middle-click-to-close-in-overview # Much better.
     brightness-control-using-ddcutil
+    control-monitor-brightness-and-volume-with-ddcutil
     clipboard-indicator-2
     burn-my-windows
   ];
