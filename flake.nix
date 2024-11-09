@@ -4,12 +4,13 @@
   # home-manager switch --flake .#username@hostname
   # when console yells that hm config is different version, try using
   # nix build .#homeConfigurations.me.activationPackage && result/activate
-  #
+  # running > ./result/bin/home-manager-generation 
+  # which is a link to the activation package in the current nixos system
+  # also worked when followed by home-manager switch as normal
 
   inputs = {
     # Nixpkgs
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     # Home manager
@@ -17,6 +18,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # May be useful for server - interesting repo nonetheless
+    # nix-mineral = {
+    #   url = "github:cynicsketch/nix-mineral"; # Refers to the main branch and is updated to the latest commit when you use "nix flake update" 
+    #   flake = false;
+    # };
 
     hardware.url = "github:nixos/nixos-hardware";
 

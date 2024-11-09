@@ -5,21 +5,21 @@ let
 in
 {
   home.packages = with pkgs.gnomeExtensions; [
-    vertical-workspaces    # Nicer workspaces overview
-    reboottouefi           # Adds uefi boot option
+    vertical-workspaces     # Nicer workspaces overview
+    reboottouefi            # Adds uefi boot option
 
-    happy-appy-hotkey      # Assign hotkeys to apps to focus or launch them
+    happy-appy-hotkey       # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
-    blur-my-shell          # Blurry shell is a needed ux improvement
-    forge                 # Tiling window manager
+    blur-my-shell           # Blurry shell is a needed ux improvement
+    forge                   # Tiling window manager
     caffeine
     hide-top-bar
-    tactile # Tile windows using a custom grid.
-    gtile # literally a tiling WM
+    tactile                 # Tile windows using a custom grid.
+    gtile                   # literally a tiling WM
     tiling-assistant
     middle-click-to-close-in-overview # Much better.
-    brightness-control-using-ddcutil
-    control-monitor-brightness-and-volume-with-ddcutil
+    # brightness-control-using-ddcutil
+    control-monitor-brightness-and-volume-with-ddcutil # Finally one that works!!
     clipboard-indicator-2
     burn-my-windows
   ];

@@ -17,7 +17,6 @@
     # ../apps
     ../common/kanata-service
     ../common/gnome
-    ../common/keybinds
 
     ../common/programs/cli
     ../common/programs/firefox
@@ -99,6 +98,8 @@
 
   services.kanata.enable = true;
 
+  # programs.home-manager.path = 
+
   # systemd.user.sessionVariables = {
   # 	EDITOR = "helix";
   # 	TERM = "fish";
@@ -106,33 +107,23 @@
   #home.file.".vimrc".text = "inoremap st";
   fonts.fontconfig.enable = true;
   home.packages = 
-   (with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto"
-      ];
-    })
-    inputs.nixvim.packages.x86_64-linux.default
-    # bottles       # Windows app runner
+   (with pkgs-unstable; [
+    bottles         # Run windows apps 
     # plots         # Worse desmos
-    # amberol       # Music player
+    amberol         # Music player
     shortwave       # Internet radio player
-    mission-center # Task manager
+    mission-center  # Task manager
     # sysprof       # System Profiler
 
     # Gnome apps
-    fragments # BitTorrent
-    gnome-secrets # Passwords
-    switcheroo # Image converter
-    hydrapaper # Gnome utility for multi-screen wlpaper
-    eyedropper # Colour picker
-    papers # PDF reader
+    fragments       # BitTorrent
+    gnome-secrets   # Passwords
+    switcheroo      # Image converter
+    hydrapaper      # Gnome utility for multi-screen wlpaper
+    eyedropper      # Colour picker
+    papers          # PDF reader
 
-    apostrophe # Markdown editor
-    folio # Note taker
-    planify # Planning software
-    qalculate-gtk # Algebraic calculator
+    qalculate-gtk   # Algebraic calculator
 
     # Social
     fractal # Matrix Client
@@ -149,16 +140,11 @@
     rnote # Drawing software
 
     # Utilities
-    # Gui
     warp # File sharing tool
     impression # Disk image etcher
-    pika-backup # Backup manager
 
-    # No Gui
     pwvucontrol # Disables monitor audio sleep while running
-    ddcui # Boot-kernel module "ddcci_backlight" for brightness control
-    ddcutil # Brightness
-
+    
     discord
     ungoogled-chromium # for limnu
 
@@ -170,9 +156,24 @@
     git-credential-oauth
    ])
    ++
-   (with pkgs-unstable; [
+   (with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "Hack"
+        "0xProto"
+      ];
+    })
+    inputs.nixvim.packages.x86_64-linux.default
+
+    apostrophe      # Markdown editor
+    planify         # Planning software
+
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
     darktable # Photo manager and raw developer
+    ddcui # Boot-kernel module "ddcci_backlight" for brightness control
+    ddcutil # Brightness
+
+    pika-backup # Backup manager
    ]);
 
   home = {

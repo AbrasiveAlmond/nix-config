@@ -14,9 +14,6 @@
     ../common/gnome
     ../common/firefox.nix
 
-    ../homelab/services/immich.nix
-
-    #./immich-app
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
@@ -55,8 +52,7 @@
   # };
 
   # Noticed zero difference with this on
-  # hardware.opengl.enable = true;
-  hardware.graphics.enable = true;
+  hardware.opengl.enable = true;
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;
