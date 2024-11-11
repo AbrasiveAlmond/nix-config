@@ -8,6 +8,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }: {
   imports = [ # Include the results of the hardware scan.
@@ -64,9 +65,12 @@
   hardware.opentabletdriver.enable = true;
 
   # Touchpad
-  services.libinput.touchpad = {
-   tapping = true;
-   tappingDragLock = true;
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      tappingDragLock = true;
+    };
   };
   
 
@@ -124,10 +128,10 @@
 
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
       hardware.nvidiaOptimus.disable = true;
-      hardware.graphics = {
+      hardware.opengl = {
         enable = true;
         extraPackages = with pkgs; [
-          vpl-gpu-rt
+          onevpl-intel-gpu
         ];
       };
 
