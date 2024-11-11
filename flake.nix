@@ -177,7 +177,7 @@
         };
         modules = [
           ./home/mainframe/home.nix
-          # flatpaks.homeManagerModules.default
+          nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
     };

@@ -42,7 +42,7 @@
   };
 
   home.packages = with pkgs; [
-       # Gnome apps
+      # Gnome apps
       plots         # Worse desmos
       rnote
       speedcrunch
@@ -66,25 +66,43 @@
       zoxide
       git
       git-credential-oauth
-
-      flatpak
       
       # just in case it is more performant
       ungoogled-chromium
   ];
 
   services.flatpak = {
-    enableModule = true;
-    packages = [
-      "flathub:app/dev.bragefuglseth.Keypunch/x86_64/stable"
-      "flathub:app/re.sonny.Workbench/x86_64/stable"
-    ];
-    
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    enable = true;
+    update.auto = {
+      enable = true;
+      onCalendar = "daily";
     };
-    # https://flathub.org/apps/dev.bragefuglseth.Keypunch
+
+    packages = [ # All installing from flathub stable by default
+      "dev.bragefuglseth.Keypunch"
+      "re.sonny.Workbench"
+    ];
+
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
+    ];
+
+    # overrides = {
+    #   "io.gitlab.librewolf-community".Context = {
+    #     filesystems = [
+    #       "~/Downloads:rw" # downloads
+    #       "~/Documents:ro" # expose documents for uploading
+    #     ];        
+
+    #   };
+    # };
   };
 
   # accessed via home-manager modules

@@ -12,7 +12,6 @@
   imports = [
     # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
     # inputs.nix-flatpak.homeManagerModules.nix-flatpak
     # ../apps
     ../common/kanata-service
@@ -38,6 +37,7 @@
         "middleclickclose@paolo.tranquilli.gmail.com"
         "tiling-assistant@leleat-on-github"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "monitor-brightness-volume@ailin.nemui"
       ];
     };
   };
@@ -52,9 +52,8 @@
     packages = [ # All installing from flathub stable by default
       "dev.bragefuglseth.Keypunch"
       "re.sonny.Workbench"
-      "io.github.lavenderdotpet.LibreQuake"
-      # "io.gitlab.librewolf-community"
-      "org.mozilla.firefox" # deal with switching later if I care
+      # "io.gitlab.librewolf-community" # deal with switching later if I care
+      # "org.mozilla.firefox" 
       # can't figure it out declaratively so harden librewolf via this
       # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
       # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
@@ -72,15 +71,15 @@
       }
     ];
 
-    overrides = {
-      "io.gitlab.librewolf-community".Context = {
-        filesystems = [
-          "~/Downloads:rw" # downloads
-          "~/Documents:ro" # expose documents for uploading
-        ];        
+    # overrides = {
+    #   "io.gitlab.librewolf-community".Context = {
+    #     filesystems = [
+    #       "~/Downloads:rw" # downloads
+    #       "~/Documents:ro" # expose documents for uploading
+    #     ];        
 
-      };
-    };
+    #   };
+    # };
   };
 
   nixpkgs = {
@@ -117,6 +116,7 @@
 
     # Gnome apps
     fragments       # BitTorrent
+    # varia           # Download manager with torrent support and browser integration
     gnome-secrets   # Passwords
     switcheroo      # Image converter
     hydrapaper      # Gnome utility for multi-screen wlpaper
@@ -126,18 +126,21 @@
     qalculate-gtk   # Algebraic calculator
 
     # Social
+    tuba # Browse the fediverse
     fractal # Matrix Client
     gnome-feeds # RSS Feeds
     spotify
 
     # Image editing
-    # darktable # Photo manager and raw developer
+    darktable # Photo manager and raw developer
     shotwell # Photo manager
     inkscape # Vector graphics editor
     gimp # GNU Image Manipulation Program
     hugin # Panorama stitcher
     ffmpeg # Audio/video cli tools
     rnote # Drawing software
+    identity # Compare photos and videos
+    video-trimmer 
 
     # Utilities
     warp # File sharing tool
@@ -147,6 +150,7 @@
     
     discord
     ungoogled-chromium # for limnu
+    tangram # Run web apps on desktop 
 
     # coding
     vscodium
@@ -169,7 +173,6 @@
     planify         # Planning software
 
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
-    darktable # Photo manager and raw developer
     ddcui # Boot-kernel module "ddcci_backlight" for brightness control
     ddcutil # Brightness
 

@@ -18,9 +18,7 @@ in
     gtile                   # literally a tiling WM
     tiling-assistant
     middle-click-to-close-in-overview # Much better.
-    # brightness-control-using-ddcutil
     control-monitor-brightness-and-volume-with-ddcutil # Finally one that works!!
-    clipboard-indicator-2
     burn-my-windows
   ];
 
