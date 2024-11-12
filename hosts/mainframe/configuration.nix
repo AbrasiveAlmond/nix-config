@@ -31,6 +31,9 @@
     # Failed assertions:
     #    - When NVIDIA PRIME is enabled, the GPU bus IDs must be configured.
   ];
+
+  # enable flatpak configuration, apps are installed declaratively in homemanager using module
+  services.flatpak.enable = true;
   
   gnome = {
     # Enable the GNOME Desktop Environment.
@@ -115,7 +118,7 @@
 
     integrated.configuration = {
       # Stolen from https://github.com/NixOS/nixos-hardware/blob/3f7d0bca003eac1a1a7f4659bbab9c8f8c2a0958/common/gpu/nvidia/disable.nix
-      ##### disable nvidia, very nice battery life.
+      # disable nvidia, very nice battery life.
       boot.extraModprobeConfig = ''
         blacklist nouveau
         options nouveau modeset=0
@@ -134,22 +137,11 @@
         # Remove NVIDIA VGA/3D controller devices
         ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
       '';
-      boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
-      # # Whether to enable configuring X to allow external NVIDIA GPUs when using Prime [Reverse] sync optimus .
-      # hardware.nvidia.prime.allowExternalGpu
-      
-      # # If enabled, the Intel/AMD GPU will be used for all rendering, while enabling output to displays attached only to the NVIDIA GPU without a multiplexer.
-      # hardware.nvidia.prime.reverseSync.enable
-
-      # # Whether to enable render offload support using the NVIDIA proprietary driver via PRIME.
-      # hardware.nvidia.prime.offload.enable
-
-      nixpkgs.config.packageOverrides = pkgs: {
-        intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-      };
-
+      ## Nullified options due to the above
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
-      hardware.nvidiaOptimus.disable = true;
+      # hardware.nvidiaOptimus.disable = true;
+      # boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+
       hardware.opengl = {
         enable = true;
         extraPackages = with pkgs; [
@@ -177,14 +169,13 @@
     git
   ];
   
-  # Bootloader.
   # Bootloader configuration
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     kernelModules = [
       "uinput"
-      ]; 
+    ]; 
     extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     kernelParams = [
       "quiet"
