@@ -57,7 +57,7 @@
       # can't figure it out declaratively so harden librewolf via this
       # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
       # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
-      "com.github.tchx84.Flatseal" 
+      "com.github.tchx84.Flatseal"
     ];
 
     remotes = [
@@ -170,7 +170,8 @@
     inputs.nixvim.packages.x86_64-linux.default
 
     apostrophe      # Markdown editor
-    planify         # Planning software
+    errands         # Task management tool, planify replacement
+    # planify         # Planning software, it broked. had to manually comb through a partially human readable .db file to recover notes...
 
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
     ddcui # Boot-kernel module "ddcci_backlight" for brightness control

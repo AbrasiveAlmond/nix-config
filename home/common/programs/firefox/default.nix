@@ -53,7 +53,7 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@np" ];
+          definedAliases = [ "!np" ];
         };
 
         "Nix Options" = {
@@ -72,7 +72,7 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@no" ];
+          definedAliases = [ "!no" ];
         };
 
         "NixOS Wiki" = {
@@ -81,9 +81,23 @@ in {
           }];
           iconUpdateURL = "https://nixos.wiki/favicon.png";
           updateInterval = 24 * 60 * 60 * 1000;
-          definedAliases = [ "@nw" ];
+          definedAliases = [ "!nw" ];
         };
-        "Wikipedia (en)".metaData.alias = "@wiki";
+
+        "Home Manager Options" = {
+          urls = [{
+            template = "https://home-manager-options.extranix.com/";
+            params = [
+              {
+                name = "query";
+                value = "{searchTerms}";
+              }
+            ];
+          }];
+          definedAliases = [ "!ho" ];
+        };
+
+        "Wikipedia (en)".metaData.alias = "!w";
         "Google".metaData.hidden = true;
         "Amazon.com".metaData.hidden = true;
         "Bing".metaData.hidden = true;
@@ -168,41 +182,52 @@ in {
         "privacy.trackingprotection.enabled" = true;
         "dom.security.https_only_mode" = true;
 
+        # Give up on declarative and just spend 5 min setting it once and forgetting :)
         # Layout
-        "browser.uiCustomization.state" = builtins.toJSON {
-          currentVersion = 20;
-          newElementCount = 5;
-          dirtyAreaCache = [
-            "nav-bar"
-            "PersonalToolbar"
-            "toolbar-menubar"
-            "TabsToolbar"
-            "widget-overflow-fixed-list"
-          ];
+        # "browser.uiCustomization.state" = builtins.toJSON {
+        #   currentVersion = 20;
+        #   newElementCount = 5;
+        #   dirtyAreaCache = [
+        #     "nav-bar"
+        #     "PersonalToolbar"
+        #     "toolbar-menubar"
+        #     "TabsToolbar"
+        #     "widget-overflow-fixed-list"
+        #   ];
           
-          placements = {
-            # PersonalToolbar = ["personal-bookmarks"];
-            # TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
-            # # Needs spacers added due to lack of titlebar
-            # nav-bar = [
-            #   "back-button"
-            #   "forward-button"
-            #   "stop-reload-button"
-            #   "urlbar-container"
-            #   "downloads-button"
-            #   "ublock0_raymondhill_net-browser-action"
-            #   "unified-extensions-button"
-            # ];
-            # toolbar-menubar = ["menubar-items"];
-            unified-extensions-area = [ ];
-            widget-overflow-fixed-list = [ ];
-          };
-          seen = [
-            "save-to-pocket-button"
-            "developer-button"
-            "ublock0_raymondhill_net-browser-action"
-          ];
-        };
+        #   placements = {
+        #     # PersonalToolbar = ["personal-bookmarks"];
+        #     # TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
+        #     # # Needs spacers added due to lack of titlebar
+        #     nav-bar = [
+        #       "back-button"
+        #       "forward-button"
+        #       "stop-reload-button"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "urlbar-container"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "customizableui-special-spring"
+        #       "downloads-button"
+        #       "ublock0_raymondhill_net-browser-action"
+        #       "addon_darkreader_org-browser-action"
+        #       "_3c078156-979c-498b-8990-85f7987dd929_-browser-action" # Sidebery
+        #       "unified-extensions-button"
+        #     ];
+        #     # toolbar-menubar = ["menubar-items"];
+        #     # unified-extensions-area = [ ];
+        #     # widget-overflow-fixed-list = [ ];
+        #   };
+        #   seen = [
+        #     "save-to-pocket-button"
+        #     "developer-button"
+        #     # "ublock0_raymondhill_net-browser-action"
+        #   ];
+        # };
       };
     };
   };
