@@ -177,17 +177,20 @@
       "uinput"
     ]; 
     extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
-    kernelParams = [
-      "quiet"
-      "splash"
-      # quiet doesn't work - loglevel was still 4 
-      # as seen in ./result/boot.json or ./result/kernel-params
-      "loglevel=3" 
-      "boot.shell_on_fail"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
+
+    # system hangs on shutdown if quiet is enabled
+    # https://bbs.archlinux.org/viewtopic.php?id=276631
+    # kernelParams = [
+    #   "quiet"
+    #   "splash"
+    #   # quiet doesn't work - loglevel was still 4 
+    #   # as seen in ./result/boot.json or ./result/kernel-params
+    #   "loglevel=3" 
+    #   "boot.shell_on_fail"
+    #   "rd.systemd.show_status=false"
+    #   "rd.udev.log_level=3"
+    #   "udev.log_priority=3"
+    # ];
 
     # Enable "Silent Boot"
     consoleLogLevel = 0;
