@@ -13,20 +13,43 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # 1TB m.2 NVME drive
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/cb5d3e45-a898-46a0-88c8-8d86fb2bec9a";
+    { 
+      device = "/dev/disk/by-uuid/cb5d3e45-a898-46a0-88c8-8d86fb2bec9a";
       fsType = "btrfs";
       options = [ "subvol=@" "noatime" "nodiratime" "discard" "lazytime"];
     };
 
-  fileSystems."/mnt/Backups" =
-    { device = "/dev/disk/by-uuid/e9362e7d-7d8b-4bee-801a-d08a78790ad7";
+  # fileSystems."/mnt/Backups" =
+  #   { device = "/dev/disk/by-uuid/e9362e7d-7d8b-4bee-801a-d08a78790ad7";
+  #     fsType = "ext4";
+  #     options = [ "lazytime" "discard"];
+  #   };
+
+  # 2TB m.2 NVME drive. 1TB partition for pika backups
+  fileSystems."/mnt/Backup" =
+    { 
+      device = "/dev/disk/by-uuid/a1110af1-9cfc-437b-83e5-9af511c79a77";
       fsType = "ext4";
-      options = [ "lazytime" "discard"];
+      options = [ 
+        # https://smarttech101.com/relatime-atime-noatime-strictatime-lazytime
+        # https://wiki.debian.org/SSDOptimization
+        # Disabling atime or enabling "lazytime" helps by:
+        # saving writes, increasing performance, and extending disk life.
+
+        # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
+        "noatime" # Disable file access times to save huge disk write cycles.
+        "nodiratime" # Same as above for directories.
+        "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware 
+        "nofail" # Prevent system from failing if this drive doesn't mount
+      ]; 
     };
 
+  # 1TB m.2 NVME drive
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6014-E801";
+    { 
+      device = "/dev/disk/by-uuid/6014-E801";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };

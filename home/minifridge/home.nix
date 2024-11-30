@@ -106,7 +106,7 @@
   #home.file.".vimrc".text = "inoremap st";
   fonts.fontconfig.enable = true;
   home.packages = 
-   (with pkgs-unstable; [
+  (with pkgs-unstable; [
     bottles         # Run windows apps 
     # plots         # Worse desmos
     amberol         # Music player
@@ -158,16 +158,15 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
-   ])
-   ++
-   (with pkgs; [
+  ])
+  ++
+  (with pkgs; [
     (nerdfonts.override {
       fonts = [
         "Hack"
         "0xProto"
       ];
     })
-    inputs.nixvim.packages.x86_64-linux.default
 
     apostrophe      # Markdown editor
     errands         # Task management tool, planify replacement
@@ -178,7 +177,12 @@
     ddcutil # Brightness
 
     pika-backup # Backup manager
-   ]);
+  ])
+  ++ 
+  (with inputs; [
+    zen-browser.packages.x86_64-linux.default
+    nixvim.packages.x86_64-linux.default
+  ]);
 
   home = {
     username = "quinnieboi";
