@@ -154,6 +154,12 @@
 
     # coding
     vscodium
+    zed-editor
+    cargo
+    gcc
+    rustc
+    rust-analyzer
+    # rustup # collides with cargo
     # gnome-builder
     # gnome-extensions-cli
     libsecret
