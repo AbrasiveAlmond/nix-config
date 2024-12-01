@@ -35,6 +35,7 @@
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
     };
   };
+  # services.tailscale.enable = true;
   services.ddccontrol.enable = true;
   hardware.i2c.enable = true;
 
@@ -72,7 +73,7 @@
 
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
-  
+
   # home-manager so the user install stays synced even when changing between channels n stuff
   # user should still be able to easily override the version if they REALLY wanted.
   # hm stays as seperate user controlled app, the system just handles the flake and gives
@@ -115,7 +116,7 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
-    
+
     # Enable "Silent Boot"
     consoleLogLevel = 0;
     initrd.verbose = false;

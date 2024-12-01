@@ -16,6 +16,29 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/5b7c218d-ddea-42f3-890f-73b1762029c3";
       fsType = "ext4";
+
+      options = [ 
+        "noatime" # Disable file access times to save huge disk write cycles.
+        "nodiratime" # Same as above for directories.
+      ]; 
+    };
+
+  fileSystems."/srv/immich" =
+    { device = "/dev/disk/by-uuid/e9b66eaa-9727-49fc-bbac-ce43688e4560";
+      fsType = "btrfs";
+
+      options = [ 
+        # https://smarttech101.com/relatime-atime-noatime-strictatime-lazytime
+        # https://wiki.debian.org/SSDOptimization
+        # Disabling atime or enabling "lazytime" helps by:
+        # saving writes, increasing performance, and extending disk life.
+
+        # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
+        "noatime" # Disable file access times to save huge disk write cycles.
+        "nodiratime" # Same as above for directories.
+        # "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware 
+        # "nofail" # Prevent system from failing if this drive doesn't mount
+      ]; 
     };
 
   swapDevices =
