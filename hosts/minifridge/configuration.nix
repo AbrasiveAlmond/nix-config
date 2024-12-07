@@ -29,6 +29,16 @@
     apps.excludes.enable = true;
   };
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "Hack"
+        "0xProto"
+        "FiraCode"
+      ];
+    })
+  ];
+
   users.users = {
     quinnieboi = {
       isNormalUser = true;
@@ -53,7 +63,7 @@
   # };
 
   # Noticed zero difference with this on
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;

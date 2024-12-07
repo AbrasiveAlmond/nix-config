@@ -14,20 +14,20 @@ in {
       tmuxPlugins.sensible
       tmuxPlugins.yank
       tmuxPlugins.vim-tmux-navigator
-      {
-        plugin = tmuxPlugins.catppuccin;
-          extraConfig = ''
-            set -g @catppuccin_flavour 'frappe'
-            set -g @catppuccin_window_tabs enabled on
-            set -g @catppeccin_date_time "%H:%M"
-          '';
-      }
+      # {
+      #   plugin = tmuxPlugins.catppuccin;
+      #     extraConfig = ''
+      #       set -g @catppuccin_flavour 'frappe'
+      #       set -g @catppuccin_window_tabs enabled on
+      #       set -g @catppeccin_date_time "%H:%M"
+      #     '';
+      # }
     ];
 
     extraConfig = with pkgs.tmuxPlugins;
     ''
       # Plugins
-      #run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
+      # run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
       run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'
       run-shell '${vim-tmux-navigator}/share/tmux-plugins/sensible/sensible.tmux'
       #run-shell '${urlview}/share/tmux-plugins/urlview/urlview.tmux'

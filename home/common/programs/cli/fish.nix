@@ -4,6 +4,7 @@
 	home.packages = with pkgs; [
 		fish
         grc
+        eza
 	];
 
   programs.fish = {
@@ -20,17 +21,19 @@
       "..." = "cd ../..";
       "...." = "cd ../../../";
       "....." = "cd ../../../../";
+
+      "z" = "zoxide";
       
       "dot" = "cd ~/.dotfiles";
-      "stor" = "cd /storage/FTP/";
+    #   "stor" = "cd /storage/FTP/";
 
       "cp" = "cp -v";
-      "ddf" = "df -h";
-      "etc" = "erd -H";
+    #   "ddf" = "df -h";
+    #   "etc" = "erd -H";
       "mkdir" = "mkdir -p";
       "mv" = "mv -v";
       "rm" = "rm -v";
-      "rr" = "rm -rf";
+    #   "rr" = "rm -rf";
 
       "ld" = "eza -ld */ --no-quotes --time-style long-iso";
       "lla" = "eza -lah --no-quotes --time-style long-iso";
@@ -41,18 +44,18 @@
       "lltr" = "eza -lhr -s time --no-quotes --time-style long-iso";
 
 
-      "p" = "feh -Z pics/";
-      "v" = "vlc vids/";
-      "avi" = "vlc *.avi";
-      "jpeg" = "feh -Z *.jpeg";
-      "jpg" = "feh -Z *.jpg";
-      "mkv" = "vlc *.mkv";
-      "mov" = "vlc *.mov";
-      "mp3" = "vlc *.mp3";
-      "mp4" = "vlc *.mp4";
-      "png" = "feh -Z *.png";
-      "vvlc" = "vlc *";
-      "webm" = "vlc *.webm";
+    #   "p" = "feh -Z pics/";
+    #   "v" = "vlc vids/";
+    #   "avi" = "vlc *.avi";
+    #   "jpeg" = "feh -Z *.jpeg";
+    #   "jpg" = "feh -Z *.jpg";
+    #   "mkv" = "vlc *.mkv";
+    #   "mov" = "vlc *.mov";
+    #   "mp3" = "vlc *.mp3";
+    #   "mp4" = "vlc *.mp4";
+    #   "png" = "feh -Z *.png";
+    #   "vvlc" = "vlc *";
+    #   "webm" = "vlc *.webm";
       
     };
     
@@ -83,11 +86,8 @@
       # nix abbreviations
       ncg = "nix-collect-garbage";
 
-      nhb = "home-manager switch --flake .#beard@nixos";
-      nhs = "home-manager switch --flake .#storage@storage";
-
-      nrn = "sudo nixos-rebuild switch --flake .#nixos";
-      nrs = "sudo nixos-rebuild switch --flake .#storage";
+      hms = "home-manager switch --flake .#quinnieboi@minifridge";
+      ns = "sudo nixos-rebuild switch --flake .#minifridge";
     };
 
     functions = {

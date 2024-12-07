@@ -170,7 +170,8 @@
     (nerdfonts.override {
       fonts = [
         "Hack"
-        "0xProto"
+        # "0xProto" # HM nerdfonts aren't working in zed editor
+        "FiraCode"
       ];
     })
 
@@ -179,7 +180,7 @@
     # planify         # Planning software, it broked. had to manually comb through a partially human readable .db file to recover notes...
 
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
-    ddcui # Boot-kernel module "ddcci_backlight" for brightness control
+    # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
     ddcutil # Brightness
 
     pika-backup # Backup manager
@@ -187,7 +188,6 @@
   ++ 
   (with inputs; [
     zen-browser.packages.x86_64-linux.default
-    nixvim.packages.x86_64-linux.default
   ]);
 
   home = {
