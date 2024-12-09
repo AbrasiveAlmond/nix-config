@@ -39,6 +39,7 @@
     })
   ];
 
+
   users.users = {
     quinnieboi = {
       isNormalUser = true;
@@ -90,7 +91,15 @@
   # new users an instance so theres no set of funky imperative installation commands to get started.
   environment.systemPackages = with pkgs; [ wget vim git home-manager ];
 
-  nixpkgs = { config = { allowUnfree = false; }; };
+  nixpkgs = { config = { 
+    allowUnfree = false;
+    # TODO: Find what on earth is using these. Maybe vscode itself?
+    permittedInsecurePackages = [
+      "dotnet-runtime-6.0.36"
+      "dotnet-sdk-wrapped-6.0.428"
+      "dotnet-sdk-6.0.428"
+    ];
+  }; };
 
   nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
