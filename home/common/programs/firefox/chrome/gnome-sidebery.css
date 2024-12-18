@@ -27,8 +27,19 @@
 
 /* Hidden state: Hide native tabs strip */
 #main-window[titlepreface*="​"] #TabsToolbar {
-    height: 0 !important;
+    /* height: 0 !important; */
+    transition: visibility 0s linear 300ms, opacity 300ms !important;
+    visibility: hidden;
+    opacity: 0;
 }
+
+#main-window[titlepreface*="​"] .toolbar-items {
+    height: 0;
+    visibility: hidden;
+    transition: visibility 0s linear 300ms, opacity 300ms, height 300ms !important;
+    opacity: 0;
+}
+
 /* Hidden state: Fix z-index of active pinned tabs */
 #main-window[titlepreface*="​"] #tabbrowser-tabs {
     z-index: 0 !important;
