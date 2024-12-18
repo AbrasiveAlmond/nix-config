@@ -1,13 +1,4 @@
-#root {
-    /* I tried to find official adwaita colours but everything uses
-    very slightly different shades and I hate it. I decided it would be more
-    simple to hardcode matching colours to what the headerbar already uses
-    rather than some more complex setup where they share colours (which
-    would then work with light theme as well) */
-    --gnome-unfocused: rgb(36, 36, 36);
-    --gnome-focused: rgb(54, 54, 54);
-}
-
+/* Hide the useless and thick sidebar header */
 #sidebar-header {
     display: none;
 }
@@ -26,29 +17,16 @@
 }
 
 /* Hidden state: Hide native tabs strip */
-#main-window[titlepreface*="​"] #TabsToolbar {
-    /* height: 0 !important; */
-    transition: visibility 0s linear 300ms, opacity 300ms !important;
-    visibility: hidden;
-    opacity: 0;
-    /* Tabs were still interactive despite visibility disabling mouse events
-       children weren't inhereting visibility so thats probably why.
-    */
-    pointer-events: none; 
-}
+    #main-window[titlepreface*="​"] #TabsToolbar,
+    #main-window[titlepreface*="​"] .toolbar-items {
+        /* animation */
+        /* property name | duration | easing function | delay */
+        transition: visibility 300ms step-end 450ms, opacity 150ms linear 0ms, height 450ms ease-out 0ms !important;
 
-#main-window[titlepreface*="​"] .toolbar-items {
-    height: 0;
-    visibility: hidden;
-    transition: visibility 0s linear 300ms, opacity 300ms, height 300ms !important;
-    opacity: 0;
-    /* Tabs were still interactive despite visibility disabling mouse events
-       children weren't inhereting visibility so thats probably why.
-    */
-    pointer-events: none;
-}
-
-/* Hidden state: Fix z-index of active pinned tabs */
-#main-window[titlepreface*="​"] #tabbrowser-tabs {
-    z-index: 0 !important;
-}
+        /* functionality */
+        visibility: hidden;
+        height: 0;
+        opacity: 0;
+        /* Tabs were still interactive without the following */
+        pointer-events: none; 
+    }
