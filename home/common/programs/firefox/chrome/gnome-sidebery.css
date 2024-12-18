@@ -31,6 +31,10 @@
     transition: visibility 0s linear 300ms, opacity 300ms !important;
     visibility: hidden;
     opacity: 0;
+    /* Tabs were still interactive despite visibility disabling mouse events
+       children weren't inhereting visibility so thats probably why.
+    */
+    pointer-events: none; 
 }
 
 #main-window[titlepreface*="​"] .toolbar-items {
@@ -38,6 +42,10 @@
     visibility: hidden;
     transition: visibility 0s linear 300ms, opacity 300ms, height 300ms !important;
     opacity: 0;
+    /* Tabs were still interactive despite visibility disabling mouse events
+       children weren't inhereting visibility so thats probably why.
+    */
+    pointer-events: none;
 }
 
 /* Hidden state: Fix z-index of active pinned tabs */
