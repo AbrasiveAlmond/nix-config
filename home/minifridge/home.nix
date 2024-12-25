@@ -22,6 +22,7 @@
     ../common/shellAliases.nix
 
     ../common/nvim
+    ../common/nushell.nix
 
     # ../common/programs/cli/fish.nix
     # ../common/programs/cli/starship.nix

@@ -44,6 +44,7 @@
     quinnieboi = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
+      shell = pkgs.nushell; # installed via HM
     };
   };
   # services.tailscale.enable = true;
@@ -152,7 +153,3 @@
     #   ];
     # };
   };
-
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
-}
