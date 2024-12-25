@@ -4,7 +4,7 @@
 
 		envFile.text = ''
 			mkdir ~/.cache/starship
-			starship init nu | save -f ~/.cache/starship/init.nu
+			# starship init nu | save -f ~/.cache/starship/init.nu
 
 			zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 		'';
@@ -25,7 +25,7 @@
 			use ~/.cache/starship/init.nu
 			source ~/.zoxide.nu
 
-			nitch
+			# nitch
 		'';
 	};
 }

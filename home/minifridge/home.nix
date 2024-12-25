@@ -23,6 +23,7 @@
 
     ../common/nvim
     ../common/nushell.nix
+    ../common/tmux.nix
 
     # ../common/programs/cli/fish.nix
     # ../common/programs/cli/starship.nix
@@ -167,6 +168,9 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
+
+    vivid
+    starship
   ])
   ++
   (with pkgs; [
