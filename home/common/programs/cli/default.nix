@@ -3,7 +3,7 @@
     ./tmux.nix
     ./fish.nix
     ./starship.nix
-    ./nixvim.nix
+    # ./nixvim.nix
   ];
 
   home.packages = with pkgs; [
