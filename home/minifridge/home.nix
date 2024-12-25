@@ -170,7 +170,6 @@
     git-credential-oauth
 
     vivid
-    starship
   ])
   ++
   (with pkgs; [

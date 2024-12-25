@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
-    ./tmux.nix
-    ./fish.nix
+    # ./tmux.nix
+    # ./fish.nix
     ./starship.nix
     # ./nixvim.nix
   ];
