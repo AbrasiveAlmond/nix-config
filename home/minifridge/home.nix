@@ -168,6 +168,8 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
+    tree 
+    zoxide
 
     vivid
   ])
