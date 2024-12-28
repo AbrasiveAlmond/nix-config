@@ -22,9 +22,6 @@
     ../common/home/nvim
     ../common/home/nushell.nix
     ../common/home/tmux.nix
-
-    # ../common/programs/cli/fish.nix
-    # ../common/programs/cli/starship.nix
   ];
 
   dconf.settings = {

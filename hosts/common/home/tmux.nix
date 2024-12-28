@@ -10,25 +10,40 @@
 		# terminal = "xterm-kitty";
 		plugins = with pkgs; [
 			tmuxPlugins.vim-tmux-navigator
+			tmuxPlugins.sensible
+      tmuxPlugins.yank
 		];
-		# extraConfig = ''
-		# 	set -g @alt_blue '#3b4261'
-		# 	set -g @hl '#283457'
-		# 	set -g @bg_hl '#292e42'
-		# 	set -g @light_bg_hl '#1f2233'
+		extraConfig = ''
+			set -g status-justify centre
 
-		# 	set -g mode-style 'bg=#{@hl}'
-		# 	set -g message-style 'bg=black, fg=white'
-		# 	set -g status-justify centre
-		# 	set -g status-style 'bg=black'
+			# Plugins
+      # run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
+      run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'
+      run-shell '${vim-tmux-navigator}/share/tmux-plugins/sensible/sensible.tmux'
+      #run-shell '${urlview}/share/tmux-plugins/urlview/urlview.tmux'
 
-		# 	setw -g window-status-current-format '#[bg=black, fg=blue]#[bg=blue, fg=black] #I #[bg=#{@alt_blue}, fg=blue] #W #[bg=black, fg=#{@alt_blue}]'
-		# 	setw -g window-status-format '#[bg=black fg=#{@bg_hl}]#[bg=#{@bg_hl}, fg=white] #I #[bg=#{@light_bg_hl} fg=#{@bg_hl}]#[bg=#{@light_bg_hl}, fg=white] #W #[bg=black, fg=#{@light_bg_hl}]'
-		# 	setw -g window-status-separator ' '
+      #bind-key R run-shell ' \
+      #  tmux source-file /etc/tmux.conf > /dev/null; \
+      #  tmux display-message "sourced /etc/tmux.conf"'
 
-		# 	set -g status-left-length 50
-		# 	set -g status-left '#[bg=#{?client_prefix,magenta,blue}, fg=black] #S #[bg=black, fg=#{?client_prefix,magenta,blue}]'
-		# 	set -g status-right '#[bg=black, fg=#{@alt_blue}]#[bg=#{@alt_blue}, fg=blue] %a %b %-d #[bg=blue, fg=black] %-I:%M %p '
-		# '';
+      # Be faster switching windows
+      bind C-n next-window
+      bind C-p previous-window
+
+      # Send the bracketed paste mode when pasting
+      bind ] paste-buffer -p
+
+      # set-option -g set-titles on
+
+      # Force true colors
+      set-option -ga terminal-overrides ",*:Tc"
+
+      set-option -g mouse on
+      set-option -g focus-events on
+
+      # Stay in same directory when split
+      bind % split-window -h -c "#{pane_current_path}"
+      bind '"' split-window -v -c "#{pane_current_path}"
+			'';
 	};
 }
