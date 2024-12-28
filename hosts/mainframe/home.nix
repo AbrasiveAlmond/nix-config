@@ -12,13 +12,10 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
-    # ../apps
-    ../common/kanata-service
-    ../common/gnome
-
-    ../common/programs/cli
-    ../common/programs/firefox
-    ../common/shellAliases.nix
+    ../common/home/kanata-service
+    ../common/home/gnome
+    ../common/home/firefox
+    ../common/home/shellAliases.nix
   ];
 
   home = {
