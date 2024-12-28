@@ -87,7 +87,7 @@
       hardware.graphics = {
         enable = true;
         extraPackages = with pkgs; [
-          onevpl-intel-gpu # Still want integrated gpu to do its thing
+          vpl-gpu-rt # Still want integrated gpu to do its thing
         ];
       };
 
@@ -156,7 +156,7 @@
       hardware.graphics = {
         enable = true;
         extraPackages = with pkgs; [
-          onevpl-intel-gpu
+          vpl-gpu-rt
         ];
       };
 
@@ -170,6 +170,34 @@
         Option "TripleBuffer"    "false"
         Option "SwapbuffersWait" "false"
       '';
+    };
+  };
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = "powersave";
+  };
+  
+  services = {
+    thermald.enable = true;
+    power-profiles-daemon.enable = false;
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "powersave";
+          turbo = "auto";
+        };
+      };
+    };
+    system76-scheduler = {
+      enable = true;
+      useStockConfig = true;
     };
   };
 
