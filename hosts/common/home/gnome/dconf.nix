@@ -8,7 +8,7 @@ with lib.hm.gvariant;
     # due to conflict with x-server bind
     # https://gitlab.gnome.org/GNOME/gtk/-/issues/570#note_742261
     "org/gnome/desktop/input-sources" = {
-      xkb-options = lib.mkForce ""; # force since something is overriding it
+      xkb-options = lib.mkForce ""; # Doesn't entirely work as something changes it at runtime
     };
 
     "org/gnome/desktop/interface" = {

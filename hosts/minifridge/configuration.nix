@@ -12,7 +12,6 @@
     ../common/nixos/printing.nix
 
     ../common/nixos/gnome
-    ../common/nixos/firefox.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules

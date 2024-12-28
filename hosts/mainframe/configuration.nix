@@ -84,16 +84,22 @@
       # Nvidia Configuration 
       services.xserver.videoDrivers = lib.mkForce [ "nvidia" ]; 
       # enable discrete GPU in 24.11 or unstable
-      hardware.graphics.enable = true;
+      hardware.graphics = {
+        enable = true;
+        extraPackages = with pkgs; [
+          onevpl-intel-gpu # Still want integrated gpu to do its thing
+        ];
+      };
 
       hardware.nvidia = {
-        # open = true;
+        open = false; # might want to double check dat
         modesetting.enable = true;
         nvidiaSettings = true;
 
         # # PRIME Arch Wiki
         # # We also need to enable nvidia-persistenced.service to avoid the kernel tearing down the device state whenever the NVIDIA device resources are no longer in use.
-        # nvidiaPersistenced = true;
+        # https://download.nvidia.com/XFree86/Linux-x86_64/396.51/README/nvidia-persistenced.html
+        nvidiaPersistenced = true;
         powerManagement.enable = true; # use with offload according to nixoptions
         powerManagement.finegrained = true;   
 
@@ -112,13 +118,19 @@
         };
          
       };
-      
-      
+
+      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption. 
+      services.xserver.deviceSection = ''
+        Option "DRI"             "2" 
+        Option "TearFree"        "false"
+        Option "TripleBuffer"    "false"
+        Option "SwapbuffersWait" "false"
+      '';
     };
 
     integrated.configuration = {
       # Stolen from https://github.com/NixOS/nixos-hardware/blob/3f7d0bca003eac1a1a7f4659bbab9c8f8c2a0958/common/gpu/nvidia/disable.nix
-      # disable nvidia, very nice battery life.
+      # "disable nvidia, very nice battery life."
       boot.extraModprobeConfig = ''
         blacklist nouveau
         options nouveau modeset=0
@@ -137,12 +149,11 @@
         # Remove NVIDIA VGA/3D controller devices
         ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
       '';
-      ## Nullified options due to the above
+      ## Partially nullified options due to the above
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
-      # hardware.nvidiaOptimus.disable = true;
-      # boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+      hardware.nvidiaOptimus.disable = true;
 
-      hardware.opengl = {
+      hardware.graphics = {
         enable = true;
         extraPackages = with pkgs; [
           onevpl-intel-gpu
@@ -178,7 +189,7 @@
     ]; 
     extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
-    # system hangs on shutdown if quiet is enabled
+    # previously system would hang on shutdown if quiet is enabled
     # https://bbs.archlinux.org/viewtopic.php?id=276631
     # kernelParams = [
     #   "quiet"
@@ -202,10 +213,10 @@
     config = {
       allowUnfree = false;
       # Nvidia drivers error otherwise
-      # error: Package ‘nvidia-x11-555.58.02-6.6.47’
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "nvidia-x11"
           "nvidia-settings"
+          "nvidia-persistenced"
         ];
     };
   };

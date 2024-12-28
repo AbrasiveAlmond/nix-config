@@ -8,12 +8,9 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    #outputs.homeManagerModules
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
+    ../common/home/gnome
 
     ../common/home/kanata-service
-    ../common/home/gnome
     ../common/home/firefox
     ../common/home/shellAliases.nix
   ];
@@ -21,21 +18,6 @@
   home = {
     username = "busyboy";
     homeDirectory = "/home/busyboy";
-  };
-
-  dconf.settings = {
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "reboottouefi@ubaygd.com"
-        "blur-my-shell@aunetx"
-        "happy-appy-hotkey@jqno.nl"
-        "caffeine@patapon.info"
-        "middleclickclose@paolo.tranquilli.gmail.com"
-        "tiling-assistant@leleat-on-github"
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "hidetopbar@mathieu.bidon.ca"
-      ];
-    };
   };
 
   home.packages = with pkgs; [
@@ -66,7 +48,29 @@
       
       # just in case it is more performant
       ungoogled-chromium
+
+      # Gnome Extensions
+      happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
+      blur-my-shell                   # Blurry shell is a needed ux improvement
+      caffeine                        # Keep PC on
+      hide-top-bar
+      tiling-assistant                # Windows-like tiling
+      middle-click-to-close-in-overview # Much better.
+      control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
+      burn-my-windows                 # Visual swag
   ];
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "blur-my-shell@aunetx"
+        "happy-appy-hotkey@jqno.nl"
+        "caffeine@patapon.info"
+        "middleclickclose@paolo.tranquilli.gmail.com"
+        "tiling-assistant@leleat-on-github"
+      ];
+    };
+  };
 
   services.flatpak = {
     enable = true;

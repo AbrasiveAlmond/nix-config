@@ -24,23 +24,6 @@
     ../common/home/tmux.nix
   ];
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "vertical-workspaces@G-dH.github.com"
-        "reboottouefi@ubaygd.com"
-        "blur-my-shell@aunetx"
-        "happy-appy-hotkey@jqno.nl"
-        "quick-settings-tweaks@qwreey"
-        "caffeine@patapon.info"
-        "middleclickclose@paolo.tranquilli.gmail.com"
-        "tiling-assistant@leleat-on-github"
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "monitor-brightness-volume@ailin.nemui"
-      ];
-    };
-  };
-
   services.flatpak = {
     enable = true;
     update.auto = {
@@ -69,16 +52,6 @@
         location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
       }
     ];
-
-    # overrides = {
-    #   "io.gitlab.librewolf-community".Context = {
-    #     filesystems = [
-    #       "~/Downloads:rw" # downloads
-    #       "~/Documents:ro" # expose documents for uploading
-    #     ];        
-
-    #   };
-    # };
   };
 
   nixpkgs = {
@@ -96,13 +69,6 @@
 
   services.kanata.enable = true;
 
-  # programs.home-manager.path = 
-
-  # systemd.user.sessionVariables = {
-  # 	EDITOR = "helix";
-  # 	TERM = "fish";
-  # };
-  #home.file.".vimrc".text = "inoremap st";
   fonts.fontconfig.enable = true;
   home.packages = 
   (with pkgs-unstable; [
@@ -187,11 +153,43 @@
     ddcutil # Brightness
 
     pika-backup # Backup manager
+
+    # Gnome Extensions
+    vertical-workspaces             # Nicer workspaces overview
+    reboottouefi                    # Adds uefi boot option
+    happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
+    dual-shock-4-battery-percentage # power level in top panel
+    blur-my-shell                   # Blurry shell is a needed ux improvement
+    caffeine                        # Keep PC on    
+    hide-top-bar
+    tactile                         # Tile windows using a custom grid.
+    gtile                           # another tiling thing
+    tiling-assistant                # Windows-like tiling
+    middle-click-to-close-in-overview # Much better.
+    control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
+    burn-my-windows                 # Visual swag
   ])
   ++ 
   (with inputs; [
     zen-browser.packages.x86_64-linux.default
   ]);
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "vertical-workspaces@G-dH.github.com"
+        "reboottouefi@ubaygd.com"
+        "blur-my-shell@aunetx"
+        "happy-appy-hotkey@jqno.nl"
+        "quick-settings-tweaks@qwreey"
+        "caffeine@patapon.info"
+        "middleclickclose@paolo.tranquilli.gmail.com"
+        "tiling-assistant@leleat-on-github"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "monitor-brightness-volume@ailin.nemui"
+      ];
+    };
+  };
 
   home = {
     username = "quinnieboi";

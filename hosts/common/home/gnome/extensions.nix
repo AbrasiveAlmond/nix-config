@@ -4,25 +4,7 @@ let
   extsn = "org/gnome/shell/extensions/";
 in
 {
-  home.packages = with pkgs.gnomeExtensions; [
-    vertical-workspaces     # Nicer workspaces overview
-    reboottouefi            # Adds uefi boot option
-
-    happy-appy-hotkey       # Assign hotkeys to apps to focus or launch them
-    dual-shock-4-battery-percentage # power level in top panel
-    blur-my-shell           # Blurry shell is a needed ux improvement
-    forge                   # Tiling window manager
-    caffeine
-    hide-top-bar
-    tactile                 # Tile windows using a custom grid.
-    gtile                   # literally a tiling WM
-    tiling-assistant
-    middle-click-to-close-in-overview # Much better.
-    control-monitor-brightness-and-volume-with-ddcutil # Finally one that works!!
-    burn-my-windows
-  ];
-
-    ### gnomeExtensions customisation ####
+  ### gnomeExtensions customisation ####
   dconf.settings = {
     ${(extsn + "blur-my-shell")} = {
       sigma = 10;
