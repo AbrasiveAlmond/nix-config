@@ -12,10 +12,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common/locale.nix
-      ../common/printing.nix
-      ../common/ssh.nix
-      ../common/gnome
+      ../common/nixos/locale.nix
+      ../common/nixos/printing.nix
+      ../common/nixos/ssh.nix
+      ../common/nixos/gnome
     ];
 
 	gnome = {

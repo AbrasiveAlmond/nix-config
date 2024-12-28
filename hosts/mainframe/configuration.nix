@@ -14,13 +14,13 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   
-    ../common/ssh.nix
-    ../common/locale.nix
-    ../common/printing.nix
-    ../common/power-management.nix
+    ../common/nixos/ssh.nix
+    ../common/nixos/locale.nix
+    ../common/nixos/printing.nix
+    ../common/nixos/power-management.nix
 
-    ../common/gnome
-    ../common/firefox.nix
+    ../common/nixos/gnome
+    ../common/nixos/firefox.nix
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
