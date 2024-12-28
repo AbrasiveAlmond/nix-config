@@ -4,7 +4,7 @@
 
 		envFile.text = ''
 			mkdir ~/.cache/starship
-			# starship init nu | save -f ~/.cache/starship/init.nu
+			starship init nu | save -f ~/.cache/starship/init.nu
 
 			zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 		'';
@@ -19,7 +19,7 @@
 				}
 			}
 
-			$env.LS_COLORS = (vivid generate tokyonight-night | str trim)
+			$env.LS_COLORS = (vivid generate gruvbox-dark-soft | str trim)
 			$env.EDITOR = "nvim"
 
 			use ~/.cache/starship/init.nu
