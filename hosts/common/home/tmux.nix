@@ -12,12 +12,13 @@
 			tmuxPlugins.vim-tmux-navigator
 			tmuxPlugins.sensible
       tmuxPlugins.yank
+      tmuxPlugins.urlview
 		];
-		extraConfig = ''
+		extraConfig = with pkgs.tmuxPlugins; ''
 			set -g status-justify centre
 
 			# Plugins
-      # run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
+      # run-shell '$#{copycat}/share/tmux-plugins/copycat/copycat.tmux'
       run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'
       run-shell '${vim-tmux-navigator}/share/tmux-plugins/sensible/sensible.tmux'
       #run-shell '${urlview}/share/tmux-plugins/urlview/urlview.tmux'

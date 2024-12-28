@@ -161,7 +161,7 @@
         };
         modules = [
           # > Our main home-manager configuration file <
-          ./home/minifridge/home.nix
+          ./hosts/minifridge/home.nix
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
@@ -171,7 +171,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./home/stone-tablet/home.nix
+          ./hosts/stone-tablet/home.nix
         ];
       };
 
@@ -182,7 +182,7 @@
           inherit inputs outputs;
         };
         modules = [
-          ./home/mainframe/home.nix
+          ./hosts/mainframe/home.nix
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
