@@ -153,7 +153,13 @@
     ddcutil # Brightness
 
     pika-backup # Backup manager
-
+  ])
+  ++ 
+  (with inputs; [
+    zen-browser.packages.x86_64-linux.default
+  ])
+  ++
+  (with pkgs.gnomeExtensions; [
     # Gnome Extensions
     vertical-workspaces             # Nicer workspaces overview
     reboottouefi                    # Adds uefi boot option
@@ -168,10 +174,6 @@
     middle-click-to-close-in-overview # Much better.
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
-  ])
-  ++ 
-  (with inputs; [
-    zen-browser.packages.x86_64-linux.default
   ]);
 
   dconf.settings = {

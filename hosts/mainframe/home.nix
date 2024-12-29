@@ -20,7 +20,7 @@
     homeDirectory = "/home/busyboy";
   };
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
       # Gnome apps
       plots         # Worse desmos
       rnote
@@ -48,17 +48,23 @@
       
       # just in case it is more performant
       ungoogled-chromium
-
-      # Gnome Extensions
-      happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
-      blur-my-shell                   # Blurry shell is a needed ux improvement
-      caffeine                        # Keep PC on
-      hide-top-bar
-      tiling-assistant                # Windows-like tiling
-      middle-click-to-close-in-overview # Much better.
-      control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
-      burn-my-windows                 # Visual swag
-  ];
+  ])++
+  (with pkgs.gnomeExtensions; [
+    # Gnome Extensions
+    vertical-workspaces             # Nicer workspaces overview
+    reboottouefi                    # Adds uefi boot option
+    happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
+    dual-shock-4-battery-percentage # power level in top panel
+    blur-my-shell                   # Blurry shell is a needed ux improvement
+    caffeine                        # Keep PC on    
+    hide-top-bar
+    tactile                         # Tile windows using a custom grid.
+    gtile                           # another tiling thing
+    tiling-assistant                # Windows-like tiling
+    middle-click-to-close-in-overview # Much better.
+    control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
+    burn-my-windows                 # Visual swag
+  ]);
 
   dconf.settings = {
     "org/gnome/shell" = {
