@@ -238,11 +238,11 @@
 
     plymouth = {
       enable = true;
-      theme = "rings";
+      theme = "colorful_sliced";
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "rings" ];
+          selected_themes = [ "colorful_sliced" ];
         })
       ];
     };
