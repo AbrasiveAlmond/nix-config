@@ -178,7 +178,7 @@
     powertop.enable = true;
     cpuFreqGovernor = "powersave";
   };
-  
+
   services = {
     thermald.enable = true;
     power-profiles-daemon.enable = false;
@@ -219,22 +219,33 @@
 
     # previously system would hang on shutdown if quiet is enabled
     # https://bbs.archlinux.org/viewtopic.php?id=276631
-    # kernelParams = [
-    #   "quiet"
-    #   "splash"
-    #   # quiet doesn't work - loglevel was still 4 
-    #   # as seen in ./result/boot.json or ./result/kernel-params
-    #   "loglevel=3" 
-    #   "boot.shell_on_fail"
-    #   "rd.systemd.show_status=false"
-    #   "rd.udev.log_level=3"
-    #   "udev.log_priority=3"
-    # ];
+    kernelParams = [
+      "quiet"
+      "splash"
+      # quiet doesn't work - loglevel was still 4 
+      # as seen in ./result/boot.json or ./result/kernel-params
+      "loglevel=3" 
+      "boot.shell_on_fail"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
 
     # Enable "Silent Boot"
     consoleLogLevel = 0;
     initrd.verbose = false;
     loader.timeout = 1;
+
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "rings" ];
+        })
+      ];
+    };
   };
 
   nixpkgs = {
