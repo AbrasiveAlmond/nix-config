@@ -13,6 +13,7 @@
 }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./battery.nix
   
     ../common/nixos/ssh.nix
     ../common/nixos/locale.nix
@@ -21,6 +22,7 @@
 
     ../common/nixos/gnome
     ../common/nixos/firefox.nix
+
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
@@ -170,34 +172,6 @@
         Option "TripleBuffer"    "false"
         Option "SwapbuffersWait" "false"
       '';
-    };
-  };
-
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-    cpuFreqGovernor = "powersave";
-  };
-
-  services = {
-    thermald.enable = true;
-    power-profiles-daemon.enable = false;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "powersave";
-          turbo = "auto";
-        };
-      };
-    };
-    system76-scheduler = {
-      enable = true;
-      useStockConfig = true;
     };
   };
 
