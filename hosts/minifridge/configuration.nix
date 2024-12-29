@@ -143,6 +143,7 @@
     loader.timeout = 0;
 
     # Works quite well but does get interrupted a bit
+    # other themes: dragon, sphere
     plymouth = {
       enable = true;
       theme = "colorful_sliced";
