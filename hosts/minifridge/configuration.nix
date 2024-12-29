@@ -139,7 +139,20 @@
     # Enable "Silent Boot"
     consoleLogLevel = 0;
     initrd.verbose = false;
-    loader.timeout = 1;
+    # Hide OS choice for bootloaders - still accessible via key press
+    loader.timeout = 0;
+
+    # Works quite well but does get interrupted a bit
+    plymouth = {
+      enable = true;
+      theme = "colorful_sliced";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "colorful_sliced" ];
+        })
+      ];
+    };
 
     # plymouth = {
     #   enable = true;

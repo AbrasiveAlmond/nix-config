@@ -236,6 +236,7 @@
     initrd.verbose = false;
     loader.timeout = 1;
 
+    # Works quite well but does get interrupted a bit
     plymouth = {
       enable = true;
       theme = "colorful_sliced";
