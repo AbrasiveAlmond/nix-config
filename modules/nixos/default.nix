@@ -1,11 +1,8 @@
 # Add your reusable NixOS modules to this directory, on their own file (https://nixos.wiki/wiki/Module).
 # These should be stuff you would like to share with others, not your personal configurations.
-{pkgs, ...}: {
-  # List your module files here
-  immich-server = import ./immich-server.nix;
-  # imports = [
-  #   ./drivers.nix
-  # ];
-
-  services.xserver.excludePackages = [ pkgs.xterm ];
+{
+  outputs = inputs : {
+    # List your module files here
+    rust = import ./rust.nix;
+  };
 }
