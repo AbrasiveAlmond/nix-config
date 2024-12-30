@@ -93,9 +93,9 @@
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    devShells.default = pkgs.mkShell {
-      buildInputs = [ pkgs.rust-bin.stable.latest.default ];
-    };
+    # devShells.default = pkgs.mkShell {
+    #   buildInputs = [ pkgs.rust-bin.stable.latest.default ];
+    # };
 
     # packages."x86_64-linux".default = derivation {
     #   inherit system;
