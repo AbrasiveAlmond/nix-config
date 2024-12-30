@@ -15,7 +15,6 @@
   imports = [ # Include the results of the hardware scan.
     ./locale.nix
     ./hardware-configuration.nix
-    ./server.nix
     # ./services/immich.nix
 
     # modules from nixos-hardware repo:
