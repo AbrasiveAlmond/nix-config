@@ -13,6 +13,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+
+    flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
     
     # Home manager
     home-manager = {
@@ -55,6 +64,8 @@
     systems,
     nix-flatpak,
     nixvim,
+    rust-overlay,
+    flake-utils,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -71,6 +82,8 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    pkgs = nixpkgs.legacyPackages.${system};
+    overlays = [ (import rust-overlay) ];
 
   in {
     # Your custom packages
@@ -79,6 +92,19 @@
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    devShells.default = pkgs.mkShell {
+      buildInputs = [ pkgs.rust-bin.stable.latest.default ];
+    };
+
+    # packages."x86_64-linux".default = derivation {
+    #   inherit system;
+    #   name = "simple";
+    #   # was `inputs.nixpkgs`, now just:
+    #   builder = "${pkgs.bash}/bin/bash";
+    #   args = [ "-c" "echo foo > $out" ];
+    #   src = ./.;
+    # };
 
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays
