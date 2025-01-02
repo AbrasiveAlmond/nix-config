@@ -35,7 +35,7 @@
       "dev.bragefuglseth.Keypunch"
       "re.sonny.Workbench"
       # "io.gitlab.librewolf-community" # deal with switching later if I care
-      # "org.mozilla.firefox" 
+      # "org.mozilla.firefox"
       # can't figure it out declaratively so harden librewolf via this
       # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
       # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
@@ -70,9 +70,9 @@
   services.kanata.enable = true;
 
   fonts.fontconfig.enable = true;
-  home.packages = 
+  home.packages =
   (with pkgs-unstable; [
-    bottles         # Run windows apps 
+    bottles         # Run windows apps
     # plots         # Worse desmos
     amberol         # Music player
     shortwave       # Internet radio player
@@ -105,17 +105,17 @@
     ffmpeg # Audio/video cli tools
     rnote # Drawing software
     identity # Compare photos and videos
-    video-trimmer 
+    video-trimmer
 
     # Utilities
     warp # File sharing tool
     impression # Disk image etcher
 
     pwvucontrol # Disables monitor audio sleep while running
-    
+
     discord
     ungoogled-chromium # for limnu
-    tangram # Run web apps on desktop 
+    tangram # Run web apps on desktop
 
     # coding
     vscodium
@@ -129,8 +129,9 @@
     # gnome-extensions-cli
     libsecret
     git-credential-oauth
-    tree 
+    tree
     zoxide
+    nixd
 
     vivid
   ])
@@ -154,7 +155,7 @@
 
     pika-backup # Backup manager
   ])
-  ++ 
+  ++
   (with inputs; [
     zen-browser.packages.x86_64-linux.default
   ])
@@ -166,7 +167,7 @@
     happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
     blur-my-shell                   # Blurry shell is a needed ux improvement
-    caffeine                        # Keep PC on    
+    caffeine                        # Keep PC on
     hide-top-bar
     tactile                         # Tile windows using a custom grid.
     gtile                           # another tiling thing
