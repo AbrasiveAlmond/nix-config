@@ -72,7 +72,7 @@
   fonts.fontconfig.enable = true;
   home.packages =
   (with pkgs-unstable; [
-    bottles         # Run windows apps
+    # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
     amberol         # Music player
     shortwave       # Internet radio player
@@ -131,7 +131,8 @@
     git-credential-oauth
     tree
     zoxide
-    nixd
+    # nixd
+    nil
 
     vivid
   ])

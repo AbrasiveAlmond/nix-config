@@ -4,7 +4,7 @@
   # home-manager switch --flake .#username@hostname
   # when console yells that hm config is different version, try using
   # nix build .#homeConfigurations.me.activationPackage && result/activate
-  # running > ./result/bin/home-manager-generation 
+  # running > ./result/bin/home-manager-generation
   # which is a link to the activation package in the current nixos system
   # also worked when followed by home-manager switch as normal
 
@@ -14,15 +14,15 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
-    flake-utils.url = "github:numtide/flake-utils";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-    
+    # flake-utils.url = "github:numtide/flake-utils";
+    # rust-overlay = {
+    #   url = "github:oxalica/rust-overlay";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -31,7 +31,7 @@
 
     # May be useful for server - interesting repo nonetheless
     # nix-mineral = {
-    #   url = "github:cynicsketch/nix-mineral"; # Refers to the main branch and is updated to the latest commit when you use "nix flake update" 
+    #   url = "github:cynicsketch/nix-mineral"; # Refers to the main branch and is updated to the latest commit when you use "nix flake update"
     #   flake = false;
     # };
 
@@ -64,8 +64,8 @@
     systems,
     nix-flatpak,
     nixvim,
-    rust-overlay,
-    flake-utils,
+    # rust-overlay,
+    # flake-utils,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -81,9 +81,9 @@
     system = "x86_64-linux";
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-    pkgs = nixpkgs.legacyPackages.${system};
-    overlays = [ (import rust-overlay) ];
+    # forAllSystems = nixpkgs.lib.genAttrs systems;
+    # pkgs = nixpkgs.legacyPackages.${system};
+    # overlays = [ (import rust-overlay) ];
 
   in {
     # Your custom packages
@@ -109,7 +109,7 @@
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
-    
+
     # immich = import ./pkgs
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
@@ -164,7 +164,7 @@
         specialArgs = {
           inherit inputs outputs;
         };
-        
+
         modules = [
           # > Our main nixos configuration file <
           ./hosts/homelab/configuration.nix
