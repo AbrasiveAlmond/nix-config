@@ -1,8 +1,8 @@
 {
   inputs,
-  outputs,
+  # outputs,
   lib,
-  config,
+  # config,
   pkgs,
   pkgs-unstable,
   ...
