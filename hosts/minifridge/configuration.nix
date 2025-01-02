@@ -28,17 +28,6 @@
     apps.excludes.enable = true;
   };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto"
-        "FiraCode"
-      ];
-    })
-  ];
-
-
   users.users = {
     quinnieboi = {
       isNormalUser = true;
@@ -76,7 +65,7 @@
   };
 
   # fish completions provided by Nixpkgs along with HM
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
 
   # Loads ceratin qmk udev rules. Ones missing in ">qmk setup"
   # Makes via work aswell: https://nixos.wiki/wiki/Qmk
@@ -91,7 +80,7 @@
   # new users an instance so theres no set of funky imperative installation commands to get started.
   environment.systemPackages = with pkgs; [ wget vim git home-manager ];
 
-  nixpkgs = { config = { 
+  nixpkgs = { config = {
     allowUnfree = false;
     # TODO: Find what on earth is using these. Maybe vscode itself?
     permittedInsecurePackages = [
