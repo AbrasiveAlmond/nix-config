@@ -21,6 +21,7 @@
     ../common/home/shellAliases.nix
     ../common/home/nvim
     ../common/home/nushell.nix
+    ../common/home/starship.nix
     ../common/home/tmux.nix
   ];
 

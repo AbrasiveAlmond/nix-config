@@ -7,6 +7,6 @@
 
   programs.starship = {
     enable = true;
-		enableNushellIntergration = true;
+		enableNushellIntegration= true;
   };
 }
