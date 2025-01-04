@@ -7,7 +7,7 @@
 			starship init nu | save -f ~/.cache/starship/init.nu
 			zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 
-			$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+			$env.CARAPACE_BRIDGES = 'zsh,fish,bash' # optional
       mkdir ~/.cache/carapace
       carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 		'';
@@ -30,12 +30,12 @@
         case_sensitive: false   # case-sensitive completions
         quick: true             # set to false to prevent auto-selecting completions
         partial: true           # set to false to prevent partial filling of the prompt
-        algorithm: "fuzzy"      # prefix or fuzzy
+        algorithm: "prefix"     # prefix or fuzzy
         external: {
         # set to false to prevent nushell looking into $env.PATH to find more suggestions
             enable: true
         # set to lower can improve completion performance at the cost of omitting some options
-            max_results: 100
+            max_results: 10
             completer: $carapace_completer # check 'carapace_completer'
           }
         }
