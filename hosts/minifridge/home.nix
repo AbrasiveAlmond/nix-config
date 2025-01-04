@@ -130,7 +130,7 @@
     libsecret
     git-credential-oauth
     tree
-    zoxide
+    # zoxide
     # nixd
     nil
 

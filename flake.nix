@@ -86,25 +86,27 @@
     # overlays = [ (import rust-overlay) ];
 
   in {
+    devShells."${system}".default = let
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in pkgs.mkShell {
+      packages = with pkgs; [
+        hello
+      ];
+
+      shellHook = ''
+        hello --greeting="hello shell"
+        exec nu
+      '';
+    };
+
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system})
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-    # devShells.default = pkgs.mkShell {
-    #   buildInputs = [ pkgs.rust-bin.stable.latest.default ];
-    # };
-
-    # packages."x86_64-linux".default = derivation {
-    #   inherit system;
-    #   name = "simple";
-    #   # was `inputs.nixpkgs`, now just:
-    #   builder = "${pkgs.bash}/bin/bash";
-    #   args = [ "-c" "echo foo > $out" ];
-    #   src = ./.;
-    # };
 
     # Ending import at a directory defaults to <dir>/default.nix
     # Your custom packages and modifications, exported as overlays

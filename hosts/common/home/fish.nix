@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 	home.packages = with pkgs; [
 		fish
-        grc
-        eza
+    grc
+    eza
 	];
 
   programs.fish = {
@@ -23,7 +23,7 @@
       "....." = "cd ../../../../";
 
       "z" = "zoxide";
-      
+
       "dot" = "cd ~/.dotfiles";
     #   "stor" = "cd /storage/FTP/";
 
@@ -56,9 +56,9 @@
     #   "png" = "feh -Z *.png";
     #   "vvlc" = "vlc *";
     #   "webm" = "vlc *.webm";
-      
+
     };
-    
+
     shellAbbrs = {
       # cargo abbreviations
       cb = "cargo build";
@@ -91,7 +91,7 @@
     };
 
     functions = {
-      extract = '' 
+      extract = ''
       function extract
         switch $argv[1]
             case "*.tar.bz2"
@@ -134,7 +134,7 @@
       '';
 
 
-      extracttodir = '' 
+      extracttodir = ''
       function extracttodir
           switch $argv[1]
               case "*.tar.bz2"
@@ -167,15 +167,15 @@
       end
       '';
 
-      mkcd = '' 
+      mkcd = ''
       function mkcd --argument name
         mkdir -p $name
         cd $name
       end
       '';
 
-      num = '' 
-      function num 
+      num = ''
+      function num
         ls -1 $argv | wc -l;
       end
       '';

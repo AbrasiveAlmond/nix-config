@@ -1,12 +1,5 @@
-{ config, pkgs, ... }:
-
 {
-
-	home.packages = with pkgs; [
-		starship
-	];
-
-	#      the standard path under ~/.config/ 
+	#      the standard path under ~/.config/
 	#           to find the file       Where the file is located relative to this .nix file
 	#                    |                             |
 	#                    V                             V
@@ -14,7 +7,6 @@
 
   programs.starship = {
     enable = true;
-		# enableFishIntegration = true;
+		enableNushellIntergration = true;
   };
-  
 }

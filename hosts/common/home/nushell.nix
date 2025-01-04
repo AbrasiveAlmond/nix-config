@@ -2,16 +2,33 @@
 	programs.nushell = {
 		enable = true;
 
-		envFile.text = ''
-			mkdir ~/.cache/starship
-			starship init nu | save -f ~/.cache/starship/init.nu
-
-			zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
-		'';
+		# envFile.text = ''
+		# 	mkdir ~/.cache/starship
+		# 	starship init nu | save -f ~/.cache/starship/init.nu
+		# 	zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
+		# '';
 
 		configFile.text = ''
+      let carapace_completer = {|spans|
+        carapace $spans.0 nushell $spans | from json
+      }
 			$env.config = {
 				show_banner: false
+
+				completions: {
+        case_sensitive: false   # case-sensitive completions
+        quick: true             # set to false to prevent auto-selecting completions
+        partial: true           # set to false to prevent partial filling of the prompt
+        algorithm: "fuzzy"      # prefix or fuzzy
+        external: {
+        # set to false to prevent nushell looking into $env.PATH to find more suggestions
+            enable: true
+        # set to lower can improve completion performance at the cost of omitting some options
+            max_results: 100
+            completer: $carapace_completer # check 'carapace_completer'
+          }
+        }
+
 				color_config: {
 					shape_garbage: "red_underline"
 					shape_external: "blue"
@@ -27,5 +44,15 @@
 
 			# nitch
 		'';
+	};
+
+	programs.carapace = {
+	  enable = true;
+		enableNushellIntegration = true;
+	};
+
+	programs.zoxide = {
+	  enable = true;
+		enableNushellIntegration = true;
 	};
 }
