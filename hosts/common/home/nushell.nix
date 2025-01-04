@@ -13,15 +13,23 @@
 		'';
 
 		configFile.text = ''
-      # let carapace_completer = {|spans|
-      #   carapace $spans.0 nushell $spans | from json
-      # }
       source ~/.cache/carapace/init.nu
+
+      let carapace_completer = {|spans|
+        carapace $spans.0 nushell $spans | from json
+      }
 
       let zoxide_completer = {|spans|
           $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
       }
-      # z => $zoxide_completer
+
+      let multiple_completers = {|spans|
+          match $spans.0 {
+              z => $zoxide_completer
+              zoxide => $zoxide_completer
+              _ => $carapace_completer
+          } | do $in $spans
+      }
 
 			$env.config = {
 				show_banner: false
@@ -36,7 +44,7 @@
             enable: true
         # set to lower can improve completion performance at the cost of omitting some options
             max_results: 10
-            completer: $carapace_completer # check 'carapace_completer'
+            completer: $multiple_completers # check 'carapace_completer'
           }
         }
 
