@@ -41,6 +41,17 @@
       shell = pkgs.nushell; # installed via HM
     };
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "Hack"
+        "0xProto" # HM nerdfonts aren't working in zed editor
+        "FiraCode"
+      ];
+    })
+  ];
+
   # services.tailscale.enable = true;
   services.ddccontrol.enable = true;
   hardware.i2c.enable = true;
