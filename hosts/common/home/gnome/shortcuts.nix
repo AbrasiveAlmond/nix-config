@@ -1,5 +1,5 @@
-{ 
-  # lib.mkIf 
+{
+  # lib.mkIf
   dconf.settings = {
     "org/gnome/shell/extensions/happy-appy-hotkey" = {
       number = 3;
@@ -14,7 +14,7 @@
       "hotkey-1" = ["<Super>f"];
       "hotkey-2" = ["<Super>b"];
       "hotkey-3" = ["<Shift><Super>c"];
-      "hotkey-4" = ["<Super>c"];
+      "hotkey-4" = ["<Super>e"];
       "hotkey-5" = ["<Super>s"];
     };
 

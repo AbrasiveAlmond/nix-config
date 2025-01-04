@@ -2,16 +2,27 @@
 	programs.nushell = {
 		enable = true;
 
-		# envFile.text = ''
-		# 	mkdir ~/.cache/starship
-		# 	starship init nu | save -f ~/.cache/starship/init.nu
-		# 	zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
-		# '';
+		envFile.text = ''
+			mkdir ~/.cache/starship
+			starship init nu | save -f ~/.cache/starship/init.nu
+			zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
+
+			$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+      mkdir ~/.cache/carapace
+      carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+		'';
 
 		configFile.text = ''
-      let carapace_completer = {|spans|
-        carapace $spans.0 nushell $spans | from json
+      # let carapace_completer = {|spans|
+      #   carapace $spans.0 nushell $spans | from json
+      # }
+      source ~/.cache/carapace/init.nu
+
+      let zoxide_completer = {|spans|
+          $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
       }
+      # z => $zoxide_completer
+
 			$env.config = {
 				show_banner: false
 
