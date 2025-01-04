@@ -8,7 +8,7 @@
       "app-1" = "Files";
       "app-2" = "Firefox";
       "app-3" = "Eyedropper";
-      "app-4" = "VSCodium";
+      "app-4" = "Zed";
       "app-5" = "Spotify";
       "hotkey-0" = ["<Super>t"];
       "hotkey-1" = ["<Super>f"];
