@@ -20,12 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # May be useful for server - interesting repo nonetheless
-    # nix-mineral = {
-    #   url = "github:cynicsketch/nix-mineral"; # Refers to the main branch and is updated to the latest commit when you use "nix flake update"
-    #   flake = false;
-    # };
-
     hardware.url = "github:nixos/nixos-hardware";
 
     firefox-addons = {
@@ -40,12 +34,12 @@
 
     zen-browser.url = "github:MarceColl/zen-browser-flake";
 
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Another repository to hold development flakes, could be integrated into this one
     rust-devShells = {
       url = "github:AbrasiveAlmond/rust-dev-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +77,6 @@
         modules = [
           ./hosts/minifridge/configuration.nix
         ];
-
       };
 
       # Dell Inspiron 5502
@@ -105,16 +98,6 @@
 
         modules = [
           ./hosts/stone-tablet/configuration.nix
-        ];
-      };
-
-      homelab = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          ./hosts/homelab/configuration.nix
         ];
       };
     };
