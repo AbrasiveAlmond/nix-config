@@ -13,13 +13,13 @@
     ./hardware-configuration.nix
     ./battery.nix
 
-    ../common/nixos/ssh.nix
-    ../common/nixos/locale.nix
-    ../common/nixos/printing.nix
-    ../common/nixos/power-management.nix
+    ../../common/nixos/ssh.nix
+    ../../common/nixos/locale.nix
+    ../../common/nixos/printing.nix
+    ../../common/nixos/power-management.nix
 
-    ../common/nixos/gnome
-    ../common/nixos/firefox.nix
+    ../../common/nixos/gnome
+    ../../common/nixos/firefox.nix
 
 
     # modules from nixos-hardware repo:

@@ -13,11 +13,11 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../common/nixos/ssh.nix
-    ../common/nixos/locale.nix
-    ../common/nixos/printing.nix
+    ../../common/nixos/ssh.nix
+    ../../common/nixos/locale.nix
+    ../../common/nixos/printing.nix
 
-    ../common/nixos/gnome
+    ../../common/nixos/gnome
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules

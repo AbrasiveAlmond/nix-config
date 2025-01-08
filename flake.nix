@@ -71,26 +71,6 @@
 
   in
   {
-    # inherit other-shell;
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system})
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-    # Ending import at a directory defaults to <dir>/default.nix
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-
-    # immich = import ./pkgs
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    # homeManagerModules = import ./modules/home-manager;
-
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -98,27 +78,12 @@
       minifridge = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-          # inherit overlays;
         };
 
         modules = [
-          # > Our main nixos configuration file <
           ./hosts/minifridge/configuration.nix
-          # home-manager.nixosModules.home-manager
         ];
 
-      };
-
-      # 2010/11 MacBook Pro
-      stone-tablet = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          # > Our main nixos configuration file <
-          ./hosts/stone-tablet/configuration.nix
-        ];
       };
 
       # Dell Inspiron 5502
@@ -128,8 +93,18 @@
         };
 
         modules = [
-          # > Our main nixos configuration file <
           ./hosts/mainframe/configuration.nix
+        ];
+      };
+
+      # 2010/11 MacBook Pro
+      stone-tablet = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
+        modules = [
+          ./hosts/stone-tablet/configuration.nix
         ];
       };
 
@@ -139,7 +114,6 @@
         };
 
         modules = [
-          # > Our main nixos configuration file <
           ./hosts/homelab/configuration.nix
         ];
       };
@@ -159,18 +133,8 @@
           };
         };
         modules = [
-          # > Our main home-manager configuration file <
           ./hosts/minifridge/home.nix
           nix-flatpak.homeManagerModules.nix-flatpak
-        ];
-      };
-
-      # 2010/11 MacBook Pro
-      "quinnieboi@stone-tablet" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/stone-tablet/home.nix
         ];
       };
 
@@ -183,6 +147,15 @@
         modules = [
           ./hosts/mainframe/home.nix
           nix-flatpak.homeManagerModules.nix-flatpak
+        ];
+      };
+
+      # 2010/11 MacBook Pro
+      "quinnieboi@stone-tablet" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/stone-tablet/home.nix
         ];
       };
     };

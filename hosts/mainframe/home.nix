@@ -5,11 +5,11 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    ../common/home/gnome
+    ../../common/home/gnome
 
-    ../common/home/kanata-service
-    ../common/home/firefox
-    ../common/home/shellAliases.nix
+    ../../common/home/kanata-service
+    ../../common/home/firefox
+    ../../common/home/shellAliases.nix
   ];
 
   home = {

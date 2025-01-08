@@ -14,15 +14,15 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-flatpak.homeManagerModules.nix-flatpak
     # ../apps
-    ../common/home/kanata-service
-    ../common/home/gnome
+    ../../common/home/kanata-service
+    ../../common/home/gnome
 
-    ../common/home/firefox
-    ../common/home/shellAliases.nix
-    ../common/home/nvim
-    ../common/home/nushell.nix
-    ../common/home/starship.nix
-    ../common/home/tmux.nix
+    ../../common/home/firefox
+    ../../common/home/shellAliases.nix
+    ../../common/home/nvim
+    ../../common/home/nushell.nix
+    ../../common/home/starship.nix
+    ../../common/home/tmux.nix
   ];
 
   services.flatpak = {
