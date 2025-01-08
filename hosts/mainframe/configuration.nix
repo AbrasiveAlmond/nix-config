@@ -60,9 +60,6 @@
       "input"
       "uinput"
     ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
   };
 
   #### Open Tablet Driver ####
