@@ -1,8 +1,4 @@
 {
-  inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -39,7 +35,7 @@
       tree
       zoxide
       git
-      
+
       # just in case it is more performant
       ungoogled-chromium
   ];

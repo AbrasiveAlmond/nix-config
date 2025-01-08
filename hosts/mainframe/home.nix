@@ -1,8 +1,5 @@
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -45,7 +42,7 @@
       zoxide
       git
       git-credential-oauth
-      
+
       # just in case it is more performant
       ungoogled-chromium
   ])++
@@ -56,7 +53,7 @@
     happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
     blur-my-shell                   # Blurry shell is a needed ux improvement
-    caffeine                        # Keep PC on    
+    caffeine                        # Keep PC on
     hide-top-bar
     tactile                         # Tile windows using a custom grid.
     gtile                           # another tiling thing
@@ -106,7 +103,7 @@
     #     filesystems = [
     #       "~/Downloads:rw" # downloads
     #       "~/Documents:ro" # expose documents for uploading
-    #     ];        
+    #     ];
 
     #   };
     # };
@@ -121,6 +118,10 @@
       allowUnfree = true;
       #allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["spotify"];
     };
+  };
+
+  nix.registry = {
+    rust.flake = inputs.rust-devShells;
   };
 
   # Enable home-manager and git

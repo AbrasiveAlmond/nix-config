@@ -6,9 +6,7 @@
 
 {
   inputs,
-  outputs,
   lib,
-  config,
   pkgs,
   ...
 }: {
@@ -23,7 +21,7 @@
     # inputs.hardware.nixosModules.common-gpu-nvidia
   ];
 
-  # This file only defines the base system, 
+  # This file only defines the base system,
   # by removing extra imports it should be a functional & bare system.
 
   networking = {
@@ -46,11 +44,11 @@
     settings = {
       # TODO: Get rid of homelab user all together??
       AllowUsers = [ "homelab" ];
-      PermitRootLogin =  "no"; # can get root via homelab "bash> su" 
+      PermitRootLogin =  "no"; # can get root via homelab "bash> su"
       PasswordAuthentication = false;
     };
   };
-  
+
   users.users.homelab = {
     initialPassword = "changeme";
     isNormalUser = true;
@@ -80,7 +78,7 @@
   environment.systemPackages = with pkgs; [
     vim
   ];
-  
+
   # Bootloader configuration
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";

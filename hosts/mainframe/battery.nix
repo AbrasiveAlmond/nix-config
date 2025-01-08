@@ -1,10 +1,4 @@
 {
-  options,
-  config,
-  lib,
-  ...
-}: {
-
   # Enable powertop
   powerManagement = {
     enable = true;
