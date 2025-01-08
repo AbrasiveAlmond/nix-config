@@ -4,17 +4,15 @@
 
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   ...
 }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./battery.nix
-  
+
     ../common/nixos/ssh.nix
     ../common/nixos/locale.nix
     ../common/nixos/printing.nix
@@ -36,7 +34,7 @@
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;
-  
+
   gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
@@ -78,13 +76,13 @@
       tappingDragLock = true;
     };
   };
-  
+
 
   # creates a separate bootable config
-  specialisation = { 
+  specialisation = {
     nvidia.configuration = {
-      # Nvidia Configuration 
-      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ]; 
+      # Nvidia Configuration
+      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
       # enable discrete GPU in 24.11 or unstable
       hardware.graphics = {
         enable = true;
@@ -103,14 +101,14 @@
         # https://download.nvidia.com/XFree86/Linux-x86_64/396.51/README/nvidia-persistenced.html
         nvidiaPersistenced = true;
         powerManagement.enable = true; # use with offload according to nixoptions
-        powerManagement.finegrained = true;   
+        powerManagement.finegrained = true;
 
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
         prime = {
           # If enabled, the NVIDIA GPU will be always on and used for all rendering
-          # sync.enable = true; 
+          # sync.enable = true;
           # reverseSync.enable = true;
-          offload = { 
+          offload = {
             enable = true;
             enableOffloadCmd = true; # Provides `nvidia-offload` command.
           };
@@ -118,12 +116,12 @@
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
         };
-         
+
       };
 
-      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption. 
+      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
       services.xserver.deviceSection = ''
-        Option "DRI"             "2" 
+        Option "DRI"             "2"
         Option "TearFree"        "false"
         Option "TripleBuffer"    "false"
         Option "SwapbuffersWait" "false"
@@ -137,7 +135,7 @@
         blacklist nouveau
         options nouveau modeset=0
       '';
-      
+
       services.udev.extraRules = ''
         # Remove NVIDIA USB xHCI Host Controller devices, if present
         ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
@@ -165,9 +163,9 @@
       # Corruption or unresponsiveness in Chromium and Firefox consult https://wiki.archlinux.org/title/Intel_graphics
       services.xserver.videoDrivers = [ "intel" ];
       # Direct Rendering Infrastructure
-      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption. 
+      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
       services.xserver.deviceSection = ''
-        Option "DRI"             "2" 
+        Option "DRI"             "2"
         Option "TearFree"        "false"
         Option "TripleBuffer"    "false"
         Option "SwapbuffersWait" "false"
@@ -181,14 +179,14 @@
     vim
     git
   ];
-  
+
   # Bootloader configuration
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     kernelModules = [
       "uinput"
-    ]; 
+    ];
     extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
     # previously system would hang on shutdown if quiet is enabled
@@ -196,9 +194,9 @@
     kernelParams = [
       "quiet"
       "splash"
-      # quiet doesn't work - loglevel was still 4 
+      # quiet doesn't work - loglevel was still 4
       # as seen in ./result/boot.json or ./result/kernel-params
-      "loglevel=3" 
+      "loglevel=3"
       "boot.shell_on_fail"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
