@@ -14,15 +14,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
-    # flake-utils.url = "github:numtide/flake-utils";
-    # rust-overlay = {
-    #   url = "github:oxalica/rust-overlay";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
-
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -54,6 +45,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-devShells = {
+      url = "github:AbrasiveAlmond/rust-dev-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -63,44 +59,19 @@
     home-manager,
     systems,
     nix-flatpak,
-    nixvim,
-    # rust-overlay,
-    # flake-utils,
+    rust-devShells,
     ...
   } @ inputs: let
     inherit (self) outputs;
-
-    # Supported systems for your flake packages, shell, etc.
-    # systems = [
-    #   # "aarch64-linux"
-    #   # "i686-linux"
-    #   "x86_64-linux"
-    #   # "aarch64-darwin"
-    #   # "x86_64-darwin"
-    # ];
     system = "x86_64-linux";
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     # forAllSystems = nixpkgs.lib.genAttrs systems;
-    # pkgs = nixpkgs.legacyPackages.${system};
-    # overlays = [ (import rust-overlay) ];
 
-  in {
-    devShells."${system}".default = let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in pkgs.mkShell {
-      packages = with pkgs; [
-        hello
-      ];
 
-      shellHook = ''
-        hello --greeting="hello shell"
-        exec nu
-      '';
-    };
-
+  in
+  {
+    # inherit other-shell;
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system})

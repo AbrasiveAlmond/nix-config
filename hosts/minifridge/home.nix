@@ -121,13 +121,16 @@
     # coding
     vscodium
     zed-editor
-    cargo
-    gcc
-    rustc
+
+    # Now Handled by rust-devshells flake
+    # https://github.com/AbrasiveAlmond/rust-dev-flake
+    # cargo
+    # gcc
+    # rustc
     rust-analyzer
     # rustup # collides with cargo
-    # gnome-builder
-    # gnome-extensions-cli
+    gnome-builder
+    gnome-extensions-cli
     libsecret
     git-credential-oauth
     tree
@@ -179,6 +182,12 @@
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
   ]);
+
+  nix.registry = {
+    rust.flake = inputs.rust-devShells;
+
+    my.flake = inputs.self;
+  };
 
   dconf.settings = {
     "org/gnome/shell" = {
