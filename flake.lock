@@ -439,11 +439,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1736317703,
-        "narHash": "sha256-ivQ9M1BfNgFN7hNv9CgO9c7wGPfqLMDHzkEBFA4vils=",
+        "lastModified": 1736319397,
+        "narHash": "sha256-2iWVj7qi/lSgKShcXqOwuqIroj5RR22zsUDb98vPo2Y=",
         "owner": "AbrasiveAlmond",
         "repo": "rust-dev-flake",
-        "rev": "c7cf68ed59eca3a87a9073c88046f8330d63b599",
+        "rev": "0d5fb79b55ab0c73bcd9d3d68343186b81ad84d4",
         "type": "github"
       },
       "original": {

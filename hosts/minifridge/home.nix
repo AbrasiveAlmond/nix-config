@@ -185,8 +185,6 @@
 
   nix.registry = {
     rust.flake = inputs.rust-devShells;
-
-    my.flake = inputs.self;
   };
 
   dconf.settings = {

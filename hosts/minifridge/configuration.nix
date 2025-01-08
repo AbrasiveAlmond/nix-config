@@ -116,7 +116,13 @@
     channel.enable = false;
 
     # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+    registry = {
+      # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
+      nixpkgs.flake = inputs.nixpkgs;
+
+      # https://github.com/clo4/nix-dotfiles/blob/cccef7267a0580e7277ae79377942cbdcd9517a1/systems/host.nix#L42
+      my.flake = inputs.self;
+    };
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
