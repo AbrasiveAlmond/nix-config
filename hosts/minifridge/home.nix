@@ -139,6 +139,9 @@
     nil
 
     vivid
+
+    trayscale
+    tailscale
   ])
   ++
   (with pkgs; [
@@ -181,6 +184,7 @@
     middle-click-to-close-in-overview # Much better.
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
+    tailscale-qs
   ]);
 
   nix.registry = {
@@ -200,6 +204,7 @@
         "tiling-assistant@leleat-on-github"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "monitor-brightness-volume@ailin.nemui"
+        "tailscale@joaophi.github.com"
       ];
     };
   };

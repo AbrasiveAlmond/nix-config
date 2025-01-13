@@ -43,6 +43,11 @@
     };
   };
 
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures= "both";
+  };
+
   fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [
