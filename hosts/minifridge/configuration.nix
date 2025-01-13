@@ -13,9 +13,10 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../common/nixos/ssh.nix
+    ../../common/nixos/firefox.nix
     ../../common/nixos/locale.nix
     ../../common/nixos/printing.nix
+    ../../common/nixos/ssh.nix
 
     ../../common/nixos/gnome
 

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 let
   lock-false = {
     Value = false;
@@ -48,7 +48,7 @@ in {
               "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "normal_installed";
           };
-          
+
           # Privacy Badger:
           "jid1-MnnxcxisBPnSXQ@jetpack" = {
             install_url =
@@ -67,32 +67,32 @@ in {
         # ---- PREFERENCES ----
         # Check about:config for options.
         Preferences = {
-          "browser.contentblocking.category" = {
-            Value = "strict";
-            Status = "locked";
-          };
-          "permissions.default.shortcuts" = 3; # https://support.mozilla.org/en-US/questions/1241294#answer-1175070
-          "extensions.pocket.enabled" = lock-false;
-          "browser.topsites.contile.enabled" = lock-false;
-          # "browser.search.suggest.enabled" = lock-false;
-          # "browser.search.suggest.enabled.private" = lock-false;
-          # "browser.urlbar.suggest.searches" = lock-false;
-          # "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-          "browser.newtabpage.activity-stream.feeds.section.topstories" =
+        # Make Firefox use the native KDE/Gnome file picker
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+
+        # Disabling rando features
+        "browser.contentblocking.category" = {
+          Value = "strict";
+          Status = "locked";
+        };
+        "permissions.default.shortcuts" = 3; # https://support.mozilla.org/en-US/questions/1241294#answer-1175070
+        "extensions.pocket.enabled" = lock-false;
+        "browser.topsites.contile.enabled" = lock-false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" =
             lock-false;
-          "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+        "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
             lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
             lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
             lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
             lock-false;
-          "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-          "browser.newtabpage.activity-stream.system.showSponsored" =
+        "browser.newtabpage.activity-stream.showSponsored" = lock-false;
+        "browser.newtabpage.activity-stream.system.showSponsored" =
             lock-false;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" =
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" =
             lock-false;
         };
       };
