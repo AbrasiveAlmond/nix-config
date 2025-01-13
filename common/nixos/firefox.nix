@@ -65,6 +65,8 @@ in {
         };
 
         # ---- PREFERENCES ----
+        # can also be accessed directly but the interface doesn't allow locking.
+        # programs.firefox.preferences."..." = boolean or signed integer or string;
         # Check about:config for options.
         Preferences = {
         # Make Firefox use the native KDE/Gnome file picker
