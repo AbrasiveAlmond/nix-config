@@ -139,9 +139,6 @@
     nil
 
     vivid
-
-    trayscale
-    tailscale
   ])
   ++
   (with pkgs; [
