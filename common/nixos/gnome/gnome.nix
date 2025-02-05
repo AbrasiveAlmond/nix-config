@@ -19,6 +19,9 @@ let cfg = config.gnome; in {
       xkb.layout = "us";
       xkb.variant = "colemak_dh_ortho";
     };
+    
+    # Whether to enable Sushi, a quick preview for nautilus.
+    services.gnome.sushi.enable = true;
 
     # Enable sound with pipewire.
     # sound.enable = true;
