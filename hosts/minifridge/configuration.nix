@@ -39,7 +39,7 @@
     quinnieboi = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
-      shell = pkgs.nushell; # installed via HM
+      # shell = pkgs.nushell; # installed via HM
     };
   };
 
@@ -99,15 +99,17 @@
 
   environment.systemPackages = with pkgs; [ wget vim git ];
 
-  nixpkgs = { config = {
-    allowUnfree = false;
-    # TODO: Find what on earth is using these. Maybe vscode itself?
-    permittedInsecurePackages = [
-      "dotnet-runtime-6.0.36"
-      "dotnet-sdk-wrapped-6.0.428"
-      "dotnet-sdk-6.0.428"
-    ];
-  }; };
+  nixpkgs = {
+    config = {
+      allowUnfree = false;
+      # TODO: Find what on earth is using these. Maybe vscode itself?
+      permittedInsecurePackages = [
+        "dotnet-runtime-6.0.36"
+        "dotnet-sdk-wrapped-6.0.428"
+        "dotnet-sdk-6.0.428"
+      ];
+    };
+  };
 
   nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {

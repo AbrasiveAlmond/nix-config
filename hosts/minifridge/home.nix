@@ -12,15 +12,15 @@
   imports = [
     # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    # inputs.nix-flatpak.homeManagerModules.nix-flatpaka
+    inputs.nvchad4nix.homeManagerModule
+
     # ../apps
     ../../common/home/kanata-service
     ../../common/home/gnome
 
     ../../common/home/firefox
     ../../common/home/shellAliases.nix
-    ../../common/home/nvim
-    ../../common/home/nushell.nix
     ../../common/home/starship.nix
     ../../common/home/tmux.nix
   ];
@@ -66,13 +66,37 @@
           "discord"
         ];
     };
+
+    overlays = [
+      (final: prev: {
+        nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+      })
+    ];
   };
 
   services.kanata.enable = true;
-
   fonts.fontconfig.enable = true;
+
+  # https://github.com/nix-community/nix4nvchad?tab=readme-ov-file#available-options
+  programs.nvchad = {
+    enable = true;
+    hm-activation = true;
+
+    # Loaded by lazy.nvim
+    # extraPlugins = {};
+
+    extraPackages = with pkgs; [
+      emmet-language-server
+      nixd
+      (python3.withPackages(ps: with ps; [
+        python-lsp-server
+        flake8
+      ]))
+    ];
+  };
+
   home.packages =
-  (with pkgs-unstable; [
+    (with pkgs-unstable; [
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
     amberol         # Music player
@@ -139,9 +163,9 @@
     nil
 
     vivid
-  ])
-  ++
-  (with pkgs; [
+    ])
+    ++
+    (with pkgs; [
     # Due to bug in Zed editor dependency user fonts aren't detected
     (nerdfonts.override {
       fonts = [
@@ -160,13 +184,13 @@
     ddcutil # Brightness
 
     pika-backup # Backup manager
-  ])
-  ++
-  (with inputs; [
+    ])
+    ++
+    (with inputs; [
     zen-browser.packages.x86_64-linux.default
-  ])
-  ++
-  (with pkgs.gnomeExtensions; [
+    ])
+    ++
+    (with pkgs.gnomeExtensions; [
     # Gnome Extensions
     vertical-workspaces             # Nicer workspaces overview
     reboottouefi                    # Adds uefi boot option
@@ -182,7 +206,7 @@
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
     tailscale-qs
-  ]);
+    ]);
 
   nix.registry = {
     rust.flake = inputs.rust-devShells;

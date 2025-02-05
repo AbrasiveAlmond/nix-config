@@ -7,6 +7,7 @@
   # running > ./result/bin/home-manager-generation
   # which is a link to the activation package in the current nixos system
   # also worked when followed by home-manager switch as normal
+  # !! The actual solution was specifying the release version 24.11 in the url below...
 
   inputs = {
     # Nixpkgs
@@ -34,8 +35,8 @@
 
     zen-browser.url = "github:MarceColl/zen-browser-flake";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvchad4nix = {
+      url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
