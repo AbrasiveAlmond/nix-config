@@ -81,10 +81,16 @@
   programs.nvchad = {
     enable = true;
     hm-activation = true;
-
+    backup = false;
     # Loaded by lazy.nvim
-    # extraPlugins = {};
-
+    extraPlugins = ''
+return {
+  {
+    "nvim-lspconfig/nvim-lspconfig",
+    opts = { servers = { rust_analyzer = { enabled = true }, }, },
+  }
+};
+    '';
     extraPackages = with pkgs; [
       emmet-language-server
       nixd
