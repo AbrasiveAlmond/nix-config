@@ -8,37 +8,25 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  # 1TB m.2 NVME SSD | 990 PRO
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/cb5d3e45-a898-46a0-88c8-8d86fb2bec9a";
-      fsType = "btrfs";
-      options = [ "subvol=@" "noatime" "nodiratime" "discard" ];
-    };
+    { device = "/dev/disk/by-uuid/5b7c218d-ddea-42f3-890f-73b1762029c3";
+      fsType = "ext4";
 
-  # 1TB m.2 NVME SSD | 860 QVO
-  fileSystems."/srv/immich" =
-    {
-      device = "/dev/disk/by-uuid/e9b66eaa-9727-49fc-bbac-ce43688e4560";
-      fsType = "btrfs";
       options = [
-        "noatime"
-        "nodiratime"
-        "discard"
-        "nofail"
+        "noatime" # Disable file access times to save huge disk write cycles.
+        "nodiratime" # Same as above for directories.
       ];
     };
 
-  # 2TB m.2 NVME drive. 1TB partition for pika backups
-  fileSystems."/mnt/Backup" =
-    {
-      device = "/dev/disk/by-uuid/a1110af1-9cfc-437b-83e5-9af511c79a77";
-      fsType = "ext4";
+  fileSystems."/srv/immich" =
+    { device = "/dev/disk/by-uuid/e9b66eaa-9727-49fc-bbac-ce43688e4560";
+      fsType = "btrfs";
+
       options = [
         # https://smarttech101.com/relatime-atime-noatime-strictatime-lazytime
         # https://wiki.debian.org/SSDOptimization
@@ -48,24 +36,13 @@
         # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
         "noatime" # Disable file access times to save huge disk write cycles.
         "nodiratime" # Same as above for directories.
-        "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
-        "nofail" # Prevent system from failing if this drive doesn't mount
+        # "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
+        # "nofail" # Prevent system from failing if this drive doesn't mount
       ];
     };
 
-
-  # 1TB m.2 NVME SSD | 990 PRO
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/6014-E801";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
-
-  # 1TB m.2 NVME SSD | 990 PRO
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/9e15fe2e-76ac-4e0c-a2c9-38310b34d4c5"; }
+    [ { device = "/dev/disk/by-uuid/592606da-3d3c-451c-8d21-7f9a7183c2ab"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -73,8 +50,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp14s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

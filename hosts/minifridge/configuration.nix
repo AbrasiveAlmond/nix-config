@@ -20,6 +20,8 @@
 
     ../../common/nixos/gnome
 
+    ./immich.nix
+
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
@@ -101,7 +103,7 @@
 
   nixpkgs = {
     config = {
-      allowUnfree = false;
+      allowUnfree = true;
       # TODO: Find what on earth is using these. Maybe vscode itself?
       permittedInsecurePackages = [
         "dotnet-runtime-6.0.36"

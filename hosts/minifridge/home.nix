@@ -103,6 +103,8 @@ return {
 
   home.packages =
     (with pkgs-unstable; [
+    bitwarden-desktop
+    goldwarden
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
     amberol         # Music player

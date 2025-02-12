@@ -18,6 +18,7 @@
   };
 
   home.packages = (with pkgs; [
+      goldwarden
       # Gnome apps
       plots         # Worse desmos
       rnote

@@ -91,6 +91,16 @@
         ];
       };
 
+      homelab = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
+        modules = [
+          ./hosts/homelab/configuration.nix
+        ];
+      };
+
       # 2010/11 MacBook Pro
       stone-tablet = nixpkgs.lib.nixosSystem {
         specialArgs = {
