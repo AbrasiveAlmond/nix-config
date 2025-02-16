@@ -52,7 +52,7 @@
   programs.nix-ld.enable = true;
   services.tailscale = {
     enable = true;
-    useRoutingFeatures= "server";
+    useRoutingFeatures= "client";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
