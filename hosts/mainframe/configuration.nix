@@ -230,7 +230,7 @@
 
   nixpkgs = {
     config = {
-      allowUnfree = false;
+      allowUnfree = true;
       # Nvidia drivers error otherwise
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "nvidia-x11"
