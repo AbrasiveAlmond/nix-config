@@ -1,7 +1,7 @@
-{pkgs,...}: {
+{pkgs-unstable,...}: {
   services.immich  = {
     enable = true;
-    package = pkgs.immich;
+    package = pkgs-unstable.immich;
     host = "100.99.19.37";
     port = 2283;
     mediaLocation = "/srv/immich";

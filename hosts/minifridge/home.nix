@@ -105,6 +105,7 @@ return {
     (with pkgs-unstable; [
     gnomeExtensions.gsconnect
 
+    obsidian
     morgen
     bitwarden-desktop
     valent
@@ -169,7 +170,6 @@ return {
     gnome-builder
     gnome-extensions-cli
     libsecret
-    git
     git-credential-oauth
     tree
     # zoxide

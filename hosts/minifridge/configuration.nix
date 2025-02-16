@@ -37,15 +37,23 @@
     apps.excludes.enable = true;
   };
 
-  programs.nix-ld.enable = true;
 
   users.users = {
     quinnieboi = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
+      extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" "docker" ];
     };
   };
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.docker.daemon.settings = {
+    data-root = "/srv/docker";
+    userland-proxy = false; # designed for Windoze
+
+  };
+
+  programs.nix-ld.enable = true;
   services.tailscale = {
     enable = true;
     useRoutingFeatures= "server";
