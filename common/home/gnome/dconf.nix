@@ -29,13 +29,13 @@
     };
 
     # Night light config
-    # "org/gnome/settings-daemon/plugins/color" = {
-    #   night-light-enabled = true;
-    #   night-light-schedule-automatic = false;
-    #   night-light-temperature = lib.hm.gvariant.mkUint32 3700;
-    #   night-light-schedule-from = 18.0;
-    #   night-light-schedule-to = 6.0;
-    # };
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = true;
+      night-light-schedule-automatic = false;
+      night-light-temperature = lib.hm.gvariant.mkUint32 3700;
+      night-light-schedule-from = 17.0;
+      night-light-schedule-to = 6.0;
+    };
 
     # again, this is a little insane, just let it be imperative
     # Overview folder configuration.

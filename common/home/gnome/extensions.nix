@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ... }:
-with lib.hm.gvariant;
 let
   extsn = "org/gnome/shell/extensions/";
 in
@@ -45,7 +43,7 @@ in
       item-title-font-size = 16;
       item-title-font-family = "Cantarell";
     };
-    
+
     ${(extsn + "quick-settings-tweaks")} = {
       user-removed-buttons = ["DarkModeToggle" "Notifications" "PowerProfilesToggle" "NMWiredToggle"];
       media-control-enabled = true;

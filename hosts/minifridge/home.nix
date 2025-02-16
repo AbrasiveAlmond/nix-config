@@ -101,6 +101,17 @@ return {
     ];
   };
 
+  # switch to diff syntax like below
+  # home.packages = with pkgs; {
+  #  ...
+  #  unstable = {
+  #    ...
+  #  }
+  #  gnomeExtensions = {
+  #    ...
+  #  }
+  # }
+
   home.packages =
     (with pkgs-unstable; [
     gnomeExtensions.gsconnect
@@ -227,24 +238,24 @@ return {
     rust.flake = inputs.rust-devShells;
   };
 
-  # Honestly preferable to just set them as I please
-  # dconf.settings = {
-  #   "org/gnome/shell" = {
-  #     enabled-extensions = [
-  #       "vertical-workspaces@G-dH.github.com"
-  #       "reboottouefi@ubaygd.com"
-  #       "blur-my-shell@aunetx"
-  #       "happy-appy-hotkey@jqno.nl"
-  #       "quick-settings-tweaks@qwreey"
-  #       "caffeine@patapon.info"
-  #       "middleclickclose@paolo.tranquilli.gmail.com"
-  #       "tiling-assistant@leleat-on-github"
-  #       "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-  #       "monitor-brightness-volume@ailin.nemui"
-  #       "tailscale@joaophi.github.com"
-  #     ];
-  #   };
-  # };
+  # Why must they be reset if not manually defined. I would much prefer imperative usage
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "vertical-workspaces@G-dH.github.com"
+        "reboottouefi@ubaygd.com"
+        "blur-my-shell@aunetx"
+        "happy-appy-hotkey@jqno.nl"
+        "quick-settings-tweaks@qwreey"
+        "caffeine@patapon.info"
+        "middleclickclose@paolo.tranquilli.gmail.com"
+        "tiling-assistant@leleat-on-github"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "monitor-brightness-volume@ailin.nemui"
+        "tailscale@joaophi.github.com"
+      ];
+    };
+  };
 
   home = {
     username = "quinnieboi";

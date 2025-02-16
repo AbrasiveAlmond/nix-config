@@ -63,7 +63,8 @@
     # pass to it, with each system as an argument
     # forAllSystems = nixpkgs.lib.genAttrs systems;
 
-
+    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${prev.system}; };
+    overlayModule = ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay ]; });
   in
   {
     # NixOS configuration entrypoint
@@ -76,6 +77,7 @@
         };
 
         modules = [
+          overlayModule
           ./hosts/minifridge/configuration.nix
         ];
       };
