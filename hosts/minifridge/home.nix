@@ -104,6 +104,8 @@ return {
   home.packages =
     (with pkgs-unstable; [
     gnomeExtensions.gsconnect
+
+    morgen
     bitwarden-desktop
     valent
 
@@ -263,6 +265,7 @@ return {
     extraConfig.credential.credentialStore = "cache";
     enable = true;
   };
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
