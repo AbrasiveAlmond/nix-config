@@ -167,6 +167,7 @@ return {
     gnome-builder
     gnome-extensions-cli
     libsecret
+    git
     git-credential-oauth
     tree
     # zoxide
@@ -250,8 +251,14 @@ return {
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  # programs.git.enable = true;
 
+  programs.git = {
+    extraConfig.credential.helper = "manager";
+    extraConfig.credential."https://github.com".username = "YourUserName";
+    extraConfig.credential.credentialStore = "cache";
+    enable = true;
+  };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
