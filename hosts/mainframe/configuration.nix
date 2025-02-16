@@ -91,6 +91,8 @@
         enable = true;
         extraPackages = with pkgs; [
           vpl-gpu-rt # Still want integrated gpu to do its thing
+          intel-media-driver
+          intel-ocl
         ];
       };
 
@@ -160,11 +162,13 @@
         enable = true;
         extraPackages = with pkgs; [
           vpl-gpu-rt
+          intel-media-driver
+          intel-ocl
         ];
       };
 
       # Corruption or unresponsiveness in Chromium and Firefox consult https://wiki.archlinux.org/title/Intel_graphics
-      services.xserver.videoDrivers = [ "intel" ];
+      # services.xserver.videoDrivers = [ "intel" ]; package removed as it was unmaintained
       # Direct Rendering Infrastructure
       # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
       services.xserver.deviceSection = ''
