@@ -103,7 +103,10 @@ return {
 
   home.packages =
     (with pkgs-unstable; [
+    gnomeExtensions.gsconnect
     bitwarden-desktop
+    valent
+
     goldwarden
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
@@ -199,6 +202,7 @@ return {
     ])
     ++
     (with pkgs.gnomeExtensions; [
+    # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)
     # Gnome Extensions
     vertical-workspaces             # Nicer workspaces overview
     reboottouefi                    # Adds uefi boot option
@@ -214,29 +218,45 @@ return {
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
     tailscale-qs
-    ]);
+  ]);
+
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+
+  home-manager.users.quinnieboi.programs.gnome-shell = {
+    enable = true;
+    extensions = [{ package = pkgs.gnomeExtensions.gsconnect; }];
+  };
+
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
 
   nix.registry = {
     rust.flake = inputs.rust-devShells;
   };
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "vertical-workspaces@G-dH.github.com"
-        "reboottouefi@ubaygd.com"
-        "blur-my-shell@aunetx"
-        "happy-appy-hotkey@jqno.nl"
-        "quick-settings-tweaks@qwreey"
-        "caffeine@patapon.info"
-        "middleclickclose@paolo.tranquilli.gmail.com"
-        "tiling-assistant@leleat-on-github"
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "monitor-brightness-volume@ailin.nemui"
-        "tailscale@joaophi.github.com"
-      ];
-    };
-  };
+  # Honestly preferable to just set them as I please
+  # dconf.settings = {
+  #   "org/gnome/shell" = {
+  #     enabled-extensions = [
+  #       "vertical-workspaces@G-dH.github.com"
+  #       "reboottouefi@ubaygd.com"
+  #       "blur-my-shell@aunetx"
+  #       "happy-appy-hotkey@jqno.nl"
+  #       "quick-settings-tweaks@qwreey"
+  #       "caffeine@patapon.info"
+  #       "middleclickclose@paolo.tranquilli.gmail.com"
+  #       "tiling-assistant@leleat-on-github"
+  #       "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+  #       "monitor-brightness-volume@ailin.nemui"
+  #       "tailscale@joaophi.github.com"
+  #     ];
+  #   };
+  # };
 
   home = {
     username = "quinnieboi";
