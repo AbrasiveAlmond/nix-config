@@ -49,6 +49,12 @@
     networkmanager.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures= "server";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.busyboy = {
     initialPassword = "changeme";

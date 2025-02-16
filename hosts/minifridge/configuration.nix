@@ -37,17 +37,18 @@
     apps.excludes.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   users.users = {
     quinnieboi = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" ];
-      # shell = pkgs.nushell; # installed via HM
     };
   };
 
   services.tailscale = {
     enable = true;
-    useRoutingFeatures= "both";
+    useRoutingFeatures= "server";
   };
 
   fonts.packages = with pkgs; [
