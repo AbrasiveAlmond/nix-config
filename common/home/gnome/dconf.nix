@@ -11,21 +11,21 @@
       xkb-options = lib.mkForce ""; # Doesn't entirely work as something changes it at runtime
     };
 
-    # "org/gnome/desktop/interface" = {
-    #   color-scheme = "prefer-dark";
-    # };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
 
     "org/gnome/shell" = {
       always-show-log-out = true;
       disable-user-extensions = false;
 
-      # favorite-apps = [
-      #   "firefox.desktop"
-      #   "spotify.desktop"
-      #   "org.gnome.Console.desktop"
-      #   "org.gnome.Calculator.desktop"
-      #   "org.gnome.Nautilus.desktop"
-      # ];
+      favorite-apps = [
+        "firefox.desktop"
+        "spotify.desktop"
+        "org.gnome.Console.desktop"
+        "org.gnome.Calculator.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
     };
 
     # Night light config

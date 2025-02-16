@@ -220,21 +220,6 @@ return {
     tailscale-qs
   ]);
 
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
-  };
-
-  home-manager.users.quinnieboi.programs.gnome-shell = {
-    enable = true;
-    extensions = [{ package = pkgs.gnomeExtensions.gsconnect; }];
-  };
-
-  networking.firewall = rec {
-    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
-
   nix.registry = {
     rust.flake = inputs.rust-devShells;
   };
