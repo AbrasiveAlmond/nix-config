@@ -254,8 +254,12 @@ return {
   # programs.git.enable = true;
 
   programs.git = {
+    userName = "AbrasiveAlmond";
+    userEmail = "qpearson.nz@gmail.com";
+
+    extraConfig.push.autoSetupRemote = true;
     extraConfig.credential.helper = "manager";
-    extraConfig.credential."https://github.com".username = "YourUserName";
+    extraConfig.credential."https://github.com".username = "AbrasiveAlmond";
     extraConfig.credential.credentialStore = "cache";
     enable = true;
   };
