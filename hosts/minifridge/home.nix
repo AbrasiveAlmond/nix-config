@@ -74,6 +74,11 @@
     ];
   };
 
+  # Config is entirely imperative :)
+  # services.syncthing = {
+  #   enable = true;
+  # };
+
   services.kanata.enable = true;
   fonts.fontconfig.enable = true;
 
