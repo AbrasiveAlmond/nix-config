@@ -82,6 +82,7 @@
     useRoutingFeatures= "server";
   };
 
+  # services.onedrive.enable = true;
   # services.syncthing = {
   #   enable = true;
   #   user = "quinnieboi";
