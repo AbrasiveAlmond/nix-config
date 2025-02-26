@@ -11,7 +11,6 @@
   ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
   alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
   met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
-  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt) 
 
   pst C-v
   cpy C-c
@@ -44,7 +43,7 @@
 ;;    C-S-right
 ;;  )
 ;;
-;;  not ( 
+;;  not (
 ;;    macro (
 ;;      C-right C-left C-S-right
 ;;    )
@@ -57,7 +56,7 @@
 ;;    S-down
 ;;  )
 ;;
-;;  not ( 
+;;  not (
 ;;    macro (
 ;;      home S-end down
 ;;    )
