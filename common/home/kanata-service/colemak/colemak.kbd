@@ -10,7 +10,7 @@
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
   smb (tap-hold-press 150 150 ret (layer-while-held shift_symbols))
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
-
+  grm (tap-hold-press 200 200 (one-shot 2000 ralt) (layer-toggle maths))
 )
 
 (defsrc
@@ -24,7 +24,7 @@
   tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
   @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
-  lctl lmet lalt          @spc            @alg rmet rctl
+  lctl lmet lalt          @spc            @grm rmet rctl
 )
 
 ;; include

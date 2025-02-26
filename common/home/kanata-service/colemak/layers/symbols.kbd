@@ -1,17 +1,3 @@
-;;(deflayer symbols
-;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
-;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
-;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _   _
-;;  _    _    _              _              _    _    _
-;;)
-
-;;(deflayer symbols
-;;  _    _    esc  S-,  S-.  \   _   [     ]    _    _
-;;  @cpw ret  tab  S-=  -    _   @~  S-9  S-0   tab  ret  _
-;;  _    _    _    _    S--  _   @|  S-[   S-]   _    _    _
-;;  _    _    _              _              _    _    _
-;;)
-
 (deflayer symbols
      _    '    @<   @>    @quo .    @&   @::  [    ]    @%
      @cpw @!   @-   @plus @=   @#   @|   @: @lbkt S-0   @?   `
@@ -23,7 +9,7 @@
   cpw (caps-word 2000)
   | S-\
   & S-7
-  # S-3 
+  # S-3
   $ S-4
   % S-5
   : S-;
@@ -32,13 +18,13 @@
   quo S-'
   bk (macro . . /)
   - (unshift -)
-  -> (fork 
+  -> (fork
           (macro (- S-.))
           (macro (eql S-.))
           (nop2)
      )
 
-  <- (fork 
+  <- (fork
           (macro (S-, -))
           (macro (S-, S--))
           (nop2)
@@ -70,7 +56,7 @@
      nop2
      $hold-time $left-hand-keys
   )
-  
+
   (template-expand mod-tap
      lbkt
      S-9
