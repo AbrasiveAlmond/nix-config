@@ -6,6 +6,8 @@
   # You can import other home-manager modules here
   imports = [
     ../../common/home/gnome
+    ../../common/home/git.nix
+    ../../common/home/tmux.nix
 
     ../../common/home/kanata-service
     ../../common/home/firefox

@@ -6,7 +6,6 @@
 		shortcut = "s";
 		keyMode = "vi";
 		mouse = true;
-		shell = "${pkgs.nushell}/bin/nu";
 		# terminal = "xterm-kitty";
 		plugins = with pkgs; [
 			tmuxPlugins.vim-tmux-navigator
