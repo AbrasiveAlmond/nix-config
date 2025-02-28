@@ -10,6 +10,11 @@
     userEmail = "qpearson.nz@gmail.com";
     extraConfig = {
       push.autoSetupRemote = true;
+      credential = {
+        helper = "oauth";
+        "https://github.com".username = "AbrasiveAlmond";
+        credentialStore = "cache";
+      };
     };
   };
 }

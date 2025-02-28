@@ -6,7 +6,7 @@
   # You can import other home-manager modules here
   imports = [
     ../../common/home/gnome
-    # ../../common/home/git.nix # Makes conf read-only which causes oauth to fail configuration
+    ../../common/home/git.nix
     ../../common/home/tmux.nix
 
     ../../common/home/kanata-service
@@ -43,8 +43,6 @@
     neovim
     tree
     zoxide
-    git
-    git-credential-oauth
 
     # just in case it is more performant
     ungoogled-chromium
@@ -128,17 +126,6 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  # programs.git.enable = true;
-  # programs.git = {
-  #    userName = "AbrasiveAlmond";
-  #    userEmail = "qpearson.nz@gmail.com";
-
-  #    extraConfig.push.autoSetupRemote = true;
-  #    extraConfig.credential.helper = "manager";
-  #    extraConfig.credential."https://github.com".username = "AbrasiveAlmond";
-  #    extraConfig.credential.credentialStore = "cache";
-  #    enable = true;
-  #  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
