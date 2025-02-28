@@ -129,16 +129,16 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   # programs.git.enable = true;
-  programs.git = {
-     userName = "AbrasiveAlmond";
-     userEmail = "qpearson.nz@gmail.com";
+  # programs.git = {
+  #    userName = "AbrasiveAlmond";
+  #    userEmail = "qpearson.nz@gmail.com";
 
-     extraConfig.push.autoSetupRemote = true;
-     extraConfig.credential.helper = "manager";
-     extraConfig.credential."https://github.com".username = "AbrasiveAlmond";
-     extraConfig.credential.credentialStore = "cache";
-     enable = true;
-   };
+  #    extraConfig.push.autoSetupRemote = true;
+  #    extraConfig.credential.helper = "manager";
+  #    extraConfig.credential."https://github.com".username = "AbrasiveAlmond";
+  #    extraConfig.credential.credentialStore = "cache";
+  #    enable = true;
+  #  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
