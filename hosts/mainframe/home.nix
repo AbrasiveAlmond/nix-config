@@ -49,7 +49,6 @@
   ])++
   (with pkgs.gnomeExtensions; [
     # Gnome Extensions
-    vertical-workspaces             # Nicer workspaces overview
     reboottouefi                    # Adds uefi boot option
     happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
     dual-shock-4-battery-percentage # power level in top panel
