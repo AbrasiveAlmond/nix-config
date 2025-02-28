@@ -6,7 +6,7 @@
   # You can import other home-manager modules here
   imports = [
     ../../common/home/gnome
-    ../../common/home/git.nix
+    # ../../common/home/git.nix # Makes conf read-only which causes oauth to fail configuration
     ../../common/home/tmux.nix
 
     ../../common/home/kanata-service
