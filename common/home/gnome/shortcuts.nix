@@ -30,30 +30,59 @@
         tile-edit-mode = ["<Super>w"];
 
         tile-maximize = ["<Super>m"];
-        restore-window = ["<Super>Down"];
+        # restore-window = ["<Super>Down"];
       };
+    "/org/gnome/shell/keybindings/" = {
+      # Toggle notification list
+      toggle-message-tray = [ "<Super>v" ];
+      focus-active-notification = []; # Collision
+      toggle-quick-settings = [ "<Super>s" ];
+    };
 
     "org/gnome/desktop/wm/keybindings" = {
       # managed by tiling-assistant shell extension
       # to have all behaviour in one place. see above config
-      activate-window-menu = [];
-      unmaximize = [];
-      toggle-quick-settings = []; # conflict with M-s spotify shortcut
-
+      begin-resize = [ "<Super>/" ]; # Easy to hit then use arrow keys
+      activate-window-menu = [ "<Alt>h"]; # Alt help
       close = [ "<Super>c" ];
-      switch-applications = [];
-      switch-applications-backward = [];
-      switch-group = [ "<Super>Tab" ];
-      switch-group-backward = [ "<Shift><Super>Tab" ];
+      maximize = [];
+      unmaximize = [];
+      toggle-maximized = [ "<Super>m" ];
+
+      panel-run-dialog = [ "<Super>r" ]; # alt-f2 is very hard
+
+
       switch-input-source = [ "<Alt><Super>space" ];
       switch-input-source-backward = [ "<Shift><Alt><Super>space" ];
-      toggle-maximized = [ "<Super>m" ];
-      maximize = [];
 
-      move-to-monitor-left = [ "<Shift><Super>n" ];
-      move-to-monitor-right = [ "<Shift><Super>i" ];
-      move-to-workspace-left = [ "<Shift><Super>u" ];
-      move-to-workspace-right = [ "<Shift><Super>e" ] ;
+      # Window Management
+      ## Window Moving
+      move-to-workspace-left = [ "<Shift><Super>n" ];
+      move-to-workspace-right = [ "<Shift><Super>i" ];
+
+      ## Unused Monitor Moving
+      # move-to-monitor-up = [ "<Shift><Super>u" ];
+      # move-to-monitor-down = [ "<Shift><Super>e" ];
+      # Collision with workspace switching
+      # move-to-monitor-left = [ "<Shift><Super>n" ];
+      # move-to-monitor-right = [ "<Shift><Super>i" ];
+
+      # Navigation
+      ## Switch Applications
+      switch-applications = [ "<Super>Tab" ];
+      switch-applications-backward = [ "<Shift><Super>Tab" ];
+      ## Switch Windows
+      switch-windows = [ "<Super>space" ];
+
+      ## App Window Switching Direct
+      # switch-group = [ "<Super>Tab" ];
+      # switch-group-backward = [ "<Shift><Super>Tab" ];
+
+      ## Workspace switching
+      switch-to-workspace-left = [ "<Alt><Super>n" ];
+      switch-to-workspace-right = [ "<Alt><Super>i" ];
+
+      switch-to-workspace-last = [];
 
     };
 
@@ -61,14 +90,19 @@
       next = [ "<Alt>y" ];
       play = [ "<Alt>k" ];
       previous = [ "<Alt>l" ];
-      screensaver = [];
       volume-down = [ "<Alt>m" ];
       volume-up = [ "<Alt>j" ];
+      screensaver = [ "<Super>l" ];
+      logout = [ "<Super>q" ];
       www = [];
     };
 
     "org/gnome/desktop/peripherals/keyboard" = {
       delay = 250;
+    };
+
+    "org/gnome/mutter/wayland/keybindings" = {
+      restore-shortcuts = [];
     };
   };
 }
