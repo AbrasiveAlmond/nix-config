@@ -32,7 +32,8 @@
         tile-maximize = ["<Super>m"];
         # restore-window = ["<Super>Down"];
       };
-    "/org/gnome/shell/keybindings/" = {
+
+    "org/gnome/shell/keybindings" = {
       # Toggle notification list
       toggle-message-tray = [ "<Super>v" ];
       focus-active-notification = []; # Collision
@@ -42,12 +43,12 @@
     "org/gnome/desktop/wm/keybindings" = {
       # managed by tiling-assistant shell extension
       # to have all behaviour in one place. see above config
-      begin-resize = [ "<Super>/" ]; # Easy to hit then use arrow keys
+      begin-resize = [ "<Super>slash" ]; # Easy to hit then use arrow keys
       activate-window-menu = [ "<Alt>h"]; # Alt help
       close = [ "<Super>c" ];
       maximize = [];
       unmaximize = [];
-      toggle-maximized = [ "<Super>m" ];
+      toggle-maximized = []; # tiling assistant does this
 
       panel-run-dialog = [ "<Super>r" ]; # alt-f2 is very hard
 
