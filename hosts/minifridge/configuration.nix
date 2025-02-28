@@ -37,31 +37,6 @@
     apps.excludes.enable = true;
   };
 
-  # With linux-wifi-hotspot
-  # $ nix shell nixpkgs#linux-wifi-hotspot
-  #
-  # Attempt to open a hotspot network
-  # $ sudo create_ap wlp13s0 enp14s0 Minifridge
-  # ...
-  # Creating a virtual WiFi interface... ap0 created.
-  # RTNETLINK answers: Operation not possible due to RF-kill
-  # ERROR: Maybe your WiFi adapter does not fully support virtual interfaces.
-  #
-  # The error is misleading, instead run the following and see the wifi adapter is "softblocked"
-  # $ rfkill
-  # ID TYPE DEVICE    SOFT      HARD
-  #  1 wlan phy0   blocked unblocked
-  #
-  # Then run the following to unblock it, and rerun the hotspot command
-  # $ rfkill unblock wlan
-  #
-  # Now you can make a hotspot :D
-  # Try not to use bridge, it seems to disable ethernet.
-  # $ sudo create_ap wlp13s0 enp14s0 'Minifridge' 'ColdBeers' --mkconfig /etc/create_ap.conf -m 'bridge'
-  # on reruns the following should work
-  # $ sudo create_ap --config /etc/create_ap.conf
-  # oof that broke my ethernet connection, maybe just run w/o config...
-
   users.users = {
     quinnieboi = {
       isNormalUser = true;

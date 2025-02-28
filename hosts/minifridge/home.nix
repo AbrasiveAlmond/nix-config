@@ -16,6 +16,7 @@
     inputs.nvchad4nix.homeManagerModule
 
     # ../apps
+    # ../../common/home/hotspot.nix
     ../../common/home/kanata-service
     ../../common/home/gnome
 
@@ -204,11 +205,8 @@ return {
         "FiraCode"
       ];
     })
-
-    apostrophe      # Markdown editor
-    errands         # Task management tool, planify replacement
-    # planify         # Planning software, it broked. had to manually comb through a partially human readable .db file to recover notes...
-
+    linux-wifi-hotspot
+    errands
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
     # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
     ddcutil # Brightness

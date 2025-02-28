@@ -2,8 +2,7 @@
   lib,
   config,
   pkgs,
-  inputs,
-   ...
+  ...
 }: with lib;
 let
   cfg = config.services.kanata;

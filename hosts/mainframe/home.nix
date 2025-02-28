@@ -20,34 +20,34 @@
   };
 
   home.packages = (with pkgs; [
-      goldwarden
-      # Gnome apps
-      plots         # Worse desmos
-      rnote
-      speedcrunch
-      gnome-secrets # Passwords
-      apostrophe    # Markdown Editor
-      eyedropper    # Colour picker
-      papers        # PDF Reader
-      vscodium
+    goldwarden
+    # Gnome apps
+    plots         # Worse desmos
+    rnote
+    speedcrunch
+    gnome-secrets # Passwords
+    apostrophe    # Markdown Editor
+    eyedropper    # Colour picker
+    papers        # PDF Reader
+    vscodium
 
-      gnome-feeds   # RSS Feeds
+    gnome-feeds   # RSS Feeds
 
-      # Utilities
-      warp          # File sharing tool
+    # Utilities
+    warp          # File sharing tool
 
-      # Keyboard remapping
-      kanata
+    # Keyboard remapping
+    kanata
 
-      tmux
-      neovim
-      tree
-      zoxide
-      git
-      git-credential-oauth
+    tmux
+    neovim
+    tree
+    zoxide
+    git
+    git-credential-oauth
 
-      # just in case it is more performant
-      ungoogled-chromium
+    # just in case it is more performant
+    ungoogled-chromium
   ])++
   (with pkgs.gnomeExtensions; [
     # Gnome Extensions
