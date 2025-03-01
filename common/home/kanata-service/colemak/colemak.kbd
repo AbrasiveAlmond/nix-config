@@ -22,17 +22,10 @@
 
 (deflayer colemak
   tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
+  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @case
   @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
   lctl lmet lalt          @spc            @grm rmet rctl
 )
-
-;; include
-(include ./layers/maths.kbd)
-(include ./layers/shift-symbols.kbd)
-(include ./layers/text-navigation.kbd)
-(include ./layers/symbols.kbd)
-(include ./layers/homerow-mods-template.kbd)
 
 (defalias
   ;; home-row
@@ -91,3 +84,25 @@
   (   .) .
   (,  .) C-bspc
 )
+
+;; press ' then tap s,p,',', etc
+;; for space == that letter
+;;
+(defalias
+  ;; tap for normal, hold for layer choice
+  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
+  ;; located on ', escapes the sequence
+  home (layer-switch colemak)
+)
+
+;; include
+(include ./layers/maths.kbd)
+(include ./layers/shift-symbols.kbd)
+(include ./layers/text-navigation.kbd)
+(include ./layers/symbols.kbd)
+(include ./layers/homerow-mods-template.kbd)
+(include ./layers/case-switch.kbd)
+(include ./layers/camelCase.kbd)
+(include ./layers/snake_case.kbd)
+(include ./layers/kebab-case.kbd)
+(include ./layers/directory/case.kbd)
