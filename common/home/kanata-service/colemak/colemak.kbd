@@ -89,9 +89,8 @@
 ;; for space == that letter
 ;;
 (defalias
-  ;; tap for normal, hold for layer choice
-  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
-  ;; located on ', escapes the sequence
+  ;; tap for normal, hold for case switching
+  case (tap-hold-press 150 150 ` (layer-while-held case-switch))
   home (layer-switch colemak)
 )
 
