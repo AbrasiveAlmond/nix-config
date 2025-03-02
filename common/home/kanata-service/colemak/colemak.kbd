@@ -90,7 +90,7 @@
 ;;
 (defalias
   ;; tap for normal, hold for case switching
-  case (tap-hold-press 150 150 ` (layer-while-held case-switch))
+  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
   home (layer-switch colemak)
 )
 
