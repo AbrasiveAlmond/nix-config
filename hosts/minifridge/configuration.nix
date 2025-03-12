@@ -57,7 +57,10 @@
     useRoutingFeatures= "server";
   };
 
-  # services.onedrive.enable = true;
+  services.onedrive= {
+    enable = true;
+    package = pkgs.unstable.onedrive;
+  };
   # services.syncthing = {
   #   enable = true;
   #   user = "quinnieboi";

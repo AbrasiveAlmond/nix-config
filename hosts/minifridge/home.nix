@@ -76,7 +76,7 @@
     ];
   };
 
-  # Config is entirely imperative :)
+  # Config is entirely imperative :\
   # services.syncthing = {
   #   enable = true;
   # };
@@ -119,7 +119,7 @@ return {
   #  }
   # }
 
-  home.packages =
+  home.packages = with pkgs;
     (with pkgs-unstable; [
     gnomeExtensions.gsconnect
 
@@ -177,6 +177,7 @@ return {
     # coding
     vscodium
     zed-editor
+    flatpak-builder # nix packaged one works while flatpackaged one doesn't...
 
     # Now Handled by rust-devshells flake
     # https://github.com/AbrasiveAlmond/rust-dev-flake
@@ -213,10 +214,10 @@ return {
 
     pika-backup # Backup manager
     ])
-    ++
-    (with inputs; [
-    zen-browser.packages.x86_64-linux.default
-    ])
+    # ++
+    # (with inputs; [
+    # zen-browser.packages.x86_64-linux.default
+    # ])
     ++
     (with pkgs.gnomeExtensions; [
     # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)

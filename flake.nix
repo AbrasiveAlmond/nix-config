@@ -64,7 +64,7 @@
     # forAllSystems = nixpkgs.lib.genAttrs systems;
 
     overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${prev.system}; };
-    overlayModule = ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay ]; });
+    unstableOverlay = ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay ]; });
   in
   {
     # NixOS configuration entrypoint
@@ -77,7 +77,7 @@
         };
 
         modules = [
-          overlayModule
+          unstableOverlay
           ./hosts/minifridge/configuration.nix
         ];
       };
@@ -89,6 +89,7 @@
         };
 
         modules = [
+          unstableOverlay
           ./hosts/mainframe/configuration.nix
         ];
       };
@@ -123,13 +124,10 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs outputs nix-flatpak;
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
         };
         modules = [
           ./hosts/minifridge/home.nix
+          unstableOverlay
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
@@ -142,6 +140,7 @@
         };
         modules = [
           ./hosts/mainframe/home.nix
+          unstableOverlay
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
