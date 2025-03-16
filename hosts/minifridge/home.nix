@@ -61,12 +61,15 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "spotify"
-          "discord"
-        ];
+      # allowUnfreePredicate =
+      #   pkg:
+      #   builtins.elem (lib.getName pkg) [
+      #     "spotify"
+      #     "discord"
+      #     "morgen"
+      #     "obsidian"
+      #   ];
+      allowUnfreePredicate = (_: true);
     };
 
     overlays = [
@@ -120,8 +123,9 @@ return {
   # }
 
   home.packages = with pkgs;
-    (with pkgs-unstable; [
+    (with pkgs-unstable; [ # cannot use pkgs.unstable due to strange unfree attribute not setting
     gnomeExtensions.gsconnect
+    onedrivegui
 
     obsidian
     morgen

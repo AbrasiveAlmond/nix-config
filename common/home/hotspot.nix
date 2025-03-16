@@ -80,7 +80,9 @@
   #
   # Now you can make a hotspot :D
   # Try not to use bridge, it seems to disable ethernet.
-  # $ sudo create_ap wlp13s0 enp14s0 'Minifridge' 'ColdBeers' --mkconfig /etc/create_ap.conf -m 'bridge'
-  # on reruns the following should work
+  # $ sudo create_ap wlp13s0 enp14s0 'Minifridge' 'ColdBeers'
+  # I would not reccomend this part below
+  # --mkconfig /etc/create_ap.conf -m 'bridge'
+  # # on reruns the following should work
   # $ sudo create_ap --config /etc/create_ap.conf
   # oof that broke my ethernet connection, maybe just run w/o config...

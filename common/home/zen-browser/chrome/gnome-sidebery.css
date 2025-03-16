@@ -1,0 +1,32 @@
+/* Hide the useless and thick sidebar header */
+#sidebar-header {
+    display: none;
+}
+
+/* Make the sidebar resize bar wider and correct colour */
+#sidebar-splitter {
+    background: rgb(48, 48, 48) !important;
+    border: 0 !important;
+    border-right: none !important;
+    width: 8px !important; /* Basically functions as padding-right for sidebar */
+}
+
+.sidebar-splitter {
+    border: none;
+    border-style: none;
+}
+
+/* Hidden state: Hide native tabs strip */
+    #main-window[titlepreface*="​"] #TabsToolbar,
+    #main-window[titlepreface*="​"] .toolbar-items {
+        /* animation */
+        /* property name | duration | easing function | delay */
+        transition: visibility 300ms step-end 450ms, opacity 150ms linear 0ms, height 450ms ease-out 0ms !important;
+
+        /* functionality */
+        visibility: hidden;
+        height: 0;
+        opacity: 0;
+        /* Tabs were still interactive without the following */
+        pointer-events: none; 
+    }

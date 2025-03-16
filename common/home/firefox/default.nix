@@ -194,7 +194,7 @@ in {
         #     "TabsToolbar"
         #     "widget-overflow-fixed-list"
         #   ];
-          
+
         #   placements = {
         #     # PersonalToolbar = ["personal-bookmarks"];
         #     # TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
