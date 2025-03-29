@@ -21,6 +21,7 @@
     ../../common/nixos/gnome
 
     ./immich.nix
+    # ./hotspot.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
@@ -57,10 +58,15 @@
     useRoutingFeatures= "server";
   };
 
-  services.onedrive= {
-    enable = true;
-    package = pkgs.unstable.onedrive;
-  };
+  # Syncs folder by uploading and downloading to sync
+  # But it updates regularly and cannot function on
+  # anything but the most recent version, making regular
+  # use very hard via a system flake. It also has
+  # problems in general; often making -backup file duplicates
+  # services.onedrive= {
+  #   enable = true;
+  #   package = pkgs.unstable.onedrive;
+  # };
   # services.syncthing = {
   #   enable = true;
   #   user = "quinnieboi";
