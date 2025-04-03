@@ -2,6 +2,10 @@
   process-unmapped-keys yes
   concurrent-tap-hold yes
   log-layer-changes no
+  linux-dev (
+    /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
+    /dev/input/event2 ;; Laptop keyboard
+  )
 )
 
 ;; layer switching
@@ -17,6 +21,9 @@
 
   ;; Current symbols layer, on pinkies
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
+
+  ;; Num-word
+  num (layer-switch maths)
 )
 
 (defsrc
@@ -27,10 +34,10 @@
 )
 
 (deflayer colemak
-  tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @case
-  @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
-  lctl lmet lalt          @spc            ralt rmet rctl
+  tab  @cq    @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
+  @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
+  @smb @Mz  x    @cc  @cd   v    k    h    ,    .    @M/   @smb
+  lctl lmet @num          @spc            ralt rmet rctl
 )
 
 (defalias
@@ -67,10 +74,8 @@
 (defalias
   hw (chord tab w)
   hf (chord tab f)
-  hu (chord enter u)
-  hy (chord enter y)
-  h, (chord delword ,)
-  h. (chord delword .)
+  hu (chord enter a)
+  he (chord enter b)
 )
 
 (defchords tab 40
@@ -80,16 +85,100 @@
 )
 
 (defchords enter 40
-  (u   ) u
-  (   y) y
-  (u  y) ret
+  (a   ) u
+  (   b) @Ce
+  (a  b) ret
 )
 
-(defchords delword 40
-  (,   ) ,
-  (   .) .
-  (,  .) C-bspc
+(defalias
+  cq (chord at a)
+  ca (chord at b)
 )
+
+(defchords at 40
+  (a   ) q
+  (   b) @sa
+  (a  b) S-2
+)
+
+(defalias
+  cw (chord ampersand a)
+  cr (chord ampersand b)
+)
+
+(defchords ampersand 40
+  (a   ) w
+  (   b) @Ar
+  (a  b) S-7
+)
+
+(defalias
+  cf (chord math a)
+  cs (chord math b)
+)
+
+(defchords math 40
+  (a   ) f
+  (   b) @Cs
+  (a  b) (layer-switch maths)
+)
+
+
+(defalias
+  cy (chord star a)
+  ci (chord star b)
+)
+
+(defchords star 40
+  (a   ) y
+  (   b) @Ai
+  (a  b) S-8
+)
+
+
+(defalias
+  cl (chord dollar a)
+  cn (chord dollar b)
+)
+
+(defchords dollar 40
+  (a   ) l
+  (   b) @Sn
+  (a  b) S-4
+)
+
+(defalias
+  cp (chord caret a)
+  ct (chord caret b)
+)
+
+(defchords caret 40
+  (a   ) p
+  (   b) @St
+  (a  b) S-6
+)
+
+
+(defalias
+  cc (chord entre a)
+  cd (chord entre b)
+)
+
+(defchords entre 40
+  (a   ) c
+  (   b) d
+  (a  b) ret
+)
+;;(defalias
+;;  cy (chord bspc a)
+;;  ci (chord bspc b)
+;;)
+
+;;(defchords bspc 40
+;;  (a   ) y
+;;  (   b) @Ai
+;;  (a  b) S-*
+;;)
 
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
@@ -108,7 +197,7 @@
 (include ./layers/symbols.kbd)
 (include ./layers/homerow-mods-template.kbd)
 (include ./layers/case-switch.kbd)
-(include ./layers/camelCase.kbd)
-(include ./layers/snake_case.kbd)
-(include ./layers/kebab-case.kbd)
-(include ./layers/directory/case.kbd)
+(include ./layers/cases/camelCase.kbd)
+(include ./layers/cases/snake_case.kbd)
+(include ./layers/cases/kebab-case.kbd)
+(include ./layers/cases/directory/case.kbd)

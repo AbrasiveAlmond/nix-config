@@ -1,16 +1,16 @@
 ;; mostly normal layer, but space is the new seperator, and ' sends you back to normal colemak
-(deflayer kebab
-  tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
+(deflayer snake
+  tab  q    @hw  @hf  p     b    j    l    @hu  y    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
-  lctl lmet lalt        @spc-kebab         _   _    _
+  @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
+  lctl lmet lalt        @spc-snake          _   _    _
 )
 
 (defalias
-    spc-kebab (
+    spc-snake (
         tap-hold-release 150 150
         (tap-dance 500 (
-            (macro -)
+            (macro S--)
             (multi spc @home)
         ))
         (layer-while-held maths)

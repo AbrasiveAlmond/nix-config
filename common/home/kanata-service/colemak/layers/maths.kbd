@@ -1,8 +1,8 @@
 (deflayer maths
      _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
-     _    @s1  @ch2  @ch3  @ch4  5    6    @S7  @C8  @H9  @s0  @%
+     @home @s1  @ch2  @ch3  @ch4  5    6    @S7  @C8  @H9  @s0  @%
      _    _    _    _    @bkt _    _    @bkt @csp _    _    _
-     _    _    _              _              _    _    _
+     _    _    _              @spc-leave     _    _    _
 )
 
 ;; Typed examples of mathjax
@@ -11,7 +11,7 @@
 
 ;; awkward examples
 ;; y^2
-;; 2*x^2
+;; 1/2*x^2
 ;; [12, 9, 1, 2, 3]
 ;; [ -6 -2 0 ]
 
@@ -37,6 +37,14 @@
 
     ;;home row one-shot
   hms (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held colemak)) (layer-while-held colemak))
+  spc-leave (
+          tap-hold-release 150 150
+          (tap-dance 500 (
+              (macro spc)
+              (multi spc @home)
+          ))
+          (layer-while-held maths)
+      )
 )
 
 (defalias

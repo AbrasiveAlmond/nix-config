@@ -1,8 +1,8 @@
 (deflayer case-switch
-  tab  q    @hw  @hf     p     b    j    l    @hu  @hy    ;
+  tab  q    @hw  @hf     p     b    j    l    @hu  y    ;
   @cps @sa  @Ar  @snake  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @smb @Mz  x    @camel  @dir  v    @kebab h    @h,  @h.  @M/   @smb
-  lctl lmet lalt          @spc            @grm rmet rctl
+  @smb @Mz  x    @camel  @dir  v    @kebab h    ,  .  @M/   @smb
+  lctl lmet lalt          @spc            ralt rmet rctl
 )
 
 (defalias

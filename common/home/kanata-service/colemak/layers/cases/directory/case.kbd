@@ -1,9 +1,10 @@
 (deflayer directory
-  tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
+  tab  q    @hw  @hf  p     b    j    l    @hu  y    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
+  @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
   lctl lmet lalt        @spc-directory     _   _    _
 )
+
 (defalias
     spc-directory (
         tap-hold-release 150 150
