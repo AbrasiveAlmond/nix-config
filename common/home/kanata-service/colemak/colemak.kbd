@@ -6,11 +6,17 @@
 
 ;; layer switching
 (defalias
+  ;; Caps lock rebound to navigation layer
   cps (tap-hold-press 150 150 esc (layer-toggle arrows))
+
+  ;; Space and maths layer
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
+
+  ;; Outdated shift symbols layer
   smb (tap-hold-press 150 150 ret (layer-while-held shift_symbols))
+
+  ;; Current symbols layer, on pinkies
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
-  grm (tap-hold-press 200 200 (one-shot 2000 ralt) (layer-toggle maths))
 )
 
 (defsrc
@@ -24,7 +30,7 @@
   tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
   @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @case
   @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
-  lctl lmet lalt          @spc            @grm rmet rctl
+  lctl lmet lalt          @spc            ralt rmet rctl
 )
 
 (defalias
