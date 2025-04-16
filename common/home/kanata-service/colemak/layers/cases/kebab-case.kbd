@@ -1,7 +1,7 @@
 ;; mostly normal layer, but space is the new seperator, and ' sends you back to normal colemak
 (deflayer kebab
-  tab  q    @hw  @hf  p     b    j    l    @hu  y    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
+  tab  q    @cw  @cf  p     b    j    l    @hu  y    ;
+  @cps @sa  @cr  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
   @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
   lctl lmet lalt        @spc-kebab         _   _    _
 )

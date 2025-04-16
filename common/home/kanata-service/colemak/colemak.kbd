@@ -34,9 +34,9 @@
 )
 
 (deflayer colemak
-  tab  @cq    @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
+  tab  @cq  @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
   @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
-  @smb @Mz  x    @cc  @cd   v    k    h    ,    .    @M/   @smb
+  @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
   lctl lmet @num          @spc            ralt rmet rctl
 )
 
@@ -72,16 +72,8 @@
 )
 
 (defalias
-  hw (chord tab w)
-  hf (chord tab f)
   hu (chord enter a)
   he (chord enter b)
-)
-
-(defchords tab 40
-  (w   ) w
-  (   f) f
-  (w  f) tab
 )
 
 (defchords enter 40
@@ -95,7 +87,7 @@
   ca (chord at b)
 )
 
-(defchords at 40
+(defchords at 140
   (a   ) q
   (   b) @sa
   (a  b) S-2
@@ -106,23 +98,22 @@
   cr (chord ampersand b)
 )
 
-(defchords ampersand 40
+(defchords ampersand 80
   (a   ) w
   (   b) @Ar
   (a  b) S-7
 )
 
 (defalias
-  cf (chord math a)
-  cs (chord math b)
+  cf (chord tab a)
+  cs (chord tab b)
 )
 
-(defchords math 40
+(defchords tab 80
   (a   ) f
   (   b) @Cs
-  (a  b) (layer-switch maths)
+  (a  b) tab
 )
-
 
 (defalias
   cy (chord star a)
@@ -159,16 +150,17 @@
 )
 
 
-(defalias
-  cc (chord entre a)
-  cd (chord entre b)
-)
-
-(defchords entre 40
-  (a   ) c
-  (   b) d
-  (a  b) ret
-)
+;; cd is change directory
+;; (defalias
+;;   cc (chord entre a)
+;;   cd (chord entre b)
+;; )
+;;
+;; (defchords entre 40
+;;   (a   ) c
+;;   (   b) d
+;;   (a  b) ret
+;; )
 ;;(defalias
 ;;  cy (chord bspc a)
 ;;  ci (chord bspc b)

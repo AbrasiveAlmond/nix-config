@@ -1,6 +1,6 @@
 (deflayer camel
-  tab  q    @hw  @hf  p     b    j    l    @hu  y    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
+  tab  q    @cw  @cf  p     b    j    l    @hu  y    ;
+  @cps @sa  @cr  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
   @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
   lctl lmet lalt        @spc-camel         _   _    _
 )
