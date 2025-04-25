@@ -132,22 +132,20 @@ return {
     bitwarden-desktop
     valent
 
-    goldwarden
+    # goldwarden # Couldn't get api keys to work :/
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
-    amberol         # Music player
-    shortwave       # Internet radio player
-    mission-center  # Task manager
+    # amberol         # Music player
+    # shortwave       # Internet radio player
+    # mission-center  # Task manager
     # sysprof       # System Profiler
 
     # Gnome apps
     fragments       # BitTorrent
     # varia           # Download manager with torrent support and browser integration
-    gnome-secrets   # Passwords
-    switcheroo      # Image converter
+    # gnome-secrets   # Passwords
     hydrapaper      # Gnome utility for multi-screen wlpaper
-    eyedropper      # Colour picker
-    papers          # PDF reader
+
 
     qalculate-gtk   # Algebraic calculator
 
@@ -164,19 +162,19 @@ return {
     gimp # GNU Image Manipulation Program
     hugin # Panorama stitcher
     ffmpeg # Audio/video cli tools
-    rnote # Drawing software
+    # rnote # Drawing software
     identity # Compare photos and videos
-    video-trimmer
 
     # Utilities
-    warp # File sharing tool
+    # warp # File sharing tool
     impression # Disk image etcher
+    # video-trimmer
 
     pwvucontrol # Disables monitor audio sleep while running
 
     discord
     ungoogled-chromium # for limnu
-    tangram # Run web apps on desktop
+    # tangram # Run web apps on desktop
 
     # coding
     vscodium
@@ -211,7 +209,7 @@ return {
       ];
     })
     linux-wifi-hotspot
-    errands
+    # errands
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
     # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
     ddcutil # Brightness

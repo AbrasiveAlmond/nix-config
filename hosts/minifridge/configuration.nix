@@ -34,8 +34,6 @@
   gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
-    # Exclude random apps I don't care about
-    apps.excludes.enable = true;
   };
 
   users.users = {
