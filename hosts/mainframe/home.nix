@@ -25,10 +25,10 @@
     # plots         # Worse desmos
     # rnote
     speedcrunch
-    gnome-secrets # Passwords
+    # gnome-secrets # Passwords
     apostrophe    # Markdown Editor
     eyedropper    # Colour picker
-    papers        # PDF Reader
+    # papers        # PDF Reader
     zed-editor
 
     gnome-feeds   # RSS Feeds

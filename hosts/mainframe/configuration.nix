@@ -38,9 +38,6 @@
   gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
-    # Gets rid of dedicated cam app among other things.
-    # Only limnu uses cam anyways
-    apps.excludes.enable = true;
   };
 
   networking = {
