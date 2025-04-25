@@ -128,12 +128,6 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      # TODO: Find what on earth is using these. Maybe vscode itself?
-      permittedInsecurePackages = [
-        "dotnet-runtime-6.0.36"
-        "dotnet-sdk-wrapped-6.0.428"
-        "dotnet-sdk-6.0.428"
-      ];
     };
   };
 

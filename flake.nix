@@ -63,10 +63,12 @@
     # pass to it, with each system as an argument
     # forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${prev.system}; };
+    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
     unstableOverlay = ({ config, pkgs, ... }: {
       nixpkgs = {
-        overlays = [ overlay ];
+        overlays = [
+          overlay
+        ];
         config.allowUnfree = true; # not working for hm - weird temp solution going on
       };
     }
