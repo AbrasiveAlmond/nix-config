@@ -1,9 +1,9 @@
 ;; mostly normal layer, but space is the new seperator, and ' sends you back to normal colemak
 (deflayer snake
-  tab  q    @hw  @hf  p     b    j    l    @hu  @hy    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @smb @Mz  x    c    d     v    k    h    @h,  @h.  @M/   @smb
-  lctl lmet lalt        @spc-snake          @grm rmet rctl
+  tab  q    @cw  @cf  p     b    j    l    @hu  y    ;
+  @cps @sa  @cr  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
+  @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
+  lctl lmet lalt        @spc-snake          _   _    _
 )
 
 (defalias

@@ -1,0 +1,17 @@
+(deflayer directory
+  tab  q    @cw  @cf  p     b    j    l    @hu  y    ;
+  @cps @sa  @cr  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
+  @smb @Mz  x    c    d     v    k    h    ,  .  @M/   @smb
+  lctl lmet lalt        @spc-directory     _   _    _
+)
+
+(defalias
+    spc-directory (
+        tap-hold-release 150 150
+        (tap-dance 500 (
+            (macro /)
+            (multi spc @home)
+        ))
+        (layer-while-held maths)
+    )
+)

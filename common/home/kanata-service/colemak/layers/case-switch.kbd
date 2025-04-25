@@ -1,9 +1,10 @@
 (deflayer case-switch
-  tab  q    @hw  @hf     p     b    j    l    @hu  @hy    ;
-  @cps @sa  @Ar  @snake  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @smb @Mz  x    @camel  @dir  v    @kebab h    @h,  @h.  @M/   @smb
-  lctl lmet lalt          @spc            @grm rmet rctl
+  tab  q    @cw  @cf     p     b    j    l    @hu  y    ;
+  @cps @sa  @cr  @snake  @St   g    m    @Sn  @Ce  @Ai  @so   @home
+  @smb @Mz  x    @camel  @dir  v    @kebab h    ,  .  @M/   @smb
+  lctl lmet lalt          @spc            ralt rmet rctl
 )
+
 (defalias
     snake (layer-switch snake) ;; snake_case
     camel (layer-switch camel) ;; camelCase
