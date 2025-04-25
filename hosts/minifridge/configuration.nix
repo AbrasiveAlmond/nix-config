@@ -17,9 +17,9 @@
     ../../common/nixos/locale.nix
     ../../common/nixos/printing.nix
     ../../common/nixos/ssh.nix
-
     ../../common/nixos/gnome
 
+    ../../common/nixos/hotspot.nix
     ./immich.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
