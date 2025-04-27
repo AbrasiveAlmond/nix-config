@@ -43,12 +43,12 @@
     };
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.docker.daemon.settings = {
-    data-root = "/srv/docker";
-    userland-proxy = false; # designed for Windoze
-  };
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.storageDriver = "btrfs";
+  # virtualisation.docker.daemon.settings = {
+  #   data-root = "/srv/docker";
+  #   userland-proxy = false; # designed for Windoze
+  # };
 
   programs.nix-ld.enable = true;
   services.tailscale = {
