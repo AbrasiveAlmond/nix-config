@@ -4,7 +4,7 @@
      _    z    x    c    d    v    k    h    ,    .    /    _
      _    _    _          @spc           _    _    _
 )
-;; for some reason w/o @cps you can get capslock enabled 
+;; for some reason w/o @cps you can get capslock enabled
 ;; recreate: press o or some other homerow mod then quickly tap capslock
 
 ;; Homerow mods
@@ -19,14 +19,14 @@
     q w e r t
     a s d f g
     z x c v b
-    ;;bspc esc ;;mlft mrgt spc tab 
+    bspc ;; esc mlft mrgt spc tab
   ) ;; it takes less time to activate spc and tab when they're commented out
 
   right-hand-keys (
     y u i o p
     h j k l ;
     m , . /       ;; mouse buttons
-    ;;bspc esc mlft mrgt spc tab 
+    bspc ;; esc mlft mrgt spc tab
   )
 )
 
