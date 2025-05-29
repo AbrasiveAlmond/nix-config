@@ -31,6 +31,8 @@
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
+  system.autoUpgrade.enable = true; # occasionally executes a nixos --switch
+
   gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
