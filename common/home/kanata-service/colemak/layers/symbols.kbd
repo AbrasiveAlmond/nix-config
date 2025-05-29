@@ -1,7 +1,7 @@
 (deflayer symbols
-     _    '    @<   @>    @quo .    @&   @::  [    ]    @%
-     @cpw @!   -    @+    @=   @#   @|   @:   S-9 S-0   @?   `
-     _    @^   /    @*    \    @bk  @~   @$   @{   @}   S-2  _
+     _    '    @<   @>    @quo @|   @&   `    [    ]    @%
+     @cpw @!   -    @+    @=   @#   @?   @:   S-9 S-0   S-2   _
+     _    @^   /    @*    \    @bk  @~   @$   @{   @}   .     _
      _    _    _              _              _    _    _
 )
 
@@ -18,22 +18,22 @@
   quo S-'
   bk (macro . . /)
   -> (fork
-          (macro (- S-.))
-          (macro (eql S-.))
-          (nop2)
-     )
+    (macro (- S-.))
+    (macro (eql S-.))
+    (nop2)
+  )
 
   <- (fork
-          (macro (S-, -))
-          (macro (S-, S--))
-          (nop2)
-     )
+    (macro (S-, -))
+    (macro (S-, S--))
+    (nop2)
+  )
 
   <-> (fork
-          @->
-          @<-
-          (nop1)
-      )
+    @->
+    @<-
+    (nop1)
+  )
 
   (template-expand mod-tap
      plus
