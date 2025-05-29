@@ -36,7 +36,7 @@
 (deflayer colemak
   tab  @cq  @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
   @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
-  @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
+  lsft @Mz  x    c    d     v    k    h    ,    .    @M/   rsft
   lctl lmet @num          @spc            ralt rmet rctl
 )
 

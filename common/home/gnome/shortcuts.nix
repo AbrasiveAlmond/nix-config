@@ -29,7 +29,7 @@
         tile-right-half = ["<Super>i"];
         tile-edit-mode = ["<Super>w"];
 
-        tile-maximize = ["<Super>m"];
+        tile-maximize = [];
         # restore-window = ["<Super>Down"];
       };
 
@@ -46,7 +46,7 @@
       begin-resize = [ "<Super>slash" ]; # Easy to hit then use arrow keys
       activate-window-menu = [ "<Alt>h"]; # Alt help
       close = [ "<Super>c" ];
-      maximize = [];
+      maximize = ["<Super>m"];
       unmaximize = [];
       toggle-maximized = []; # tiling assistant does this
 
