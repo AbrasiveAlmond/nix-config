@@ -201,13 +201,6 @@ return {
     ++
     (with pkgs; [
     # Due to bug in Zed editor dependency user fonts aren't detected
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto" # HM nerdfonts aren't working in zed editor
-        "FiraCode"
-      ];
-    })
     linux-wifi-hotspot
     # errands
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..

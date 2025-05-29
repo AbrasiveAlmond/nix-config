@@ -74,14 +74,12 @@
   #   configDir = "/home/quinnieboi/Documents/.config/syncthing";
   # };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto" # HM nerdfonts aren't working in zed editor
-        "FiraCode"
-      ];
-    })
+  fonts.packages = with pkgs.nerd-fonts; [
+    _0xproto
+    hack
+    jetbrains-mono
+    iosevka
+    fira-code
   ];
 
   # services.tailscale.enable = true;
