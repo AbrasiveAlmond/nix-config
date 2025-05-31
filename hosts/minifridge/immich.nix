@@ -1,6 +1,6 @@
 {pkgs,...}: {
   services.immich  = {
-    enable = true;
+    enable = false;
     package = pkgs.unstable.immich;
     host = "100.99.19.37";
     port = 2283;
