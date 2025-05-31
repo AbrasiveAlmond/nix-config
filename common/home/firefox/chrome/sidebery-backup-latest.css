@@ -1,0 +1,71 @@
+#root.root {--bookmarks-bookmark-font: 0.85rem Adwaita Sans;}
+#root.root {--bookmarks-folder-font: 0.9rem Adwaita Sans;}
+#root.root {--tabs-activated-fg: rgb(255, 255, 255);}
+#root.root {--tabs-activated-bg: rgb(255, 255, 255, 0.08);}
+#root.root {--toolbar-bg: rgb(46, 46, 50);}
+#root.root {--tabs-height: 35px;}
+#root.root {--tabs-font: 0.85rem Adwaita Sans;}
+
+#root.root {--ntb-btn-height: 35px;}
+#root.root {--ntb-padding: 5px;}
+
+#root.root {--tabs-margin: 5px;}
+
+#root.root {--tabs-indent: 10px;}
+#root.root {--tabs-inner-gap: 10px;}
+
+#root.root {--general-border-radius: 5px;}
+
+#root.root {--tabs-lvl-opacity: 0.16;}
+
+
+
+
+
+#root.root {--toolbar-scrollbar-color: rgba(255,255,255,0.275);}
+#root.root {--toolbar-el-overlay-selected-border: #47cfff;}
+
+#root.root {--tabs-normal-bg: rgb(46, 46, 50);}
+#root.root {--tabs-normal-fg: rgb(255, 255, 255);}
+
+#root.root {--tabs-progress-bg: rgba(255,255,255,0.086);}
+#root.root {--nav-btn-margin: 3px;}
+
+
+#root.root {--frame-bg: rgb(46, 46, 50);}
+
+
+
+
+
+
+#root.root {--general-margin: 0px;}
+
+
+
+/* Lighten text of unloaded tabs */
+.Tab[data-discarded=true]>.body>.t-box,
+.Tab[data-discarded=true]>.body>.ctx {
+  opacity: 0.7;
+}
+
+
+/* pinned sidebery tabs have variable width*/  
+#root.root {--pinned-tabs-normal-bg: rgb(55, 55, 55);}
+
+.PinnedTabsBar { 
+	display: flex;
+	justify-content: space-around;
+}
+
+.PinnedTabsBar .tab-wrapper { flex-grow: 1; }
+.Tab[data-pin="true"] { width: 100%; }
+
+/* Theming */
+.Tab[data-pin="true"] .body {
+	background-color: var(--pinned-tabs-normal-bg);
+}
+
+.Tab[data-pin="true"][data-active="true"] .body {
+    background-color: var(--tabs-activated-bg);
+}
