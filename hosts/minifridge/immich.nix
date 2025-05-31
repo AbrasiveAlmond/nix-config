@@ -19,7 +19,9 @@
 
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
+  users.groups.immich = {};
   users.users.immich = {
-      isNormalUser = false;
+    group = "immich";
+    isNormalUser = true;
   };
 }
