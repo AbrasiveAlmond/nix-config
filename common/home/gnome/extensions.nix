@@ -1,13 +1,7 @@
-{pkgs, ...} :
 let
   extsn = "org/gnome/shell/extensions/";
 in
 {
-  home.packages = with pkgs; [
-    morewaita-icon-theme
-    gnomeExtensions.auto-adwaita-colors
-  ];
-
   ### gnomeExtensions customisation ####
   dconf.settings = {
     ${(extsn + "blur-my-shell")} = {

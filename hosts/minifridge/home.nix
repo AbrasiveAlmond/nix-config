@@ -122,6 +122,14 @@ return {
   #  }
   # }
 
+  gtk = {
+   enable = true;
+   iconTheme = {
+     name = "Morewaita";
+     package = pkgs.morewaita-icon-theme;
+   };
+  };
+
   home.packages = with pkgs;
     (with pkgs-unstable; [ # cannot use pkgs.unstable due to strange unfree attribute not setting
     gnomeExtensions.gsconnect
