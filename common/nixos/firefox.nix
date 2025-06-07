@@ -41,28 +41,28 @@ in {
         # Check about:support for extension/add-on ID strings.
         # Valid strings for installation_mode are "allowed", "blocked",
         # "force_installed" and "normal_installed".
-        ExtensionSettings = {
-          # uBlock Origin:
-          "uBlock0@raymondhill.net" = {
-            install_url =
-              "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "normal_installed";
-          };
+        # ExtensionSettings = {
+        #   # uBlock Origin:
+        #   "uBlock0@raymondhill.net" = {
+        #     install_url =
+        #       "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        #     installation_mode = "normal_installed";
+        #   };
 
-          # Privacy Badger:
-          "jid1-MnnxcxisBPnSXQ@jetpack" = {
-            install_url =
-              "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-            installation_mode = "normal_installed";
-          };
+        #   # Privacy Badger:
+        #   "jid1-MnnxcxisBPnSXQ@jetpack" = {
+        #     install_url =
+        #       "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+        #     installation_mode = "normal_installed";
+        #   };
 
-          # Sidebery:
-          "3c078156-979c-498b-8990-85f7987dd929" = {
-            install_url =
-              "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
-            installation_mode = "normal_installed";
-          };
-        };
+        #   # Sidebery:
+        #   "3c078156-979c-498b-8990-85f7987dd929" = {
+        #     install_url =
+        #       "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
+        #     installation_mode = "normal_installed";
+        #   };
+        # };
 
         # ---- PREFERENCES ----
         # can also be accessed directly but the interface doesn't allow locking.

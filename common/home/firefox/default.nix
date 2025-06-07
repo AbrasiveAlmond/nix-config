@@ -21,7 +21,7 @@ in {
         @import "customContent.css";
       '';
 
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
         darkreader
         sidebery
@@ -53,7 +53,7 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "!np" ];
+          definedAliases = [ "@np" ];
         };
 
         "Nix Options" = {
@@ -72,16 +72,16 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "!no" ];
+          definedAliases = [ "@no" ];
         };
 
         "NixOS Wiki" = {
           urls = [{
             template = "https://nixos.wiki/index.php?search={searchTerms}";
           }];
-          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          icon = "https://nixos.wiki/favicon.png";
           updateInterval = 24 * 60 * 60 * 1000;
-          definedAliases = [ "!nw" ];
+          definedAliases = [ "@nw" ];
         };
 
         "Home Manager Options" = {
@@ -94,14 +94,14 @@ in {
               }
             ];
           }];
-          definedAliases = [ "!ho" ];
+          definedAliases = [ "@ho" ];
         };
 
-        "Wikipedia (en)".metaData.alias = "!w";
-        "Google".metaData.hidden = true;
-        "Amazon.com".metaData.hidden = true;
-        "Bing".metaData.hidden = true;
-        "eBay".metaData.hidden = true;
+        "wikipedia".metaData.alias = "@w";
+        "google".metaData.hidden = true;
+        "amazondotcom-us".metaData.hidden = true;
+        "bing".metaData.hidden = true;
+        "ebay".metaData.hidden = true;
       };
 
       # almost all from https://github.com/Misterio77/nix-config/blob/main/home/gabriel/features/desktop/common/firefox.nix
