@@ -53,6 +53,25 @@
       ];
     };
 
+    # 2TB m.2 NVME drive. 1TB partition for steam games
+    fileSystems."/mnt/Games" =
+      {
+        device = "/dev/disk/by-uuid/ba5f82b5-5191-4b7b-b588-d85203a9c6c0";
+        fsType = "btrfs";
+        options = [
+          # https://smarttech101.com/relatime-atime-noatime-strictatime-lazytime
+          # https://wiki.debian.org/SSDOptimization
+          # Disabling atime or enabling "lazytime" helps by:
+          # saving writes, increasing performance, and extending disk life.
+
+          # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
+          "noatime" # Disable file access times to save huge disk write cycles.
+          "nodiratime" # Same as above for directories.
+          "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
+          "nofail" # Prevent system from failing if this drive doesn't mount
+          "compress=zstd"
+        ];
+      };
 
   # 1TB m.2 NVME SSD | 990 PRO
   fileSystems."/boot" =
@@ -64,9 +83,14 @@
 
 
   # 1TB m.2 NVME SSD | 990 PRO
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/9e15fe2e-76ac-4e0c-a2c9-38310b34d4c5"; }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/9e15fe2e-76ac-4e0c-a2c9-38310b34d4c5"; }
+  ];
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
