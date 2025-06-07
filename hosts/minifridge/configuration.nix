@@ -36,7 +36,6 @@
 # of my desktop freezing after some minutes running.
 # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
-  nix.optimise.automatic = true;
   #boot.kernelPatches = [
   #  { name = "";
   #  patch = builtins.fetchurl }
@@ -147,6 +146,7 @@
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
     };
+    optimise.automatic = true;
     # Opinionated: disable channels
     channel.enable = false;
 
