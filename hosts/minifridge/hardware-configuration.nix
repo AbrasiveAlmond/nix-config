@@ -29,7 +29,7 @@
       options = [
         "noatime"
         "nodiratime"
-        "discard"
+        # "discard"
         "nofail"
       ];
     };
@@ -48,7 +48,7 @@
         # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
         "noatime" # Disable file access times to save huge disk write cycles.
         "nodiratime" # Same as above for directories.
-        "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
+        # "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
         "nofail" # Prevent system from failing if this drive doesn't mount
       ];
     };
@@ -67,7 +67,8 @@
           # "lazytime" # Access times are stored in memory and updated less frequently, but still enabled.
           "noatime" # Disable file access times to save huge disk write cycles.
           "nodiratime" # Same as above for directories.
-          "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
+          # Disabled: "could have severe performance hit" https://btrfs.readthedocs.io/en/latest/Trim.html
+          # "discard" # enables fstrim sort of? services.fstrim does the same. Is enabled through nixos hardware
           "nofail" # Prevent system from failing if this drive doesn't mount
           "compress=zstd"
         ];
