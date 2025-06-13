@@ -1,6 +1,6 @@
 {pkgs,...}: {
   services.immich  = {
-    enable = false;
+    enable = true;
     package = pkgs.unstable.immich;
     host = "100.99.19.37";
     port = 2283;
@@ -19,9 +19,9 @@
 
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-  users.groups.immich = {};
-  users.users.immich = {
-    group = "immich";
-    isNormalUser = true;
-  };
+  # users.groups.immich = {};
+
+  # users.users.immich = {
+  #   group = "immich";
+  # };
 }

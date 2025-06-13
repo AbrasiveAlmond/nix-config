@@ -112,6 +112,9 @@ return {
   };
 
   # switch to diff syntax like below
+  # would require using overlays
+  # which apparently can lead to more
+  # instances of nixpkgs about. Which is slow.
   # home.packages = with pkgs; {
   #  ...
   #  unstable = {
@@ -122,16 +125,9 @@ return {
   #  }
   # }
 
-  gtk = {
-   enable = true;
-   iconTheme = {
-     name = "Morewaita";
-     package = pkgs.morewaita-icon-theme;
-   };
-  };
-
   home.packages = with pkgs;
     (with pkgs-unstable; [ # cannot use pkgs.unstable due to strange unfree attribute not setting
+
     gnomeExtensions.gsconnect
     onedrivegui
 
@@ -160,14 +156,16 @@ return {
     # Social
     tuba # Browse the fediverse
     fractal # Matrix Client
-    gnome-feeds # RSS Feeds
+    gnome-feeds # RSS Feedsa
     spotify
 
     # Image editing
     darktable # Photo manager and raw developer
     shotwell # Photo manager
     inkscape # Vector graphics editor
-    gimp # GNU Image Manipulation Program
+    # might lowkey prefer using it via flatpak. Easier with plugins
+    # gimp # GNU Image Manipulation Program
+    # gimpPlugins.lqrPlugin
     hugin # Panorama stitcher
     ffmpeg # Audio/video cli tools
     # rnote # Drawing software

@@ -27,6 +27,7 @@
     # outputs.nixosModules
 
     # modules from nixos-hardware repo:
+    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
   ];
@@ -35,11 +36,8 @@
   # Revert to old kernel because the latest one may be the cause
 # of my desktop freezing after some minutes running.
 # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
-  #boot.kernelPatches = [
-  #  { name = "";
-  #  patch = builtins.fetchurl }
-  #]
+# https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   gnome = {
     # Enable the GNOME Desktop Environment.
@@ -129,7 +127,7 @@
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
 
-  environment.systemPackages = with pkgs; [ wget vim git ];
+  environment.systemPackages = with pkgs; [ wget vim git nixd ];
 
   nixpkgs = {
     config = {
