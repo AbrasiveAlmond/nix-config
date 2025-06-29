@@ -1,30 +1,30 @@
-{
-  # Enable powertop
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-    cpuFreqGovernor = "powersave";
-  };
+{lib, ...} : {
+  # enable powertop
+  # powermanagement = {
+  #   enable = true;
+  #   powertop.enable = true;
+  #   cpufreqgovernor = "powersave";
+  # };
 
   services = {
-    # Enable thermald (only necessary if on Intel CPUs)
-    thermald.enable = true;
+    # enable thermald (only necessary if on Intel CPUs)
+    # thermald.enable = true;
 
     # Disable GNOMEs power management
-    power-profiles-daemon.enable = false;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "powersave";
-          turbo = "auto";
-        };
-      };
-    };
+    # power-profiles-daemon.enable = false;
+    # auto-cpufreq = {
+    #   enable = true;
+    #   settings = {
+    #     battery = {
+    #       governor = "powersave";
+    #       turbo = "never";
+    #     };
+    #     charger = {
+    #       governor = "performance";
+    #       turbo = "auto";
+    #     };
+    #   };
+    # };
     system76-scheduler = {
       enable = true;
       useStockConfig = true;
@@ -32,7 +32,7 @@
   };
 
   # Better scheduling for CPU cycles - thanks System76!!!
-  services.system76-scheduler.settings.cfsProfiles.enable = true;
+  # services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   # Enable TLP (better than gnomes internal power manager)
   services.tlp = {
@@ -47,7 +47,7 @@
       CPU_ENERGY_PERF_POLICY_ON_AC = "default";
 
       # Enable the platform profile low-power:
-      PLATFORM_PROFILE_ON_AC  = "balanced";
+      PLATFORM_PROFILE_ON_AC  = lib.mkForce "performance";
       PLATFORM_PROFILE_ON_BAT = "low-power";
 
       # Disable turbo boost:

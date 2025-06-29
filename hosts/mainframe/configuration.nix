@@ -42,7 +42,7 @@
 
   networking = {
     hostName = "mainframe-laptop";
-    # Enable networkinge
+    # Enable networking
     networkmanager.enable = true;
   };
 
@@ -72,26 +72,40 @@
   services.libinput = {
     enable = true;
     touchpad = {
+      disableWhileTyping = true;
       tapping = true;
       tappingDragLock = true;
     };
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    # package = pkgs.bluezFull;
+  };
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+      intel-media-driver
+      intel-ocl
+    ];
+  };
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamemode.enable = true;
 
   # creates a separate bootable config
   specialisation = {
     nvidia.configuration = {
       # Nvidia Configuration
-      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
+      services.xserver.videoDrivers = lib.mkForce [ "modesetting" "nvidia" ];
       # enable discrete GPU in 24.11 or unstable
-      hardware.graphics = {
-        enable = true;
-        extraPackages = with pkgs; [
-          vpl-gpu-rt # Still want integrated gpu to do its thing
-          intel-media-driver
-          intel-ocl
-        ];
-      };
 
       hardware.nvidia = {
         open = false; # might want to double check dat
@@ -102,18 +116,18 @@
         # # We also need to enable nvidia-persistenced.service to avoid the kernel tearing down the device state whenever the NVIDIA device resources are no longer in use.
         # https://download.nvidia.com/XFree86/Linux-x86_64/396.51/README/nvidia-persistenced.html
         nvidiaPersistenced = true;
-        powerManagement.enable = true; # use with offload according to nixoptions
-        powerManagement.finegrained = true;
+        # powerManagement.enable = false; # use with offload according to nixoptions
+        # powerManagement.finegrained = false;
 
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
         prime = {
           # If enabled, the NVIDIA GPU will be always on and used for all rendering
-          # sync.enable = true;
+          sync.enable = true;
           # reverseSync.enable = true;
-          offload = {
-            enable = true;
-            enableOffloadCmd = true; # Provides `nvidia-offload` command.
-          };
+          # offload = {
+          #   enable = true;
+          #   enableOffloadCmd = true; # Provides `nvidia-offload` command.
+          # };
 
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
@@ -155,30 +169,55 @@
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
       hardware.nvidiaOptimus.disable = true;
 
-      hardware.graphics = {
-        enable = true;
-        extraPackages = with pkgs; [
-          vpl-gpu-rt
-          intel-media-driver
-          intel-ocl
-        ];
-      };
-
       # Corruption or unresponsiveness in Chromium and Firefox consult https://wiki.archlinux.org/title/Intel_graphics
-      # services.xserver.videoDrivers = [ "intel" ]; package removed as it was unmaintained
-      # Direct Rendering Infrastructure
       # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
+      # Direct Rendering Infrastructure
       services.xserver.deviceSection = ''
         Option "DRI"             "2"
         Option "TearFree"        "false"
-        Option "TripleBuffer"    "false"
+        Option "TripleBuffer"    "true"
         Option "SwapbuffersWait" "false"
       '';
+    };
+
+    barebones.configuration = {
+      # disable my usual gnome config
+      gnome.enable = lib.mkForce false;
+
+      services.xserver = {
+        enable = true;
+        desktopManager = {
+                   # gdm.enable = false;
+          # gnome.enable = false;
+          # most lightweight supposedly
+          xfce.enable = true;
+          # Not disgusting
+          cinnamon.enable = true;
+        };
+      };
+
+      services.displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "guest";
+        };
+        defaultSession = "xfce";
+      };
+
+      users.users.guest = {
+        initialPassword = "123";
+        isNormalUser = true;
+        description = "Dingbatter";
+        extraGroups = [
+          "networkmanager"
+        ];
+      };
     };
   };
 
   environment.systemPackages = with pkgs; [
     switcheroo-control # D-Bus service to check the availability of dual-GPU
+    mangohud # system usage stats in games
     wget
     vim
     git
