@@ -11,12 +11,11 @@
 }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./battery.nix
+    # ./battery.nix
 
     ../../common/nixos/ssh.nix
     ../../common/nixos/locale.nix
     ../../common/nixos/printing.nix
-    ../../common/nixos/power-management.nix
 
     ../../common/nixos/gnome
     ../../common/nixos/firefox.nix

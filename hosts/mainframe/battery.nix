@@ -1,4 +1,5 @@
 {lib, ...} : {
+  services.power-profiles-daemon.enable = false;
   # enable powertop
   # powermanagement = {
   #   enable = true;
