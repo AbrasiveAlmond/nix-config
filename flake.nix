@@ -33,8 +33,6 @@
       flake = false;
     };
 
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
-
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +50,6 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    systems,
     nix-flatpak,
     rust-devShells,
     ...

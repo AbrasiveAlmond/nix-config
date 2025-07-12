@@ -135,6 +135,9 @@ return {
     lutris
     cartridges
 
+    qemu
+    # gnome-boxes
+
     # goldwarden # Couldn't get api keys to work :/
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
