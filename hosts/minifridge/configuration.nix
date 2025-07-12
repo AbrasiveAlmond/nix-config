@@ -44,6 +44,10 @@
     enable = true;
   };
 
+  # enable virtualisation hypervisor for gnome boxes in hm
+  virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
+
   users.users = {
     quinnieboi = {
       isNormalUser = true;
