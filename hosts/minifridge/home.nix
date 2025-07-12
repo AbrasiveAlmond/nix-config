@@ -1,8 +1,5 @@
 {
   inputs,
-  # outputs,
-  lib,
-  # config,
   pkgs,
   pkgs-unstable,
   ...
@@ -135,6 +132,8 @@ return {
     morgen
     bitwarden-desktop
     valent
+    lutris
+    cartridges
 
     # goldwarden # Couldn't get api keys to work :/
     # bottles         # Run windows apps # Removed due to build errs + I don't use
@@ -156,7 +155,7 @@ return {
     # Social
     tuba # Browse the fediverse
     fractal # Matrix Client
-    gnome-feeds # RSS Feedsa
+    gnome-feeds # RSS Feeds
     spotify
 
     # Image editing
