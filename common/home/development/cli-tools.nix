@@ -1,27 +1,20 @@
 {
-  lib,
-  config,
-  pkgs-unstable,
-  inputs,
-   ...
-}: with lib;
-let
-  cfg = config.development;
-in {
+  pkgs,
+  ...
+} : {
+  home.packages = with pkgs; [
+    tree
+    # vivid # Some sort of terminal theme setter
 
-  options.development = {
-    cli-tools = mkEnableOption "enable coding/terminal related stuff";
+    # Language servers
+    nil # Nix language server
+    rust-analyzer
 
-  };
+    # Languages (cbb with flake if its python)
+    # python314
+    # uv # Python package manager
+    # ruff # Python liter and code formatter
+    # ty # Unfinished python type checker
 
-  config = mkIf cfg.cli-tools {
-    home.packages = with pkgs-unstable; [
-        libsecret
-        git-credential-oauth
-        tree
-        nil
-        vivid
-    ];
-
-  };
+  ];
 }
