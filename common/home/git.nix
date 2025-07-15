@@ -1,6 +1,7 @@
 {pkgs, ...} : {
   # I hate auth, just set it up declaratively once
   home.packages = with pkgs; [
+    liboauth
     git-credential-oauth
   ];
 

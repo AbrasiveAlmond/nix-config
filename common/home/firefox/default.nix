@@ -35,8 +35,32 @@ in {
 
       # https://github.com/nix-community/home-manager/issues/3698#issuecomment-1442291975
       search.force = true;
-
+      search.default = "Kagi";
       search.engines = {
+        "Kagi" = {
+          urls = [{
+            template = "https://kagi.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+            ];
+          }];
+        };
+
+        "Marginalia" = {
+          urls = [{
+            template = "https://marginalia-search.com/search";
+            params = [
+              {
+                name = "query";
+                value = "{searchTerms}";
+              }
+            ];
+          }];
+        };
+
         "Nix Packages" = {
           urls = [{
             template = "https://search.nixos.org/packages";
