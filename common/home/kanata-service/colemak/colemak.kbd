@@ -39,7 +39,7 @@
   tab  @cq  @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
   @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
   @shf @Mz  x    c    d     v    k    h    ,    .    @M/   @shf
-  lctl lmet @num          @spc            ralt rmet rctl
+  lctl lmet lalt          @spc            ralt rmet rctl
 )
 
 (defalias
@@ -47,10 +47,24 @@
   (template-expand home-row-mod-taps
      sa   Ar   Cs   St   Sn   Ce   Ai   so
      a    r    s    t    n    e    i    o
-     @sym lalt lctl lsft rsft rctl lalt @sym
+     @sym lalt lctl (layer-switch new_maths) rsft rctl lalt @sym
   )
 
   ;; extra pinky mod taps below homerow
+  (template-expand mod-tap
+    Mz
+    z
+    lmet
+    $hold-time $left-hand-keys
+  )
+
+  (template-expand mod-tap
+    Mz
+    z
+    lmet
+    $hold-time $left-hand-keys
+  )
+
   (template-expand mod-tap
     Mz
     z
@@ -152,31 +166,8 @@
 )
 
 
-;; cd is change directory
-;; (defalias
-;;   cc (chord entre a)
-;;   cd (chord entre b)
-;; )
-;;
-;; (defchords entre 40
-;;   (a   ) c
-;;   (   b) d
-;;   (a  b) ret
-;; )
-;;(defalias
-;;  cy (chord bspc a)
-;;  ci (chord bspc b)
-;;)
-
-;;(defchords bspc 40
-;;  (a   ) y
-;;  (   b) @Ai
-;;  (a  b) S-*
-;;)
-
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
-;;
 (defalias
   ;; tap for normal, hold for case switching
   case (tap-hold-press 150 150 ' (layer-while-held case-switch))
