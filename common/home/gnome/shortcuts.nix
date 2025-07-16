@@ -73,7 +73,7 @@
       switch-applications = [ "<Super>Tab" ];
       switch-applications-backward = [ "<Shift><Super>Tab" ];
       ## Switch Windows
-      switch-windows = [ "<Super>space" ];
+      switch-windows = [ "<Alt>Tab" ];
 
       ## App Window Switching Direct
       # switch-group = [ "<Super>Tab" ];
