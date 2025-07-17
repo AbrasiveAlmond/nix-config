@@ -1,0 +1,16 @@
+(deflayer new_maths
+     _    @!   @srt /    -    _    _   7    8    9    _
+     @cps @bkt -   @+    @=   _    _    4    5    6   @=  _
+     _    _    _    _    _    _    _     1    2    3  _   _
+     _    _    _              @spc       _    _    _
+)
+
+;; Typed examples of mathjax
+;; -(x^8+1)*sin(x)+8*x^7*cos(x)
+;; 5*x^3+5*x^2+5*x+3
+
+;; awkward examples
+;; y^2
+;; 1/2*x^2
+;; w
+;; [ -6 -2 0 ]
