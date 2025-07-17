@@ -1,0 +1,35 @@
+@import "./gnome-sidebery.css";
+
+
+#main-window #titlebar {
+    overflow: hidden;
+    transition: height 0.3s 0.3s !important;
+}
+
+/* Default state: Set initial height to enable animation */
+#main-window #titlebar { height: 3em !important; }
+#main-window[uidensity="touch"] #titlebar { height: 3.35em !important; }
+#main-window[uidensity="compact"] #titlebar { height: 2.7em !important; }
+
+/* Remove ugly black border under titlebar*/
+#navigator-toolbox {
+    border: none !important;
+}
+
+/* That rounded outline around website content */
+.browserStack {
+    background-color: rgb(48, 48, 48) !important;
+}
+
+.browserStack browser {
+    padding: 4px 8px 8px 0px;
+    /* padding-left: 0px; */
+    border-radius: 16px;
+    background-color: rgb(48, 48, 48) !important;
+}
+
+/* style urlbar */
+#urlbar-container {
+	width: 50% !important;
+	flex-grow: 0;
+}

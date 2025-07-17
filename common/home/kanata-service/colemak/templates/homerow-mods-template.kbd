@@ -13,31 +13,29 @@
     q w e r t
     a s d f g
     z x c v b
-    ;;bspc esc ;;mlft mrgt spc tab 
+    ;;bspc esc mlft mrgt spc tab
   ) ;; it takes less time to activate spc and tab when they're commented out
 
   right-hand-keys (
     y u i o p
     h j k l ;
     m , . /       ;; mouse buttons
-    ;;bspc esc mlft mrgt spc tab 
+    ;;bspc esc mlft mrgt spc tab
   )
 )
 
 ;; define quick template to use on each layer that turns home row into mod-taps
-
-
-
 (deftemplate home-row-mod-taps (
     n1 n2 n3 n4 n5 n6 n7 n8  ;; Names
     a1 a2 a3 a4 a5 a6 a7 a8  ;; Actions
     m1 m2 m3 m4 m5 m6 m7 m8  ;; Modifiers
   )
+
   $n1 (tap-hold-release-keys $tt $sht $a1 $m1 $left-hand-keys)
   $n2 (tap-hold-release-keys $tt $ht  $a2 $m2 $left-hand-keys)
   $n3 (tap-hold-release-keys $tt $ht  $a3 $m3 $left-hand-keys)
   $n4 (tap-hold-release-keys $tt $ht  $a4 $m4 $left-hand-keys)
-  
+
   $n5 (tap-hold-release-keys $tt $ht  $a5 $m5 $right-hand-keys)
   $n6 (tap-hold-release-keys $tt $ht  $a6 $m6 $right-hand-keys)
   $n7 (tap-hold-release-keys $tt $ht  $a7 $m7 $right-hand-keys)

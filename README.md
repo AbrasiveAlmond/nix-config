@@ -1,5 +1,5 @@
 # My cluttered NixOS configuration
-This contains my hodgepodge of weird ideas and dead code to configure my main linux desktop, laptop, and home server.
+This contains a hodgepodge of weird ideas and dead code to configure my main linux desktop, laptop, and home server.
 Initially based on Misterio77' [Standard starter config](https://github.com/Misterio77/nix-starter-configs)
 
 ## Structure

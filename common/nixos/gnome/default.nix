@@ -1,24 +1,33 @@
-{pkgs, lib, ...}: {
+{pkgs, ...}: {
   imports = [
     ./gnome.nix
-    ./excludes.nix
   ];
 
-  nixpkgs.overlays = [
-      # GNOME 46: triple-buffering-v4-46
-      (final: prev: {
-        mutter = prev.mutter.overrideAttrs (old: {
-          src = pkgs.fetchFromGitLab  {
-            domain = "gitlab.gnome.org";
-            owner = "vanvugt";
-            repo = "mutter";
-            rev = "triple-buffering-v4-47";
-            hash = "sha256-6n5HSbocU8QDwuhBvhRuvkUE4NflUiUKE0QQ5DJEzwI=";
-          };
-        });
-      })
-    ];
+  environment.systemPackages = with pkgs.unstable; [
+    celluloid       # Video player
+    switcheroo      # Image converter
+    eyedropper      # Colour picker
+    papers          # PDF reader
+    blackbox-terminal # better terminal
+    footage         # Video player
+    video-trimmer
+    rnote           # Drawing app
+    mission-center  # Task manager
+    gnome-graphs    # Worse desmos
+  ];
 
-  # gnome.enable = lib.mkDefault true;
-  # gnome.apps.excludes.enable = lib.mkDefault true;
+  environment.gnome.excludePackages = with pkgs; [
+    # snapshot      # Camera
+    simple-scan   # Document Scanner for hardware scanners
+    seahorse      # Password manager
+    yelp          # Help Viewer
+    gnome-tour
+    gnome-music
+    gnome-contacts
+    gnome-calendar
+    gnome-weather
+    # Now surpassed by Papers
+    evince        # Gnome Document viewer, superseeded by papers
+    totem         # Video player, outdated not adwaita. Superseeded by celluloid
+  ];
 }

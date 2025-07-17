@@ -1,9 +1,9 @@
-{ lib, config, pkgs, ...}: 
+{ lib, config, ...}:
 let cfg = config.gnome; in {
   options = {
     gnome.enable = lib.mkEnableOption "Enable Module";
   };
-  
+
   config = lib.mkIf cfg.enable {
     # Enable the X11 windowing system.
     services.xserver.enable = true;
@@ -19,19 +19,19 @@ let cfg = config.gnome; in {
       xkb.layout = "us";
       xkb.variant = "colemak_dh_ortho";
     };
-    
+
     # Whether to enable Sushi, a quick preview for nautilus.
     services.gnome.sushi.enable = true;
 
     # Enable sound with pipewire.
     # sound.enable = true;
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-      pulse.enable = true; 
+      pulse.enable = true;
     };
   };
 }

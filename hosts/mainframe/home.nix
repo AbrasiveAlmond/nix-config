@@ -20,21 +20,21 @@
   };
 
   home.packages = (with pkgs; [
-    goldwarden
+    # goldwarden
     # Gnome apps
-    plots         # Worse desmos
-    rnote
+    # plots         # Worse desmos
+    # rnote
     speedcrunch
-    gnome-secrets # Passwords
+    # gnome-secrets # Passwords
     apostrophe    # Markdown Editor
     eyedropper    # Colour picker
-    papers        # PDF Reader
-    vscodium
+    # papers        # PDF Reader
+    zed-editor
 
     gnome-feeds   # RSS Feeds
 
     # Utilities
-    warp          # File sharing tool
+    # warp          # File sharing tool
 
     # Keyboard remapping
     kanata

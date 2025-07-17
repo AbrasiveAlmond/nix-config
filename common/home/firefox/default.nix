@@ -21,7 +21,7 @@ in {
         @import "customContent.css";
       '';
 
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
         darkreader
         sidebery
@@ -35,8 +35,32 @@ in {
 
       # https://github.com/nix-community/home-manager/issues/3698#issuecomment-1442291975
       search.force = true;
-
+      # search.default = "Kagi";
       search.engines = {
+        "Kagi" = {
+          urls = [{
+            template = "https://kagi.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+            ];
+          }];
+        };
+
+        "Marginalia" = {
+          urls = [{
+            template = "https://marginalia-search.com/search";
+            params = [
+              {
+                name = "query";
+                value = "{searchTerms}";
+              }
+            ];
+          }];
+        };
+
         "Nix Packages" = {
           urls = [{
             template = "https://search.nixos.org/packages";
@@ -53,7 +77,7 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "!np" ];
+          definedAliases = [ "@np" ];
         };
 
         "Nix Options" = {
@@ -72,16 +96,16 @@ in {
           }];
           icon =
             "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "!no" ];
+          definedAliases = [ "@no" ];
         };
 
         "NixOS Wiki" = {
           urls = [{
             template = "https://nixos.wiki/index.php?search={searchTerms}";
           }];
-          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          icon = "https://nixos.wiki/favicon.png";
           updateInterval = 24 * 60 * 60 * 1000;
-          definedAliases = [ "!nw" ];
+          definedAliases = [ "@nw" ];
         };
 
         "Home Manager Options" = {
@@ -94,14 +118,14 @@ in {
               }
             ];
           }];
-          definedAliases = [ "!ho" ];
+          definedAliases = [ "@ho" ];
         };
 
-        "Wikipedia (en)".metaData.alias = "!w";
-        "Google".metaData.hidden = true;
-        "Amazon.com".metaData.hidden = true;
-        "Bing".metaData.hidden = true;
-        "eBay".metaData.hidden = true;
+        "wikipedia".metaData.alias = "@w";
+        "google".metaData.hidden = true;
+        "amazondotcom-us".metaData.hidden = true;
+        "bing".metaData.hidden = true;
+        "ebay".metaData.hidden = true;
       };
 
       # almost all from https://github.com/Misterio77/nix-config/blob/main/home/gabriel/features/desktop/common/firefox.nix
@@ -194,7 +218,7 @@ in {
         #     "TabsToolbar"
         #     "widget-overflow-fixed-list"
         #   ];
-          
+
         #   placements = {
         #     # PersonalToolbar = ["personal-bookmarks"];
         #     # TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];

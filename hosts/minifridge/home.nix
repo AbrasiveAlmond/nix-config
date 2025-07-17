@@ -1,8 +1,5 @@
 {
   inputs,
-  # outputs,
-  lib,
-  # config,
   pkgs,
   pkgs-unstable,
   ...
@@ -61,12 +58,15 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "spotify"
-          "discord"
-        ];
+      # allowUnfreePredicate =
+      #   pkg:
+      #   builtins.elem (lib.getName pkg) [
+      #     "spotify"
+      #     "discord"
+      #     "morgen"
+      #     "obsidian"
+      #   ];
+      allowUnfreePredicate = (_: true);
     };
 
     overlays = [
@@ -76,7 +76,7 @@
     ];
   };
 
-  # Config is entirely imperative :)
+  # Config is entirely imperative :\
   # services.syncthing = {
   #   enable = true;
   # };
@@ -109,6 +109,9 @@ return {
   };
 
   # switch to diff syntax like below
+  # would require using overlays
+  # which apparently can lead to more
+  # instances of nixpkgs about. Which is slow.
   # home.packages = with pkgs; {
   #  ...
   #  unstable = {
@@ -119,31 +122,36 @@ return {
   #  }
   # }
 
-  home.packages =
-    (with pkgs-unstable; [
+  home.packages = with pkgs;
+    (with pkgs-unstable; [ # cannot use pkgs.unstable due to strange unfree attribute not setting
+
     gnomeExtensions.gsconnect
+    onedrivegui
 
     obsidian
     morgen
     bitwarden-desktop
     valent
+    lutris
+    cartridges
 
-    goldwarden
+    qemu
+    # gnome-boxes
+
+    # goldwarden # Couldn't get api keys to work :/
     # bottles         # Run windows apps # Removed due to build errs + I don't use
     # plots         # Worse desmos
-    amberol         # Music player
-    shortwave       # Internet radio player
-    mission-center  # Task manager
+    # amberol         # Music player
+    # shortwave       # Internet radio player
+    # mission-center  # Task manager
     # sysprof       # System Profiler
 
     # Gnome apps
     fragments       # BitTorrent
     # varia           # Download manager with torrent support and browser integration
-    gnome-secrets   # Passwords
-    switcheroo      # Image converter
+    # gnome-secrets   # Passwords
     hydrapaper      # Gnome utility for multi-screen wlpaper
-    eyedropper      # Colour picker
-    papers          # PDF reader
+
 
     qalculate-gtk   # Algebraic calculator
 
@@ -157,26 +165,29 @@ return {
     darktable # Photo manager and raw developer
     shotwell # Photo manager
     inkscape # Vector graphics editor
-    gimp # GNU Image Manipulation Program
+    # might lowkey prefer using it via flatpak. Easier with plugins
+    # gimp # GNU Image Manipulation Program
+    # gimpPlugins.lqrPlugin
     hugin # Panorama stitcher
     ffmpeg # Audio/video cli tools
-    rnote # Drawing software
+    # rnote # Drawing software
     identity # Compare photos and videos
-    video-trimmer
 
     # Utilities
-    warp # File sharing tool
+    # warp # File sharing tool
     impression # Disk image etcher
+    # video-trimmer
 
     pwvucontrol # Disables monitor audio sleep while running
 
     discord
     ungoogled-chromium # for limnu
-    tangram # Run web apps on desktop
+    # tangram # Run web apps on desktop
 
     # coding
     vscodium
     zed-editor
+    flatpak-builder # nix packaged one works while flatpackaged one doesn't...
 
     # Now Handled by rust-devshells flake
     # https://github.com/AbrasiveAlmond/rust-dev-flake
@@ -198,25 +209,18 @@ return {
     ++
     (with pkgs; [
     # Due to bug in Zed editor dependency user fonts aren't detected
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto" # HM nerdfonts aren't working in zed editor
-        "FiraCode"
-      ];
-    })
     linux-wifi-hotspot
-    errands
+    # errands
     kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
     # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
     ddcutil # Brightness
 
     pika-backup # Backup manager
     ])
-    ++
-    (with inputs; [
-    zen-browser.packages.x86_64-linux.default
-    ])
+    # ++
+    # (with inputs; [
+    # zen-browser.packages.x86_64-linux.default
+    # ])
     ++
     (with pkgs.gnomeExtensions; [
     # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)

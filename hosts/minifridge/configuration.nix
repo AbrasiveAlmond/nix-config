@@ -21,21 +21,32 @@
 
     ../../common/nixos/hotspot.nix
     ./immich.nix
+    # ./hotspot.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules
 
     # modules from nixos-hardware repo:
+    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
+  system.autoUpgrade.enable = true; # occasionally executes a nixos --switch
+  # Revert to old kernel because the latest one may be the cause
+# of my desktop freezing after some minutes running.
+# https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
+# https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+
   gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
-    # Exclude random apps I don't care about
-    apps.excludes.enable = true;
   };
+
+  # enable virtualisation hypervisor for gnome boxes in hm
+  virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
 
   users.users = {
     quinnieboi = {
@@ -44,12 +55,12 @@
     };
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.docker.daemon.settings = {
-    data-root = "/srv/docker";
-    userland-proxy = false; # designed for Windoze
-  };
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.storageDriver = "btrfs";
+  # virtualisation.docker.daemon.settings = {
+  #   data-root = "/srv/docker";
+  #   userland-proxy = false; # designed for Windoze
+  # };
 
   programs.nix-ld.enable = true;
   services.tailscale = {
@@ -57,7 +68,15 @@
     useRoutingFeatures= "server";
   };
 
-  # services.onedrive.enable = true;
+  # Syncs folder by uploading and downloading to sync
+  # But it updates regularly and cannot function on
+  # anything but the most recent version, making regular
+  # use very hard via a system flake. It also has
+  # problems in general; often making -backup file duplicates
+  # services.onedrive= {
+  #   enable = true;
+  #   package = pkgs.unstable.onedrive;
+  # };
   # services.syncthing = {
   #   enable = true;
   #   user = "quinnieboi";
@@ -65,14 +84,12 @@
   #   configDir = "/home/quinnieboi/Documents/.config/syncthing";
   # };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "0xProto" # HM nerdfonts aren't working in zed editor
-        "FiraCode"
-      ];
-    })
+  fonts.packages = with pkgs.nerd-fonts; [
+    _0xproto
+    hack
+    jetbrains-mono
+    iosevka
+    fira-code
   ];
 
   # services.tailscale.enable = true;
@@ -114,17 +131,11 @@
   #### Open Tablet Driver ####
   hardware.opentabletdriver.enable = true;
 
-  environment.systemPackages = with pkgs; [ wget vim git ];
+  environment.systemPackages = with pkgs; [ wget vim git nixd ];
 
   nixpkgs = {
     config = {
       allowUnfree = true;
-      # TODO: Find what on earth is using these. Maybe vscode itself?
-      permittedInsecurePackages = [
-        "dotnet-runtime-6.0.36"
-        "dotnet-sdk-wrapped-6.0.428"
-        "dotnet-sdk-6.0.428"
-      ];
     };
   };
 
@@ -137,6 +148,7 @@
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
     };
+    optimise.automatic = true;
     # Opinionated: disable channels
     channel.enable = false;
 

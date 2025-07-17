@@ -16,6 +16,9 @@
   ;; Space and maths layer
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
 
+  ;; Outdated shift symbols layer
+  smb (tap-hold-press 150 150 (caps-word 2000) lsft)
+
   ;; Current symbols layer, on pinkies
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
 
@@ -151,9 +154,8 @@
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
 (defalias
-  ;; tap for normal, hold for layer choice
+  ;; tap for normal, hold for case switching
   case (tap-hold-press 150 150 ' (layer-while-held case-switch))
-  ;; located on ', escapes the sequence
   home (layer-switch colemak)
 )
 

@@ -4,7 +4,7 @@
     "org/gnome/shell/extensions/happy-appy-hotkey" = {
       number = 3;
       restrict-to-current-workspace = true;
-      "app-0" = "Console";
+      "app-0" = "Black Box";
       "app-1" = "Files";
       "app-2" = "Firefox";
       "app-3" = "Eyedropper";

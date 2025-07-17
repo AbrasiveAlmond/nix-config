@@ -11,13 +11,13 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -32,8 +32,6 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
-
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
@@ -52,7 +50,6 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    systems,
     nix-flatpak,
     rust-devShells,
     ...
@@ -63,8 +60,16 @@
     # pass to it, with each system as an argument
     # forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${prev.system}; };
-    overlayModule = ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay ]; });
+    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
+    unstableOverlay = ({ config, pkgs, ... }: {
+      nixpkgs = {
+        overlays = [
+          overlay
+        ];
+        config.allowUnfree = true; # not working for hm - weird temp solution going on
+      };
+    }
+    );
   in
   {
     # NixOS configuration entrypoint
@@ -74,10 +79,11 @@
       minifridge = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
+
         };
 
         modules = [
-          overlayModule
+          unstableOverlay
           ./hosts/minifridge/configuration.nix
         ];
       };
@@ -89,6 +95,7 @@
         };
 
         modules = [
+          unstableOverlay
           ./hosts/mainframe/configuration.nix
         ];
       };
@@ -128,8 +135,10 @@
             config.allowUnfree = true;
           };
         };
+
         modules = [
           ./hosts/minifridge/home.nix
+          unstableOverlay
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
@@ -142,6 +151,7 @@
         };
         modules = [
           ./hosts/mainframe/home.nix
+          unstableOverlay
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
