@@ -47,7 +47,7 @@
   (template-expand home-row-mod-taps
      sa   Ar   Cs   St   Sn   Ce   Ai   so
      a    r    s    t    n    e    i    o
-     @sym lalt lctl (layer-switch new_maths) rsft rctl lalt @sym
+     @sym lalt lctl lsft rsft rctl lalt @sym
   )
 
   ;; extra pinky mod taps below homerow
@@ -58,19 +58,6 @@
     $hold-time $left-hand-keys
   )
 
-  (template-expand mod-tap
-    Mz
-    z
-    lmet
-    $hold-time $left-hand-keys
-  )
-
-  (template-expand mod-tap
-    Mz
-    z
-    lmet
-    $hold-time $left-hand-keys
-  )
 
   /_ (fork
     /
@@ -176,6 +163,7 @@
 
 ;; include
 (include ./layers/maths.kbd)
+;;(include ./layers/new_maths.kbd)
 (include ./layers/text-navigation.kbd)
 (include ./layers/symbols.kbd)
 
