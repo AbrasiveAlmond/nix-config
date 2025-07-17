@@ -17,7 +17,7 @@
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
 
   ;; Outdated shift symbols layer
-  smb (tap-hold-press 150 150 ret (layer-while-held shift_symbols))
+  smb (tap-hold-press 150 150 (caps-word 2000) lsft)
 
   ;; Current symbols layer, on pinkies
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
@@ -36,7 +36,7 @@
 (deflayer colemak
   tab  @cq  @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
   @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
-  lsft @Mz  x    c    d     v    k    h    ,    .    @M/   rsft
+  @smb @Mz  x    c    d     v    k    h    ,    .    @M/   @smb
   lctl lmet @num          @spc            ralt rmet rctl
 )
 
