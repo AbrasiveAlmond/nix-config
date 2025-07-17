@@ -55,7 +55,6 @@
     $hold-time $left-hand-keys
   )
 
-
   /_ (fork
     /
     -
@@ -148,7 +147,6 @@
   (   b) @St
   (a  b) S-6
 )
-
 
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
