@@ -24,8 +24,6 @@
 
   ;; Num-word
   num (layer-switch maths)
-
-  shf (tap-hold-press 150 150 (caps-word 2000) lsft)
 )
 
 (defsrc
