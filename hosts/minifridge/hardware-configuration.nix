@@ -18,7 +18,7 @@
     {
       device = "/dev/disk/by-uuid/cb5d3e45-a898-46a0-88c8-8d86fb2bec9a";
       fsType = "btrfs";
-      options = [ "subvol=@" "noatime" "nodiratime" "discard" ];
+      options = [ "subvol=@" "noatime" "nodiratime" ];
     };
 
   # 1TB m.2 NVME SSD | 860 QVO
