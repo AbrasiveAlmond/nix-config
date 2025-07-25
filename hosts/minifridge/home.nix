@@ -54,6 +54,12 @@
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv = true;
+  };
+
   nixpkgs = {
     config = {
       # Disable if you don't want unfree packages
