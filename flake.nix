@@ -33,15 +33,23 @@
       flake = false;
     };
 
-    nvchad4nix = {
-      url = "github:nix-community/nix4nvchad";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nvchad4nix = {
+    #   url = "github:nix-community/nix4nvchad";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    flake-utils.url = "github:numtide/flake-utils";
 
     # Another repository to hold development flakes, could be integrated into this one
     rust-devShells = {
       url = "github:AbrasiveAlmond/rust-dev-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    python-devShells = {
+      url = "github:AbrasiveAlmond/python-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
@@ -51,7 +59,6 @@
     nixpkgs-unstable,
     home-manager,
     nix-flatpak,
-    rust-devShells,
     ...
   } @ inputs: let
     inherit (self) outputs;

@@ -10,7 +10,7 @@
     # outputs.homeManagerModules
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-flatpak.homeManagerModules.nix-flatpaka
-    inputs.nvchad4nix.homeManagerModule
+    # inputs.nvchad4nix.homeManagerModule
 
     # ../apps
     # ../../common/home/hotspot.nix
@@ -66,47 +66,42 @@
       #     "morgen"
       #     "obsidian"
       #   ];
-      allowUnfreePredicate = (_: true);
+      # allowUnfreePredicate = (_: true);
     };
 
-    overlays = [
-      (final: prev: {
-        nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-      })
-    ];
+    # overlays = [
+    #   (final: prev: {
+    #     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+    #   })
+    # ];
   };
-
-  # Config is entirely imperative :\
-  # services.syncthing = {
-  #   enable = true;
-  # };
 
   services.kanata.enable = true;
   fonts.fontconfig.enable = true;
 
   # https://github.com/nix-community/nix4nvchad?tab=readme-ov-file#available-options
-  programs.nvchad = {
-    enable = true;
-    hm-activation = true;
-    backup = false;
-    # Loaded by lazy.nvim
-    extraPlugins = ''
-return {
-  {
-    "nvim-lspconfig/nvim-lspconfig",
-    opts = { servers = { rust_analyzer = { enabled = true }, }, },
-  }
-};
-    '';
-    extraPackages = with pkgs; [
-      emmet-language-server
-      nixd
-      (python3.withPackages(ps: with ps; [
-        python-lsp-server
-        flake8
-      ]))
-    ];
-  };
+#   programs.nvchad = {
+#     enable = true;
+#     hm-activation = true;
+#     backup = false;
+#     # Loaded by lazy.nvim
+#     extraPlugins = ''
+# return {
+#   {
+#     "nvim-lspconfig/nvim-lspconfig",
+#     opts = { servers = { rust_analyzer = { enabled = true }, }, },
+#   }
+# };
+#     '';
+#     extraPackages = with pkgs; [
+#       emmet-language-server
+#       nixd
+#       (python3.withPackages(ps: with ps; [
+#         python-lsp-server
+#         flake8
+#       ]))
+#     ];
+#   };
 
   # switch to diff syntax like below
   # would require using overlays
@@ -243,6 +238,7 @@ return {
 
   nix.registry = {
     rust.flake = inputs.rust-devShells;
+    python.flake = inputs.python-devShells;
   };
 
   # Why must they be reset if not manually defined. I would much prefer imperative usage
