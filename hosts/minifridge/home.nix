@@ -57,8 +57,9 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
-    nix-direnv = true;
+    nix-direnv.enable = true;
   };
+  programs.bash.enable = true;
 
   nixpkgs = {
     config = {
