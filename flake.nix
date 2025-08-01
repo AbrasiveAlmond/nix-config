@@ -53,124 +53,127 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    nix-flatpak,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
-    # forAllSystems = nixpkgs.lib.genAttrs systems;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      nix-flatpak,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
+      # This is a function that generates an attribute by calling a function you
+      # pass to it, with each system as an argument
+      # forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
-    unstableOverlay = ({ config, pkgs, ... }: {
-      nixpkgs = {
-        overlays = [
-          overlay
-        ];
-        config.allowUnfree = true; # not working for hm - weird temp solution going on
-      };
-    }
-    );
-  in
-  {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      # Main desktop
-      minifridge = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-
-        };
-
-        modules = [
-          unstableOverlay
-          ./hosts/minifridge/configuration.nix
-        ];
-      };
-
-      # Dell Inspiron 5502
-      mainframe = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          unstableOverlay
-          ./hosts/mainframe/configuration.nix
-        ];
-      };
-
-      homelab = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          ./hosts/homelab/configuration.nix
-        ];
-      };
-
-      # 2010/11 MacBook Pro
-      stone-tablet = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          ./hosts/stone-tablet/configuration.nix
-        ];
-      };
-    };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      # Personal Desktop
-      "quinnieboi@minifridge" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {
-          inherit inputs outputs nix-flatpak;
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
+      overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
+      unstableOverlay = (
+        { config, pkgs, ... }:
+        {
+          nixpkgs = {
+            overlays = [
+              overlay
+            ];
+            config.allowUnfree = true; # not working for hm - weird temp solution going on
           };
+        }
+      );
+    in
+    {
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        # Main desktop
+        minifridge = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            unstableOverlay
+            ./hosts/minifridge/configuration.nix
+          ];
         };
 
-        modules = [
-          ./hosts/minifridge/home.nix
-          unstableOverlay
-          nix-flatpak.homeManagerModules.nix-flatpak
-        ];
-      };
+        # Dell Inspiron 5502
+        mainframe = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
 
-      # Dell Inspiron 5502
-      "busyboy@mainframe" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
+          modules = [
+            unstableOverlay
+            ./hosts/mainframe/configuration.nix
+          ];
         };
-        modules = [
-          ./hosts/mainframe/home.nix
-          unstableOverlay
-          nix-flatpak.homeManagerModules.nix-flatpak
-        ];
+
+        homelab = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            ./hosts/homelab/configuration.nix
+          ];
+        };
+
+        # 2010/11 MacBook Pro
+        stone-tablet = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            ./hosts/stone-tablet/configuration.nix
+          ];
+        };
       };
 
-      # 2010/11 MacBook Pro
-      "quinnieboi@stone-tablet" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/stone-tablet/home.nix
-        ];
+      # Standalone home-manager configuration entrypoint
+      # Available through 'home-manager --flake .#your-username@your-hostname'
+      homeConfigurations = {
+        # Personal Desktop
+        "quinnieboi@minifridge" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = {
+            inherit inputs outputs nix-flatpak;
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          };
+
+          modules = [
+            ./hosts/minifridge/home.nix
+            unstableOverlay
+            nix-flatpak.homeManagerModules.nix-flatpak
+          ];
+        };
+
+        # Dell Inspiron 5502
+        "busyboy@mainframe" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./hosts/mainframe/home.nix
+            unstableOverlay
+            nix-flatpak.homeManagerModules.nix-flatpak
+          ];
+        };
+
+        # 2010/11 MacBook Pro
+        "quinnieboi@stone-tablet" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/stone-tablet/home.nix
+          ];
+        };
       };
     };
-  };
 }
