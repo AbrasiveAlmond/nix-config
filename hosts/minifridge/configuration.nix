@@ -34,11 +34,6 @@
   ];
 
   system.autoUpgrade.enable = true; # occasionally executes a nixos --switch
-  # Revert to old kernel because the latest one may be the cause
-  # of my desktop freezing after some minutes running.
-  # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
-  # https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   gnome = {
     # Enable the GNOME Desktop Environment.
@@ -211,16 +206,24 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
 
+  # Revert to old kernel because the latest one may be the cause
+  # of my desktop freezing after some minutes running.
+  # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
+  # https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
+
   # Bootloader configuration
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
     kernelModules = [
       "i2c-dev"
       "ddcci_backlight"
       "uinput"
     ];
-    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
+
     kernelParams = [
       "quiet"
       "splash"
