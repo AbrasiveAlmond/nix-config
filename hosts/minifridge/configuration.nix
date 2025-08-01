@@ -7,6 +7,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -199,9 +200,10 @@
       registry = {
         # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
         nixpkgs.flake = inputs.nixpkgs;
+        nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
 
         # https://github.com/clo4/nix-dotfiles/blob/cccef7267a0580e7277ae79377942cbdcd9517a1/systems/host.nix#L42
-        my.flake = inputs.self;
+        # my.flake = inputs.self;
       };
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
@@ -216,7 +218,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+    kernelPackages = pkgs-unstable.linuxKernel.packages.linux_latest;
     kernelModules = [
       "i2c-dev"
       "ddcci_backlight"
