@@ -218,7 +218,8 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    kernelPackages = pkgs-unstable.linuxKernel.packages.linux_latest;
+    # "pkgs-unstable is missing"
+    kernelPackages = pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "i2c-dev"
       "ddcci_backlight"
