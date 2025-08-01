@@ -1,11 +1,11 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
   programs = {
     steam = {
       enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
-      localNetworkGameTransfers = true;
+      localNetworkGameTransfers.openFirewall = true;
       extest.enable = true;
       extraPackages = with pkgs; [
         gamescope
