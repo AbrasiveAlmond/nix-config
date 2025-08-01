@@ -31,7 +31,8 @@
       onCalendar = "daily";
     };
 
-    packages = [ # All installing from flathub stable by default
+    packages = [
+      # All installing from flathub stable by default
       "dev.bragefuglseth.Keypunch"
       "re.sonny.Workbench"
       # "io.gitlab.librewolf-community" # deal with switching later if I care
@@ -58,6 +59,8 @@
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
+    silent = true;
+    # shows all changed env variables otherwise.
   };
   programs.bash.enable = true;
 
@@ -87,28 +90,28 @@
   fonts.fontconfig.enable = true;
 
   # https://github.com/nix-community/nix4nvchad?tab=readme-ov-file#available-options
-#   programs.nvchad = {
-#     enable = true;
-#     hm-activation = true;
-#     backup = false;
-#     # Loaded by lazy.nvim
-#     extraPlugins = ''
-# return {
-#   {
-#     "nvim-lspconfig/nvim-lspconfig",
-#     opts = { servers = { rust_analyzer = { enabled = true }, }, },
-#   }
-# };
-#     '';
-#     extraPackages = with pkgs; [
-#       emmet-language-server
-#       nixd
-#       (python3.withPackages(ps: with ps; [
-#         python-lsp-server
-#         flake8
-#       ]))
-#     ];
-#   };
+  #   programs.nvchad = {
+  #     enable = true;
+  #     hm-activation = true;
+  #     backup = false;
+  #     # Loaded by lazy.nvim
+  #     extraPlugins = ''
+  # return {
+  #   {
+  #     "nvim-lspconfig/nvim-lspconfig",
+  #     opts = { servers = { rust_analyzer = { enabled = true }, }, },
+  #   }
+  # };
+  #     '';
+  #     extraPackages = with pkgs; [
+  #       emmet-language-server
+  #       nixd
+  #       (python3.withPackages(ps: with ps; [
+  #         python-lsp-server
+  #         flake8
+  #       ]))
+  #     ];
+  #   };
 
   # switch to diff syntax like below
   # would require using overlays
@@ -124,124 +127,125 @@
   #  }
   # }
 
-  home.packages = with pkgs;
-    (with pkgs-unstable; [ # cannot use pkgs.unstable due to strange unfree attribute not setting
+  home.packages =
+    with pkgs;
+    (with pkgs-unstable; [
+      # cannot use pkgs.unstable due to strange unfree attribute not setting
 
-    gnomeExtensions.gsconnect
-    onedrivegui
+      gnomeExtensions.gsconnect
+      onedrivegui
 
-    obsidian
-    morgen
-    bitwarden-desktop
-    valent
-    lutris
-    cartridges
+      obsidian
+      morgen
+      bitwarden-desktop
+      valent
+      lutris
+      cartridges
 
-    qemu
-    # gnome-boxes
+      qemu
+      # gnome-boxes
 
-    # goldwarden # Couldn't get api keys to work :/
-    # bottles         # Run windows apps # Removed due to build errs + I don't use
-    # plots         # Worse desmos
-    # amberol         # Music player
-    # shortwave       # Internet radio player
-    # mission-center  # Task manager
-    # sysprof       # System Profiler
+      # goldwarden # Couldn't get api keys to work :/
+      # bottles         # Run windows apps # Removed due to build errs + I don't use
+      # plots         # Worse desmos
+      # amberol         # Music player
+      # shortwave       # Internet radio player
+      # mission-center  # Task manager
+      # sysprof       # System Profiler
 
-    # Gnome apps
-    fragments       # BitTorrent
-    # varia           # Download manager with torrent support and browser integration
-    # gnome-secrets   # Passwords
-    hydrapaper      # Gnome utility for multi-screen wlpaper
+      # Gnome apps
+      fragments # BitTorrent
+      # varia           # Download manager with torrent support and browser integration
+      # gnome-secrets   # Passwords
+      hydrapaper # Gnome utility for multi-screen wlpaper
 
+      qalculate-gtk # Algebraic calculator
 
-    qalculate-gtk   # Algebraic calculator
+      # Social
+      tuba # Browse the fediverse
+      fractal # Matrix Client
+      gnome-feeds # RSS Feeds
+      spotify
 
-    # Social
-    tuba # Browse the fediverse
-    fractal # Matrix Client
-    gnome-feeds # RSS Feeds
-    spotify
+      # Image editing
+      darktable # Photo manager and raw developer
+      shotwell # Photo manager
+      inkscape # Vector graphics editor
+      # might lowkey prefer using it via flatpak. Easier with plugins
+      # gimp # GNU Image Manipulation Program
+      # gimpPlugins.lqrPlugin
+      hugin # Panorama stitcher
+      ffmpeg # Audio/video cli tools
+      # rnote # Drawing software
+      identity # Compare photos and videos
 
-    # Image editing
-    darktable # Photo manager and raw developer
-    shotwell # Photo manager
-    inkscape # Vector graphics editor
-    # might lowkey prefer using it via flatpak. Easier with plugins
-    # gimp # GNU Image Manipulation Program
-    # gimpPlugins.lqrPlugin
-    hugin # Panorama stitcher
-    ffmpeg # Audio/video cli tools
-    # rnote # Drawing software
-    identity # Compare photos and videos
+      # Utilities
+      # warp # File sharing tool
+      impression # Disk image etcher
+      # video-trimmer
 
-    # Utilities
-    # warp # File sharing tool
-    impression # Disk image etcher
-    # video-trimmer
+      pwvucontrol # Disables monitor audio sleep while running
 
-    pwvucontrol # Disables monitor audio sleep while running
+      discord
+      ungoogled-chromium # for limnu
+      # tangram # Run web apps on desktop
 
-    discord
-    ungoogled-chromium # for limnu
-    # tangram # Run web apps on desktop
+      # coding
+      vscodium
+      zed-editor
+      flatpak-builder # nix packaged one works while flatpackaged one doesn't...
 
-    # coding
-    vscodium
-    zed-editor
-    flatpak-builder # nix packaged one works while flatpackaged one doesn't...
+      # Now Handled by rust-devshells flake
+      # https://github.com/AbrasiveAlmond/rust-dev-flake
+      # cargo
+      # gcc
+      # rustc
+      rust-analyzer
+      # rustup # collides with cargo
+      gnome-builder
+      gnome-extensions-cli
+      libsecret
+      tree
+      # zoxide
+      # nixd
+      nil
 
-    # Now Handled by rust-devshells flake
-    # https://github.com/AbrasiveAlmond/rust-dev-flake
-    # cargo
-    # gcc
-    # rustc
-    rust-analyzer
-    # rustup # collides with cargo
-    gnome-builder
-    gnome-extensions-cli
-    libsecret
-    tree
-    # zoxide
-    # nixd
-    nil
-
-    vivid
+      vivid
     ])
-    ++
-    (with pkgs; [
-    # Due to bug in Zed editor dependency user fonts aren't detected
-    linux-wifi-hotspot
-    # errands
-    kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
-    # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
-    ddcutil # Brightness
+    ++ (with pkgs; [
+      open-sans
 
-    pika-backup # Backup manager
+      # Due to bug in Zed editor dependency user fonts aren't detected
+      linux-wifi-hotspot
+      # errands
+      kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
+      # ddcui # Boot-kernel module "ddcci_backlight" for brightness control
+      ddcutil # Brightness
+
+      pika-backup # Backup manager
     ])
     # ++
     # (with inputs; [
     # zen-browser.packages.x86_64-linux.default
     # ])
-    ++
-    (with pkgs.gnomeExtensions; [
-    # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)
-    # Gnome Extensions
-    vertical-workspaces             # Nicer workspaces overview
-    reboottouefi                    # Adds uefi boot option
-    happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
-    dual-shock-4-battery-percentage # power level in top panel
-    blur-my-shell                   # Blurry shell is a needed ux improvement
-    caffeine                        # Keep PC on
-    hide-top-bar
-    tactile                         # Tile windows using a custom grid.
-    gtile                           # another tiling thing
-    tiling-assistant                # Windows-like tiling
-    middle-click-to-close-in-overview # Much better.
-    control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
-    burn-my-windows                 # Visual swag
-    tailscale-qs
-  ]);
+    ++ (with pkgs.gnomeExtensions; [
+      # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)
+      # Gnome Extensions
+      vertical-workspaces # Nicer workspaces overview
+      reboottouefi # Adds uefi boot option
+      happy-appy-hotkey # Assign hotkeys to apps to focus or launch them
+      dual-shock-4-battery-percentage # power level in top panel
+      blur-my-shell # Blurry shell is a needed ux improvement
+      caffeine # Keep PC on
+      hide-top-bar
+      tactile # Tile windows using a custom grid.
+      gtile # another tiling thing
+      tiling-assistant # Windows-like tiling
+      middle-click-to-close-in-overview # Much better.
+      control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
+      burn-my-windows # Visual swag
+      tailscale-qs
+    ]);
 
   nix.registry = {
     rust.flake = inputs.rust-devShells;

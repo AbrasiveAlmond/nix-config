@@ -8,7 +8,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -34,9 +35,9 @@
 
   system.autoUpgrade.enable = true; # occasionally executes a nixos --switch
   # Revert to old kernel because the latest one may be the cause
-# of my desktop freezing after some minutes running.
-# https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
-# https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
+  # of my desktop freezing after some minutes running.
+  # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
+  # https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   gnome = {
@@ -51,7 +52,14 @@
   users.users = {
     quinnieboi = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "i2c" "uinput" "input" "docker" ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "i2c"
+        "uinput"
+        "input"
+        "docker"
+      ];
     };
   };
 
@@ -65,7 +73,7 @@
   programs.nix-ld.enable = true;
   services.tailscale = {
     enable = true;
-    useRoutingFeatures= "server";
+    useRoutingFeatures = "server";
   };
 
   # Syncs folder by uploading and downloading to sync
@@ -84,13 +92,12 @@
   #   configDir = "/home/quinnieboi/Documents/.config/syncthing";
   # };
   hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-      # Enable experimental features to see battery
-      # level of connected devices.
-      settings.General.Experimental = true;
-      # package = pkgs.bluezFull;
-    };
+    enable = true;
+    powerOnBoot = false;
+    # Enable experimental features to see battery
+    # level of connected devices.
+    settings.General.Experimental = true;
+  };
 
   fonts.packages = with pkgs.nerd-fonts; [
     _0xproto
@@ -103,6 +110,33 @@
   # services.tailscale.enable = true;
   services.ddccontrol.enable = true;
   hardware.i2c.enable = true;
+
+  # Disable until further notice, rebuilding system with 'doas'
+  # does not work :/ "error: opening Git repository "/home/quinnieboi/nix-config": repository path '/home/quinnieboi/nix-config' is not owned by current user"
+  # security = {
+  #   sudo.enable = true;
+  #   doas.enable = true;
+  #   doas.extraRules = [
+  #     # Allow execution of any command by any user in group doas, requiring
+  #     # a password and keeping any previously-defined environment variables.
+  #     {
+  #       groups = [ "doas" ];
+  #       noPass = false;
+  #       keepEnv = true;
+  #     }
+
+  #     # Allow execution of `create_ap` by user `quinnieboi`,
+  #     # without a password.
+  #     {
+  #       # groups = [ "bar" ];
+  #       users = [ "quinnieboi" ];
+  #       runAs = "root";
+  #       noPass = true;
+  #       cmd = "/home/quinnieboi/.nix-profile/bin/create_ap";
+  #       # args = [ ];
+  #     }
+  #   ];
+  # };
 
   # accessed via home-manager modules
   # TODO: Configuration requires single file, not directory
@@ -117,7 +151,6 @@
   #   };
   # };
 
-  # Noticed zero difference with this on
   hardware.graphics.enable = true;
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
@@ -125,7 +158,6 @@
 
   networking = {
     hostName = "minifridge";
-    # Enable networkinge
     networkmanager.enable = true;
   };
 
@@ -134,12 +166,17 @@
 
   # Loads ceratin qmk udev rules. Ones missing in ">qmk setup"
   # Makes via work aswell: https://nixos.wiki/wiki/Qmk
-  hardware.keyboard.qmk.enable = false;
+  # hardware.keyboard.qmk.enable = true;
 
-  #### Open Tablet Driver ####
+  # Open Tablet Driver
   hardware.opentabletdriver.enable = true;
 
-  environment.systemPackages = with pkgs; [ wget vim git nixd ];
+  environment.systemPackages = with pkgs; [
+    wget
+    vim
+    git
+    nixd
+  ];
 
   nixpkgs = {
     config = {
@@ -147,35 +184,42 @@
     };
   };
 
-  nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
-    };
-    optimise.automatic = true;
-    # Opinionated: disable channels
-    channel.enable = false;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = config.nix.nixPath;
+      };
+      optimise.automatic = true;
+      # Opinionated: disable channels
+      channel.enable = false;
 
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = {
-      # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
-      nixpkgs.flake = inputs.nixpkgs;
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = {
+        # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
+        nixpkgs.flake = inputs.nixpkgs;
 
-      # https://github.com/clo4/nix-dotfiles/blob/cccef7267a0580e7277ae79377942cbdcd9517a1/systems/host.nix#L42
-      my.flake = inputs.self;
+        # https://github.com/clo4/nix-dotfiles/blob/cccef7267a0580e7277ae79377942cbdcd9517a1/systems/host.nix#L42
+        my.flake = inputs.self;
+      };
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
 
   # Bootloader configuration
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelModules = [ "i2c-dev" "ddcci_backlight" "uinput" ];
+    kernelModules = [
+      "i2c-dev"
+      "ddcci_backlight"
+      "uinput"
+    ];
     extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
     kernelParams = [
       "quiet"

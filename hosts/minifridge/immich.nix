@@ -1,5 +1,6 @@
-{pkgs,...}: {
-  services.immich  = {
+{ pkgs, ... }:
+{
+  services.immich = {
     enable = true;
     package = pkgs.unstable.immich;
     host = "100.99.19.37";
@@ -15,10 +16,14 @@
   # networking.networkmanager.unmanaged = [ "interface-name:ve-*" ];
 
   # for hardware accelerated video transcoding using VA-API
-  users.users.immich.extraGroups = [ "video" "render" ];
+  users.users.immich.extraGroups = [
+    "video"
+    "render"
+  ];
 
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
+  # networking.extraHosts = "100.99.19.37 quinnieboi";
   # users.groups.immich = {};
 
   # users.users.immich = {
