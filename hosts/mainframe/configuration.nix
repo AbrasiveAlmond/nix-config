@@ -8,18 +8,20 @@
   config,
   pkgs,
   ...
-}: {
-  imports = [ # Include the results of the hardware scan.
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     # ./battery.nix
 
     ../../common/nixos/ssh.nix
     ../../common/nixos/locale.nix
     ../../common/nixos/printing.nix
+    ../../common/nixos/gaming.nix
 
     ../../common/nixos/gnome
     ../../common/nixos/firefox.nix
-
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
@@ -48,7 +50,7 @@
   programs.nix-ld.enable = true;
   services.tailscale = {
     enable = true;
-    useRoutingFeatures= "client";
+    useRoutingFeatures = "client";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -96,18 +98,14 @@
     ];
   };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
-
-  programs.gamemode.enable = true;
-
   # creates a separate bootable config
   specialisation = {
     nvidia.configuration = {
       # Nvidia Configuration
-      services.xserver.videoDrivers = lib.mkForce [ "modesetting" "nvidia" ];
+      services.xserver.videoDrivers = lib.mkForce [
+        "modesetting"
+        "nvidia"
+      ];
       # enable discrete GPU in 24.11 or unstable
 
       hardware.nvidia = {
@@ -190,7 +188,7 @@
       services.xserver = {
         enable = true;
         desktopManager = {
-                   # gdm.enable = false;
+          # gdm.enable = false;
           # gnome.enable = false;
           # most lightweight supposedly
           xfce.enable = true;
@@ -233,7 +231,7 @@
     kernelModules = [
       "uinput"
     ];
-    extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
 
     # previously system would hang on shutdown if quiet is enabled
     # https://bbs.archlinux.org/viewtopic.php?id=276631
@@ -271,7 +269,9 @@
     config = {
       allowUnfree = true;
       # Nvidia drivers error otherwise
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
           "nvidia-x11"
           "nvidia-settings"
           "nvidia-persistenced"
@@ -279,25 +279,27 @@
     };
   };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
 
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = config.nix.nixPath;
+      };
+      # Opinionated: disable channels
+      channel.enable = false;
+      optimise.automatic = true;
+
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    # Opinionated: disable channels
-    channel.enable = false;
-    optimise.automatic = true;
-
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
 
   system.stateVersion = "24.05";
 }

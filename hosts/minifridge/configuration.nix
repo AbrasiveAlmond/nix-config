@@ -7,7 +7,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
@@ -20,6 +19,7 @@
     ../../common/nixos/printing.nix
     ../../common/nixos/ssh.nix
     ../../common/nixos/gnome
+    ../../common/nixos/gaming.nix
 
     ../../common/nixos/hotspot.nix
     ./immich.nix
