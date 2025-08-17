@@ -68,6 +68,9 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "libsoup-2.74.3"
+      ];
       # allowUnfreePredicate =
       #   pkg:
       #   builtins.elem (lib.getName pkg) [
@@ -214,6 +217,7 @@
     ])
     ++ (with pkgs; [
       open-sans
+      x2goclient
 
       # Due to bug in Zed editor dependency user fonts aren't detected
       linux-wifi-hotspot
