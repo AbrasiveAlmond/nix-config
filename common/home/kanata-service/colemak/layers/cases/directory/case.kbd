@@ -1,7 +1,7 @@
 (deflayer directory
   tab  q    @cw  @cf  p     b    j    l    @hu  y    ;
   @cps @sa  @cr  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-  @shf @Mz  x    c    d     v    k    h    ,  .  @M/   @shf
+  @shf @Mz  x    c    d     v    k    h    ,  .  _   @shf
   lctl lmet lalt        @spc-directory     _   _    _
 )
 

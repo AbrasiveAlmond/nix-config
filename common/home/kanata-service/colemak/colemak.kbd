@@ -36,7 +36,7 @@
 (deflayer colemak
   tab  @cq  @cw  @cf  @cp     b    j    @cl    @hu  @cy    ;
   @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
-  @shf @Mz  x    c    d     v    k    h    ,    .    @M/   @shf
+  @shf @Mz  x    c    d     v    k    h    ,    .    @M'   @shf
   lctl lmet lalt          @spc            ralt rmet rctl
 )
 
@@ -56,16 +56,17 @@
     $hold-time $left-hand-keys
   )
 
-  /_ (fork
-    /
+  ;; apostrophe and underscore
+  '_ (fork
+    '
     -
     (lsft)
   )
 
   ;; extra pinky mod taps below homerow
   (template-expand mod-tap
-    M/
-    @/_
+    M'
+    @'_
     lmet
     $hold-time $right-hand-keys
   )
