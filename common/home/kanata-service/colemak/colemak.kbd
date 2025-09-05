@@ -2,10 +2,10 @@
   process-unmapped-keys yes
   concurrent-tap-hold yes
   log-layer-changes no
-  linux-dev (
-    /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
-    /dev/input/event2 ;; Laptop keyboard
-  )
+  ;;linux-dev (
+  ;;  /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
+  ;;  /dev/input/event2 ;; Laptop keyboard
+  ;;)
 )
 
 ;; layer switching

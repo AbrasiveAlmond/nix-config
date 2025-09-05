@@ -139,7 +139,6 @@
       onedrivegui
 
       obsidian
-      morgen
       bitwarden-desktop
       valent
       lutris

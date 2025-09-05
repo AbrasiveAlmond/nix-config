@@ -1,0 +1,10 @@
+/*menuitem >*/
+#context-bookmarklink, #context-openlinkinusercontext-menu {
+	display: none;
+}
+#context-savelink, /*save link as */
+#context-stripOnShareLink, /* copy clean link */
+#context-inspect-a11y, /*inspect accessible properties*/
+#context-savepage, /* save page as */
+#context-selectall, /* Select All */
+#context-viewsource
