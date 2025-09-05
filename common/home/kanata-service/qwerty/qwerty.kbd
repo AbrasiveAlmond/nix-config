@@ -12,25 +12,29 @@
 )
 
 (deflayer qwerty
-     tab  q    w    e    r    t    y    u    i    o    p          
+     tab  q    w    e    r    t    y    u    i    o    p
      @cps a    s    d    f    g    h    j    k    l    ;   '
      lsft z    x    c    v    b    n    m    ,    .    /    rsft
      lctl lmet lalt          spc            @alg rmet rctl
 )
 
-(deflayer arrows
-     _    esc  _    _    _    _    pgup home up   end  _
-     @cps @met @alt @ctl @sft _    pgdn left down rght @bwd _
-     _    _    _    _    _    _    bspc del  _    _    _    _
-     _    _    _              _           lrld _    lrnx 
-)
-
+(include ../colemak/layers/text-navigation.kbd)
 (defalias
-  bwd C-bspc
-  sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
-  ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
-  alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
-  met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
-  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt)
   cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
+  alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt)
 )
+;;(deflayer arrows
+;;     _    esc  _    _    _    _    pgup home up   end  _
+;;     @cps @met @alt @ctl @sft _    pgdn left down rght @bwd _
+;;     _    _    _    _    _    _    bspc del  _    _    _    _
+;;     _    _    _              _           lrld _    lrnx
+;;)
+
+;;(defalias
+;;  bwd C-bspc
+;;  sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
+;;  ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
+;;  alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
+;;  met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
+;;  cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
+;;)

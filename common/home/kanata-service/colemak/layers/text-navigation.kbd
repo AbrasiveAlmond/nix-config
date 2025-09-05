@@ -1,7 +1,7 @@
 (deflayer arrows
      _    @und @cut @cpy @pst _   pgup home up   end  @lineend
      _    @met @alt @ctl @sft _   pgdn left down rght ret _
-     _    _    _    @met _    _   bspc del  _    _    _   _
+     _    _    _    @met _    _ C-bspc bspc del  _    _   _
      _    _    caps           _             lrld _    lrnx
 )
 
