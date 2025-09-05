@@ -1,11 +1,7 @@
 (deflayer case-switch
   tab  q    @cw  @cf     p     b    j    l    @hu  y    ;
   @cps @sa  @cr  @snake  @St   g    m    @Sn  @Ce  @Ai  @so   @home
-<<<<<<< HEAD
   @shf @Mz  x    @camel  @dir  v    @kebab h    ,  .  _   @shf
-=======
-  @shf @Mz  x    @camel  @dir  v    @kebab h    ,  .  @M/   @shf
->>>>>>> kanata
   lctl lmet lalt          @spc            ralt rmet rctl
 )
 
