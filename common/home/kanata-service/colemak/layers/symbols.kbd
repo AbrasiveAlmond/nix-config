@@ -6,6 +6,10 @@
 )
 
 (defalias
+  = (macro =) ;; only rapid fire =+ doesn't work.
+  ;; fixes trouble with unshift causing => roll (right after layer switch)
+  ;; causing kanata to output .= or ,=.
+  ;;= (macro (unmod =) =) ;; This is the old implementation
   | S-\
   & S-7
   # S-3
