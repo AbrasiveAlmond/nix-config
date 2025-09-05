@@ -35,7 +35,7 @@ in {
 
         # Move config into nix store then harden by disabling access to home directory
         WorkingDirectory = kanataFolder;
-        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/colemak/colemak.kbd -c ${kanataFolder}/qwerty/qwerty.kbd";
+        ExecStart = (pkgs.kanata) + "/bin/kanata -c ${kanataFolder}/colemak.kbd -c ${kanataFolder}/qwerty.kbd";
 
         Type = "exec";
         Restart = "no";

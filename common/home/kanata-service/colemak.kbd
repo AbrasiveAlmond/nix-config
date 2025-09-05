@@ -162,7 +162,6 @@
 
 ;; include
 (include ./layers/maths.kbd)
-;;(include ./layers/new_maths.kbd)
 (include ./layers/text-navigation.kbd)
 (include ./layers/symbols.kbd)
 
