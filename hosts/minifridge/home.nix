@@ -139,7 +139,10 @@
       onedrivegui
 
       obsidian
+<<<<<<< HEAD
       morgen
+=======
+>>>>>>> firefox_tweaks
       bitwarden-desktop
       valent
       lutris

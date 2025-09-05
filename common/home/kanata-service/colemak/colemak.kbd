@@ -1,11 +1,19 @@
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes
+<<<<<<< HEAD
   log-layer-changes yes
   linux-dev (
     /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
     /dev/input/event2 ;; Laptop keyboard
   )
+=======
+  log-layer-changes no
+  ;;linux-dev (
+  ;;  /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
+  ;;  /dev/input/event2 ;; Laptop keyboard
+  ;;)
+>>>>>>> firefox_tweaks
 )
 
 ;; layer switching
