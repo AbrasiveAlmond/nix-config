@@ -7,21 +7,22 @@
   config,
   pkgs,
   ...
-}: {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../common/nixos/locale.nix
-      ../../common/nixos/printing.nix
-      ../../common/nixos/ssh.nix
-      ../../common/nixos/gnome
-    ];
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../common/nixos/locale.nix
+    ../../common/nixos/printing.nix
+    ../../common/nixos/ssh.nix
+    ../../common/nixos/gnome
+  ];
 
-	gnome = {
+  gnome = {
     # Enable the GNOME Desktop Environment.
     enable = true;
     # Exclude random apps I don't care about
-    apps.excludes.enable = true;
+    # apps.excludes.enable = true;
   };
 
   #### Open Tablet Driver ####
@@ -49,23 +50,25 @@
     };
   };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
-    };
-    # Opinionated: disable channels
-    channel.enable = false;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = config.nix.nixPath;
+      };
+      # Opinionated: disable channels
+      channel.enable = false;
 
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -87,16 +90,21 @@
   users.users.quinnieboi = {
     isNormalUser = true;
     description = "Quinn Pearson";
-    extraGroups = [ "networkmanager" "wheel" "input" "uinput"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "input"
+      "uinput"
+    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
