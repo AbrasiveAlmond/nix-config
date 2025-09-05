@@ -19,14 +19,14 @@
     q w e r t
     a s d f g
     z x c v b
-    bspc ;; esc mlft mrgt spc tab
+    ;;bspc esc ;;mlft mrgt spc tab
   ) ;; it takes less time to activate spc and tab when they're commented out
 
   right-hand-keys (
     y u i o p
     h j k l ;
     m , . /       ;; mouse buttons
-    bspc ;; esc mlft mrgt spc tab
+    ;;bspc esc mlft mrgt spc tab
   )
 )
 

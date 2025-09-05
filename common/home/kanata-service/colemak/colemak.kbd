@@ -1,19 +1,11 @@
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes
-<<<<<<< HEAD
-  log-layer-changes yes
-  linux-dev (
-    /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
-    /dev/input/event2 ;; Laptop keyboard
-  )
-=======
   log-layer-changes no
   ;;linux-dev (
   ;;  /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
   ;;  /dev/input/event2 ;; Laptop keyboard
   ;;)
->>>>>>> firefox_tweaks
 )
 
 ;; layer switching
@@ -24,14 +16,16 @@
   ;; Space and maths layer
   spc (tap-hold-release 150 150 spc (layer-toggle maths))
 
-  ;; Shift with caps-word one-shot
-  shf (tap-hold-press 150 150 (caps-word 2000) lsft)
+  ;; Outdated shift symbols layer
+  smb (tap-hold-press 150 150 (caps-word 2000) lsft)
 
   ;; Current symbols layer, on pinkies
   sym (tap-hold-release 150 150 (one-shot-press 800 (layer-while-held symbols)) (layer-while-held symbols))
 
   ;; Num-word
   num (layer-switch maths)
+
+  shf (tap-hold-press 150 150 (caps-word 2000) lsft)
 )
 
 (defsrc
