@@ -36,11 +36,26 @@
 )
 
 (deflayer colemak
-  tab  @cq  @cw  @cf  @cp   b    j    @cl    @hu  @cy    ;
-  @cps @ca  @cr  @cs  @ct   g    m    @cn  @he  @ci  @so   @case
-  @shf @Mz  x    c    d     v    k    h    ,    .    @M'   @shf
+  tab  q    w    f    p     b    j    l    u    y    ;
+  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
+  @shf @cz  @cx  @cc  @cd   v    k    h    ,    .    @M'   @shf
   lctl lmet lalt          @spc            ralt rmet rctl
 )
+
+;; jesus christ it has to be qwerty not colemak
+;; Does not work well with home-row-mods.
+;;(defchordsv2
+;;  ;; (h .) leader 80 all-released () ;; Use tap dance
+;;  (w r) C-w 80 all-released () ;; w p
+;;  (j m) @$ 80 all-released ()  ;; n h
+;;  (j u) ` 80 all-released ()   ;; n l
+;;  (k i) ret 80 all-released () ;; e u
+;;  (d e) tab 80 all-released () ;; s f
+;;  (s w) S-- 80 all-released ()   ;; r w
+;;  (f r) @'' 80 all-released () ;; t p
+;;  ;; o \ on cradio
+;;  ;;(; \) ' 150 all-release () ;; TODO: REMOVE. Only since cradio hasn't been flashed
+;;)
 
 (defalias
   ;; home-row
@@ -74,39 +89,7 @@
   )
 )
 
-(defalias
-  hu (chord enter a)
-  he (chord enter b)
-)
-
-(defchords enter 40
-  (a   ) u
-  (   b) @Ce
-  (a  b) ret
-)
-
-(defalias
-  cq (chord at a)
-  ca (chord at b)
-)
-
-(defchords at 140
-  (a   ) q
-  (   b) @sa
-  (a  b) S-2
-)
-
-(defalias
-  cw (chord ampersand a)
-  cr (chord ampersand b)
-)
-
-(defchords ampersand 80
-  (a   ) w
-  (   b) @Ar
-  (a  b) S-7
-)
-
+;; Tab chord mysteriously missing defalias
 (defalias
   cf (chord tab a)
   cs (chord tab b)
@@ -118,45 +101,67 @@
   (a  b) tab
 )
 
+;;(defalias
+;;  cu (chord enter a)
+;;  ck (chord enter b)
+;;)
+
+;; (defchords enter 40
+;;   (a   ) u
+;;   (   b) @Ce
+;;   (a  b) ret
+;; )
+
+;; cut, copy, and paste chords
 (defalias
-  cy (chord star a)
-  ci (chord star b)
+  cz (chord text-clipping z)
+  cx (chord text-clipping x)
+  cc (chord text-clipping c)
+  cd (chord text-clipping d)
 )
 
-(defchords star 40
-  (a   ) y
-  (   b) @Ai
-  (a  b) S-8
+(defchords text-clipping 80
+  (z      ) @Mz
+  (  x    ) x
+  (    c  ) c
+  (      d) d
+  (z x    ) @cut
+  (  x c  ) @cpy
+  (    c d) @pst
 )
 
 
-(defalias
-  cl (chord dollar a)
-  cn (chord dollar b)
-)
-
-(defchords dollar 40
-  (a   ) l
-  (   b) @Sn
-  (a  b) S-4
-)
-
-(defalias
-  cp (chord caret a)
-  ct (chord caret b)
-)
-
-(defchords caret 40
-  (a   ) p
-  (   b) @St
-  (a  b) S-6
-)
-
+;; Underscore chord
+;;(defalias
+;;  cw (chord underscore a)
+;;  cr (chord underscore b)
+;;)
+;;
+;;(defchords underscore 40
+;;  (a   ) w
+;;  (   b) @Ar
+;;  (a  b) S--
+;;)
+;;
+;;(defalias
+;;  cl (chord dollar a)
+;;  cn (chord dollar b)
+;;)
+;;
+;;(defchords dollar 40
+;;  (a   ) l
+;;  (   b) @Sn
+;;  (a  b) S-4
+;;)
+;; testing testing onEnneEEEEEnnnnEEE nnnenenenenEe
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
+;;(defalias
+;;  ;; tap for normal, hold for case switching
+;;  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
+;;  home (layer-switch colemak)
+;;)
 (defalias
-  ;; tap for normal, hold for case switching
-  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
   home (layer-switch colemak)
 )
 
@@ -165,10 +170,10 @@
 (include ./layers/text-navigation.kbd)
 (include ./layers/symbols.kbd)
 
-(include ./layers/case-switch.kbd)
-(include ./layers/cases/camelCase.kbd)
-(include ./layers/cases/snake_case.kbd)
-(include ./layers/cases/kebab-case.kbd)
-(include ./layers/cases/directory/case.kbd)
+;;(include ./layers/case-switch.kbd)
+;;(include ./layers/cases/camelCase.kbd)
+;;(include ./layers/cases/snake_case.kbd)
+;;(include ./layers/cases/kebab-case.kbd)
+;;(include ./layers/cases/directory/case.kbd)
 
 (include ./templates/homerow-mods-template.kbd)

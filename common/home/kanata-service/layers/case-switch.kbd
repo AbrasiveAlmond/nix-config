@@ -1,5 +1,5 @@
 (deflayer case-switch
-  tab  q    @cw  @cf     p     b    j    l    @hu  y    ;
+  tab  q    @cw  @cf     p     b    j    l    u  y    ;
   @cps @sa  @cr  @snake  @St   g    m    @Sn  @Ce  @Ai  @so   @home
   @shf @Mz  x    @camel  @dir  v    @kebab h    ,  .  _   @shf
   lctl lmet lalt          @spc            ralt rmet rctl
