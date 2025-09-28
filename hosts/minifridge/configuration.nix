@@ -219,7 +219,7 @@
     loader.efi.canTouchEfiVariables = true;
 
     # "pkgs-unstable is missing"
-    kernelPackages = pkgs.unstable.linuxPackages_latest;
+    # kernelPackages = pkgs.unstable.linuxPackages_latest;
     kernelModules = [
       "i2c-dev"
       "ddcci_backlight"
