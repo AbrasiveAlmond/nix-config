@@ -224,6 +224,7 @@
       "i2c-dev"
       "ddcci_backlight"
       "uinput"
+      "kvm-amd"
     ];
     extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
 
