@@ -1,24 +1,31 @@
-;; (deflayer symbols
-;;      _    '    @<   @>    @quo @|   @&   `    [    ]    @%
-;;      _    @!   -    @+    @=   @#   @?   @:   S-9 S-0   S-2   _
-;;      _    @^   /    @*    \    @bk  @~   @$   @{   @}   .     _
-;;      _    _    _              _              _    _    _
-;; )
+(deflayer symbols
+     _    '    @<   @>    @''  @|   @&   `    [    ]    @%
+     _    @!   -    @+    @=   @?   @#   @:   S-9 S-0   S-2   _
+     _    @^   /    @*    \    @bk  @~   @$   @{   @}   .     _
+     _    _    _              _              _    _    _
+)
 ;; The primary inspiration for my symbols layout comes from
 ;; https://getreuer.info/posts/keyboards/tour/index.html
 ;;(deflayer symbols
-;;     _    @%   @<   @>   @'' @|   @&   `    S-0  ]  @}
+;;     _    @%   @<   @>   @''  @|   @&   `    S-0  ]  @}
 ;;     _    @!   -    @+   @=   @?   @#   @:   S-9  [   @{   _
 ;;     _    S-2  /    @*   \    @bk  @~   @$   ,    .   '    _
 ;;     _    _    _              _              _    _    _
 ;;)
 
-(deflayer symbols
-     _    @%   [    ]    `   @|   @&   @$   @<   @>  _
-     _    S-2  S-9  S-0  @:  @#   @?   -   @+   @=  @!   _
-     _    S-2  @{   @}   @'' @bk  @~   /    _    _    _   _
-     _    _    _              _              _    _    _
-)
+;;(deflayer symbols
+;;     _    @%   [    ]    `   @|   @&   @$   @<   @>  _
+;;     _    S-2  S-9  S-0  @:  @#   @?   @=   @+   -   @!   _
+;;     _    S-2  @{   @}   @'' @bk  @~   /    _    _   _   _
+;;     _    _    _              _              _    _    _
+;;)
+
+;;(deflayer symbols
+;;     _    @%   @<   @>   @'' @|   @&   @{   [    ]    @}
+;;     _    @!   -    @+   @=   @?   @#   @:   S-9  S-0  S-2   _
+;;     _    @^   /    @*   \    @bk  @~   @$   _    _    _     _
+;;     _    _    _              _                _    _    _
+;;)
 
 ;; TODO: make (./ ~/ ../) combos of l+u n+e and h+, respectively
 ;; make ` ' " hold to become triple. If that doesn't feel nice, then

@@ -36,13 +36,13 @@
 )
 
 (deflayer colemak
-  tab  q    w    f    p     b    j    l    u    y    ;
-  @cps @sa  @Ar  @Cs  @St   g    m    @Sn  @Ce  @Ai  @so   '
-  @shf @cz  @cx  @cc  @cd   v    k    h    ,    .    @M'   @shf
+  tab  q    w    @cf  @cp   b    j    l    u    y    ;
+  @cps @sa  @Ar  @cs  @ct   g    m    @cn  @Ce  @Ai  @so   '
+  @shf @cz  @cx  @cc  @cd   v    k    @ch  ,    .    @M'   @shf
   lctl lmet lalt          @spc            ralt rmet rctl
 )
 
-;; jesus christ it has to be qwerty not colemak
+;; it has to be qwerty not colemak..
 ;; Does not work well with home-row-mods.
 ;;(defchordsv2
 ;;  ;; (h .) leader 80 all-released () ;; Use tap dance
@@ -54,7 +54,6 @@
 ;;  (s w) S-- 80 all-released ()   ;; r w
 ;;  (f r) @'' 80 all-released () ;; t p
 ;;  ;; o \ on cradio
-;;  ;;(; \) ' 150 all-release () ;; TODO: REMOVE. Only since cradio hasn't been flashed
 ;;)
 
 (defalias
@@ -89,7 +88,6 @@
   )
 )
 
-;; Tab chord mysteriously missing defalias
 (defalias
   cf (chord tab a)
   cs (chord tab b)
@@ -99,6 +97,28 @@
   (a   ) f
   (   b) @Cs
   (a  b) tab
+)
+
+(defalias
+  ch (chord dollar a)
+  cn (chord dollar b)
+)
+
+(defchords dollar 40
+  (a   ) h
+  (   b) @Sn
+  (a  b) S-4
+)
+
+(defalias
+  cp (chord apostrophe a)
+  ct (chord apostrophe b)
+)
+
+(defchords apostrophe 40
+  (a   ) p
+  (   b) @St
+  (a  b) S-'
 )
 
 ;;(defalias
@@ -143,17 +163,7 @@
 ;;  (a  b) S--
 ;;)
 ;;
-;;(defalias
-;;  cl (chord dollar a)
-;;  cn (chord dollar b)
-;;)
-;;
-;;(defchords dollar 40
-;;  (a   ) l
-;;  (   b) @Sn
-;;  (a  b) S-4
-;;)
-;; testing testing onEnneEEEEEnnnnEEE nnnenenenenEe
+
 ;; press ' then tap s,p,',', etc
 ;; for space == that letter
 ;;(defalias

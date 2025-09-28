@@ -40,7 +40,7 @@
       # can't figure it out declaratively so harden librewolf via this
       # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
       # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
-      "com.github.tchx84.Flatseal"
+      # "com.github.tchx84.Flatseal"
     ];
 
     remotes = [
@@ -131,7 +131,6 @@
   # }
 
   home.packages =
-    with pkgs;
     (with pkgs-unstable; [
       # cannot use pkgs.unstable due to strange unfree attribute not setting
 

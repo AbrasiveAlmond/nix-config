@@ -1,6 +1,6 @@
 (deflayer maths
-     _    @!   @srt /    -    @cos @sin @+   @*   @^   @=
-     @cps @s1  @ch2  @ch3  @ch4  5    6    @S7  @C8  @H9  @s0  @%
+     _    @!   @srt  @c/  -    @cos @sin @+   @*   @^   @=
+     @cps @s1  @H2  @c3  @S4  5    6    @S7  @C8  @H9  @s0  @%
      _    _    _    _    @bkt _    _    @bkt @csp _    _    _
      _    _    _              @spc-leave     _    _    _
 )
@@ -23,6 +23,17 @@
   + S-=
   ! S-1
   ~ S-`
+)
+
+(defalias
+  c3 (chord mathtab a)
+  c/ (chord mathtab b)
+)
+
+(defchords mathtab 80
+  (a   ) 3
+  (   b) @C3
+  (a  b) tab
 )
 
 ;; Maths
@@ -55,20 +66,20 @@
   )
 )
 
-(defalias
-  ch2 (chord left 2)
-  ch3 (chord left 3)
-  ch4 (chord left 4)
-)
-
-(defchords left 40
-  (2      ) @H2
-  (   3   ) @C3
-  (      4) @S4
-  (2  3   ) @cos
-  (   3  4) y
-  (2     4) @tan
-)
+;;(defalias
+;;  ch2 (chord left 2)
+;;  ch3 (chord left 3)
+;;  ch4 (chord left 4)
+;;)
+;;
+;;(defchords left 40
+;;  (2      ) @H2
+;;  (   3   ) @C3
+;;  (      4) @S4
+;;  (2  3   ) @cos
+;;  (   3  4) y
+;;  (2     4) @tan
+;;)
 
 ;; notes on experience thus far
 ;; much fewer occurances of sfbs than compared to num-pad style layouts.
