@@ -26,12 +26,12 @@
 )
 
 (defalias
-  c3 (chord mathtab a)
-  c/ (chord mathtab b)
+  c/ (chord mathtab a)
+  c3 (chord mathtab b)
 )
 
 (defchords mathtab 80
-  (a   ) 3
+  (a   ) /
   (   b) @C3
   (a  b) tab
 )
