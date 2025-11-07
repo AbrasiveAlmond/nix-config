@@ -92,72 +92,22 @@
   services.kanata.enable = true;
   fonts.fontconfig.enable = true;
 
-  # https://github.com/nix-community/nix4nvchad?tab=readme-ov-file#available-options
-  #   programs.nvchad = {
-  #     enable = true;
-  #     hm-activation = true;
-  #     backup = false;
-  #     # Loaded by lazy.nvim
-  #     extraPlugins = ''
-  # return {
-  #   {
-  #     "nvim-lspconfig/nvim-lspconfig",
-  #     opts = { servers = { rust_analyzer = { enabled = true }, }, },
-  #   }
-  # };
-  #     '';
-  #     extraPackages = with pkgs; [
-  #       emmet-language-server
-  #       nixd
-  #       (python3.withPackages(ps: with ps; [
-  #         python-lsp-server
-  #         flake8
-  #       ]))
-  #     ];
-  #   };
-
-  # switch to diff syntax like below
-  # would require using overlays
-  # which apparently can lead to more
-  # instances of nixpkgs about. Which is slow.
-  # home.packages = with pkgs; {
-  #  ...
-  #  unstable = {
-  #    ...
-  #  }
-  #  gnomeExtensions = {
-  #    ...
-  #  }
-  # }
-
   home.packages =
     (with pkgs-unstable; [
       # cannot use pkgs.unstable due to strange unfree attribute not setting
 
-      gnomeExtensions.gsconnect
       onedrivegui
 
       obsidian
       bitwarden-desktop
-      valent
+      #valent # Works, but I'll switch to gsconnect extension for nautilus and firefox integration
       lutris
       cartridges
 
       qemu
-      # gnome-boxes
-
-      # goldwarden # Couldn't get api keys to work :/
-      # bottles         # Run windows apps # Removed due to build errs + I don't use
-      # plots         # Worse desmos
-      # amberol         # Music player
-      # shortwave       # Internet radio player
-      # mission-center  # Task manager
-      # sysprof       # System Profiler
 
       # Gnome apps
       fragments # BitTorrent
-      # varia           # Download manager with torrent support and browser integration
-      # gnome-secrets   # Passwords
       hydrapaper # Gnome utility for multi-screen wlpaper
 
       qalculate-gtk # Algebraic calculator
@@ -214,10 +164,10 @@
       vivid
     ])
     ++ (with pkgs; [
+      # Due to bug in Zed editor dependency user fonts aren't detected
       open-sans
       x2goclient
 
-      # Due to bug in Zed editor dependency user fonts aren't detected
       linux-wifi-hotspot
       # errands
       kanata # Keyboard remapping software. I dont think the kanataservice module works without user installation..
@@ -225,14 +175,12 @@
       ddcutil # Brightness
 
       pika-backup # Backup manager
+      nautilus-python # Python bindings for nautilus extension API
+      # a dependency for gsconnect that may not be packaged with it.
     ])
-    # ++
-    # (with inputs; [
-    # zen-browser.packages.x86_64-linux.default
-    # ])
     ++ (with pkgs.gnomeExtensions; [
-      # valent                          # Gnome Desktop integration for Valent (KDEConnect Protocol)
       # Gnome Extensions
+      gsconnect
       vertical-workspaces # Nicer workspaces overview
       reboottouefi # Adds uefi boot option
       happy-appy-hotkey # Assign hotkeys to apps to focus or launch them
@@ -269,6 +217,7 @@
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "monitor-brightness-volume@ailin.nemui"
         "tailscale@joaophi.github.com"
+        "gsconnect@andyholmes.github.io"
       ];
     };
   };
