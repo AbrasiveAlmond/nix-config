@@ -1,5 +1,5 @@
 @import "./gnome-sidebery.css";
-
+@import "./clean-popups.css";
 
 #main-window #titlebar {
     overflow: hidden;
@@ -7,9 +7,15 @@
 }
 
 /* Default state: Set initial height to enable animation */
-#main-window #titlebar { height: 3em !important; }
-#main-window[uidensity="touch"] #titlebar { height: 3.35em !important; }
-#main-window[uidensity="compact"] #titlebar { height: 2.7em !important; }
+#main-window #titlebar {
+    height: 3em !important;
+}
+#main-window[uidensity="touch"] #titlebar {
+    height: 3.35em !important;
+}
+#main-window[uidensity="compact"] #titlebar {
+    height: 2.7em !important;
+}
 
 /* Remove ugly black border under titlebar*/
 #navigator-toolbox {
@@ -30,6 +36,6 @@
 
 /* style urlbar */
 #urlbar-container {
-	width: 50% !important;
-	flex-grow: 0;
+    width: 50% !important;
+    flex-grow: 0;
 }

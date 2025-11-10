@@ -1,0 +1,26 @@
+/* Get rid of right-click menu entries I never use */
+
+#context-openlinkinusercontext-menu,    /* mystery */
+#context-openlinkprivate,               /* Open Link in New Private Window */
+#context-bookmarklink,                  /* Bookmark Link... */
+#context-savelink,                      /* Save Link as... */
+#context-stripOnShareLink,              /* Copy Clean Link */
+#context-print-selection,               /* Print Selection... */
+#context-sendimage,                     /* Email Image... */
+#context-inspect-a11y,                  /* Inspect Accessible Properties*/
+#context-savepage,                      /* Save Page as... */
+#context-selectall,                     /* Select All */
+#context-sep-selectall,                 /* Select All separator */
+#context-translate-selection,           /* Translate Selection to English */
+#context-viewsource,
+#context-take-screenshot,               /* Take Screenshot */
+#context-sep-screenshots,               /* Screenshot seperator */
+#context-sep-sharing,                   /* A seperator for something */
+#context-bookmarklink,                  /* Bookmark Link */
+#context-savelink,                      /* Save Link */
+#context-viewpartialsource-selection    /* View Selection Source */
+#frame-sep,                             /* Random separator below translate */
+#context-setDesktopBackground,          /* Set Image as Desktop Background... */
+#context-sep-setbackground              /* Set Image as Background seperator */ {
+    display: none;
+}

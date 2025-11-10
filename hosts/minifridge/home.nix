@@ -71,22 +71,7 @@
       permittedInsecurePackages = [
         "libsoup-2.74.3"
       ];
-      # allowUnfreePredicate =
-      #   pkg:
-      #   builtins.elem (lib.getName pkg) [
-      #     "spotify"
-      #     "discord"
-      #     "morgen"
-      #     "obsidian"
-      #   ];
-      # allowUnfreePredicate = (_: true);
     };
-
-    # overlays = [
-    #   (final: prev: {
-    #     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-    #   })
-    # ];
   };
 
   services.kanata.enable = true;
@@ -227,9 +212,8 @@
     homeDirectory = "/home/quinnieboi";
   };
 
-  # Enable home-manager and git
+  # Enable home-manager
   programs.home-manager.enable = true;
-  # programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

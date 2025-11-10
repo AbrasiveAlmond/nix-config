@@ -1,12 +1,19 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   profile-name = "quinnieboi";
   firefox-profile = ".mozilla/firefox/${profile-name}/chrome";
-in {
+in
+{
   home.file."${firefox-profile}/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
   home.file."${firefox-profile}/customChrome.css".source = ./chrome/customChrome.css;
   home.file."${firefox-profile}/customContent.css".source = ./chrome/customContent.css;
   home.file."${firefox-profile}/gnome-sidebery.css".source = ./chrome/gnome-sidebery.css;
+  home.file."${firefox-profile}/clean-popups.css".source = ./chrome/clean-popups.css;
 
   programs.firefox = {
     enable = true;
@@ -38,86 +45,96 @@ in {
       # search.default = "Kagi";
       search.engines = {
         "Kagi" = {
-          urls = [{
-            template = "https://kagi.com/search";
-            params = [
-              {
-                name = "q";
-                value = "{searchTerms}";
-              }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://kagi.com/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
         };
 
         "Marginalia" = {
-          urls = [{
-            template = "https://marginalia-search.com/search";
-            params = [
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://marginalia-search.com/search";
+              params = [
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
         };
 
         "Nix Packages" = {
-          urls = [{
-            template = "https://search.nixos.org/packages";
-            params = [
-              {
-                name = "type";
-                value = "packages";
-              }
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }];
-          icon =
-            "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@np" ];
         };
 
         "Nix Options" = {
-          urls = [{
-            template = "https://search.nixos.org/options";
-            params = [
-              {
-                name = "type";
-                value = "options";
-              }
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }];
-          icon =
-            "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          urls = [
+            {
+              template = "https://search.nixos.org/options";
+              params = [
+                {
+                  name = "type";
+                  value = "options";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@no" ];
         };
 
         "NixOS Wiki" = {
-          urls = [{
-            template = "https://nixos.wiki/index.php?search={searchTerms}";
-          }];
+          urls = [
+            {
+              template = "https://nixos.wiki/index.php?search={searchTerms}";
+            }
+          ];
           icon = "https://nixos.wiki/favicon.png";
           updateInterval = 24 * 60 * 60 * 1000;
           definedAliases = [ "@nw" ];
         };
 
         "Home Manager Options" = {
-          urls = [{
-            template = "https://home-manager-options.extranix.com/";
-            params = [
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://home-manager-options.extranix.com/";
+              params = [
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
           definedAliases = [ "@ho" ];
         };
 
@@ -173,8 +190,7 @@ in {
         # Disable crappy home activity stream page
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" =
-          false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
 
         # Disable some telemetry
         "app.shield.optoutstudies.enabled" = false;

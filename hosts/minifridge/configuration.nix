@@ -190,6 +190,7 @@
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = config.nix.nixPath;
       };
+
       optimise.automatic = true;
       # Opinionated: disable channels
       channel.enable = false;
