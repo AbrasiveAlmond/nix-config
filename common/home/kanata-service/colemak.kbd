@@ -38,23 +38,11 @@
 (deflayer colemak
   tab  q    w    @cf  @cp   b    j    l    u    y    ;
   @cps @sa  @Ar  @cs  @ct   g    m    @cn  @Ce  @Ai  @so   '
-  @shf @cz  @cx  @cc  @cd   v    k    @ch  ,    .    @M'   @shf
+  @shf @cz  @cx  @cc  d   v    k    @ch  ,    .    @M'   @shf
   lctl lmet lalt          @spc            ralt rmet rctl
 )
 
-;; it has to be qwerty not colemak..
-;; Does not work well with home-row-mods.
-;;(defchordsv2
-;;  ;; (h .) leader 80 all-released () ;; Use tap dance
-;;  (w r) C-w 80 all-released () ;; w p
-;;  (j m) @$ 80 all-released ()  ;; n h
-;;  (j u) ` 80 all-released ()   ;; n l
-;;  (k i) ret 80 all-released () ;; e u
-;;  (d e) tab 80 all-released () ;; s f
-;;  (s w) S-- 80 all-released ()   ;; r w
-;;  (f r) @'' 80 all-released () ;; t p
-;;  ;; o \ on cradio
-;;)
+;;(defchordsv2) Does not work well with home-row-mods.
 
 (defalias
   ;; home-row
@@ -121,33 +109,20 @@
   (a  b) S-'
 )
 
-;;(defalias
-;;  cu (chord enter a)
-;;  ck (chord enter b)
-;;)
-
-;; (defchords enter 40
-;;   (a   ) u
-;;   (   b) @Ce
-;;   (a  b) ret
-;; )
-
 ;; cut, copy, and paste chords
 (defalias
   cz (chord text-clipping z)
   cx (chord text-clipping x)
   cc (chord text-clipping c)
-  cd (chord text-clipping d)
 )
 
 (defchords text-clipping 80
-  (z      ) @Mz
-  (  x    ) x
-  (    c  ) c
-  (      d) d
-  (z x    ) @cut
-  (  x c  ) @cpy
-  (    c d) @pst
+  (z    ) @Mz
+  (  x  ) x
+  (    c) c
+  (z x  ) @cut
+  (  x c) @cpy
+  (z   c) @pst
 )
 
 

@@ -18,17 +18,11 @@
      lctl lmet lalt          spc            @alg rmet rctl
 )
 
-(include ../colemak/layers/text-navigation.kbd)
+(include ./layers/text-navigation.kbd)
 (defalias
   cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt)
 )
-;;(deflayer arrows
-;;     _    esc  _    _    _    _    pgup home up   end  _
-;;     @cps @met @alt @ctl @sft _    pgdn left down rght @bwd _
-;;     _    _    _    _    _    _    bspc del  _    _    _    _
-;;     _    _    _              _           lrld _    lrnx
-;;)
 
 ;;(defalias
 ;;  bwd C-bspc
