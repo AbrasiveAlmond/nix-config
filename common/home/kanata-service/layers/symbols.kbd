@@ -27,21 +27,15 @@
 ;;     _    _    _              _                _    _    _
 ;;)
 
-;; TODO: make (./ ~/ ../) combos of l+u n+e and h+, respectively
-;; make ` ' " hold to become triple. If that doesn't feel nice, then
-;; make them combos!!!
-;; may as well try making bracket hold into the auto complete + move cursor macro.
+;; TODO:
+;; add combo on "h,"
+;; make ` ' " hold to become triple. If that doesn't feel nice, try make them combos!!!
+;; may as well try making bracket hold into the close + left arrow macro.
 ;; Test if holding ` as a combo works
 
 ;; add combos for closed brackets, already pressing the combo gives
 ;; closed brackets 90% of the time, so why not 100%
 
-;; not working for some reason, v1 combos would work here :)
-;; (defchordsv2
-;;   (9 0)  (macro S-9 S-0) 200 first-release ()
-;;   ([ ])       (macro [ ] h i)     250 first-release ()
-;;   (lsft [ ])       (macro S-[ S-]) 400 first-release ()
-;; )
 
 (defalias
   = (macro =) ;; only rapid fire =+ doesn't work.
@@ -58,40 +52,9 @@
   ? S-/
   '' S-'
   bk (macro . . /)
-  ;;-> (fork
-  ;;  (macro (- S-.))
-  ;;  (macro (eql S-.))
-  ;;  (nop2)
-  ;;)
-
-  ;;<- (fork
-  ;;  (macro (S-, -))
-  ;;  (macro (S-, S--))
-  ;;  (nop2)
-  ;;)
-
-  ;;<-> (k
-  ;;  @->
-  ;;  @<-
-  ;;  (nop1)
-  ;;)
-
-  ;;(template-expand mod-tap
-  ;;   plus
-  ;;   @+
-  ;;   nop2
-  ;;   $hold-time $left-hand-keys
-  ;;)
-
-  ;;(template-expand mod-tap
-  ;;   lbkt
-  ;;   S-9
-  ;;   nop2
-  ;;   $hold-time $right-hand-keys
-  ;;)
 )
 
-;; Bracket shit
+;; Bracket shite
 (defalias
      ob (fork
           (macro (S-9 S-0 left))

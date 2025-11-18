@@ -66,20 +66,6 @@
   )
 )
 
-;;(defalias
-;;  ch2 (chord left 2)
-;;  ch3 (chord left 3)
-;;  ch4 (chord left 4)
-;;)
-;;
-;;(defchords left 40
-;;  (2      ) @H2
-;;  (   3   ) @C3
-;;  (      4) @S4
-;;  (2  3   ) @cos
-;;  (   3  4) y
-;;  (2     4) @tan
-;;)
 
 ;; notes on experience thus far
 ;; much fewer occurances of sfbs than compared to num-pad style layouts.

@@ -99,11 +99,11 @@
 )
 
 (defalias
-  cp (chord apostrophe a)
-  ct (chord apostrophe b)
+  cp (chord quote a)
+  ct (chord quote b)
 )
 
-(defchords apostrophe 40
+(defchords quote 40
   (a   ) p
   (   b) @St
   (a  b) S-'
@@ -125,27 +125,6 @@
   (z   c) @pst
 )
 
-
-;; Underscore chord
-;;(defalias
-;;  cw (chord underscore a)
-;;  cr (chord underscore b)
-;;)
-;;
-;;(defchords underscore 40
-;;  (a   ) w
-;;  (   b) @Ar
-;;  (a  b) S--
-;;)
-;;
-
-;; press ' then tap s,p,',', etc
-;; for space == that letter
-;;(defalias
-;;  ;; tap for normal, hold for case switching
-;;  case (tap-hold-press 150 150 ' (layer-while-held case-switch))
-;;  home (layer-switch colemak)
-;;)
 (defalias
   home (layer-switch colemak)
 )
@@ -154,11 +133,5 @@
 (include ./layers/maths.kbd)
 (include ./layers/text-navigation.kbd)
 (include ./layers/symbols.kbd)
-
-;;(include ./layers/case-switch.kbd)
-;;(include ./layers/cases/camelCase.kbd)
-;;(include ./layers/cases/snake_case.kbd)
-;;(include ./layers/cases/kebab-case.kbd)
-;;(include ./layers/cases/directory/case.kbd)
 
 (include ./templates/homerow-mods-template.kbd)

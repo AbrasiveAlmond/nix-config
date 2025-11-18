@@ -23,12 +23,3 @@
   cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
   alg (tap-hold-press 200 200 (one-shot 2000 ralt) ralt)
 )
-
-;;(defalias
-;;  bwd C-bspc
-;;  sft (tap-hold-press 200 200 (one-shot-release 2000 lsft) lsft)
-;;  ctl (tap-hold-press 200 200 (one-shot-release 2000 lctl) lctl)
-;;  alt (tap-hold-press 200 200 (one-shot-release 2000 lalt) lalt)
-;;  met (tap-hold-press 200 200 (one-shot-release 2000 lmet) lmet)
-;;  cps (tap-hold-press 200 200 (one-shot-release 500 (layer-while-held arrows)) (layer-toggle arrows))
-;;)
