@@ -120,9 +120,9 @@
   (z    ) @Mz
   (  x  ) x
   (    c) c
-  (z x  ) @cut
-  (  x c) @cpy
-  (z   c) @pst
+  (z x  ) @cpy
+  (  x c) @pst
+  (z   c) @cut
 )
 
 (defalias
