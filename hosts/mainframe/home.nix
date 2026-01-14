@@ -44,6 +44,10 @@
     tree
     zoxide
 
+    clang
+    # llvmPackages.bintools
+    rustup
+
     # just in case it is more performant
     ungoogled-chromium
   ])++
@@ -61,19 +65,22 @@
     middle-click-to-close-in-overview # Much better.
     control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
     burn-my-windows                 # Visual swag
+    gsconnect
   ]);
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        "blur-my-shell@aunetx"
-        "happy-appy-hotkey@jqno.nl"
-        "caffeine@patapon.info"
-        "middleclickclose@paolo.tranquilli.gmail.com"
-        "tiling-assistant@leleat-on-github"
-      ];
-    };
-  };
+
+  # dconf.settings."org/gnome/shell" = {
+  #     disable-user-extensions = false;
+  #     enabled-extensions = with pkgs.gnomeExtensions; [
+  #       blur-my-shell.extensionUuid
+  #       happy-appy-hotkey.extensionUuid
+  #       caffiene.extensionUuid
+  #       middle-click-to-close-in-overview.extensionUuid
+  #       tiling-assistant.extensionUuid
+  #       gsconnect.extensionUuid
+  #     ];
+  #   };
+  # };
 
   services.flatpak = {
     enable = true;

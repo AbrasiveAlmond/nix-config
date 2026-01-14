@@ -26,8 +26,6 @@
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    # inputs.hardware.nixosModules.common-gpu-nvidia-disable
-    # inputs.hardware.nixosModules.common-gpu-nvidia
     # Prime capabilities for hybrid graphics
     # Failed assertions:
     #    - When NVIDIA PRIME is enabled, the GPU bus IDs must be configured.
@@ -35,6 +33,8 @@
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;
+
+  services.gnome.gnome-browser-connector.enable = true;
 
   gnome = {
     # Enable the GNOME Desktop E    nvironment.
@@ -63,6 +63,7 @@
       "networkmanager"
       "input"
       "uinput"
+      "i2c"
     ];
   };
 
@@ -71,11 +72,8 @@
 
   # Touchpad
   services.libinput = {
-    enable = true;
     touchpad = {
-      disableWhileTyping = true;
-      tapping = true;
-      tappingDragLock = true;
+      disableWhileTyping = lib.mkForce true;
     };
   };
 
@@ -100,13 +98,12 @@
 
   # creates a separate bootable config
   specialisation = {
-    nvidia.configuration = {
+    gaming.configuration = {
       # Nvidia Configuration
       services.xserver.videoDrivers = lib.mkForce [
         "modesetting"
         "nvidia"
       ];
-      # enable discrete GPU in 24.11 or unstable
 
       hardware.nvidia = {
         open = false; # might want to double check dat
@@ -133,16 +130,16 @@
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:44:0:0";
         };
-
       };
 
-      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
-      services.xserver.deviceSection = ''
-        Option "DRI"             "2"
-        Option "TearFree"        "false"
-        Option "TripleBuffer"    "false"
-        Option "SwapbuffersWait" "false"
-      '';
+      # Touchpad
+        services.libinput = {
+          touchpad = {
+            disableWhileTyping = false;
+            tapping = true;
+            tappingDragLock = true;
+          };
+        };
     };
 
     integrated.configuration = {
@@ -169,19 +166,9 @@
       ## Partially nullified options due to the above
       # Completely disable the NVIDIA graphics card and use the integrated graphics processor instead.
       hardware.nvidiaOptimus.disable = true;
-
-      # Corruption or unresponsiveness in Chromium and Firefox consult https://wiki.archlinux.org/title/Intel_graphics
-      # ArchWiki 3.2.3 If you use a compositor ... like GNOME, then [below] can usually be disabled to improve performance and decrease power consumption.
-      # Direct Rendering Infrastructure
-      services.xserver.deviceSection = ''
-        Option "DRI"             "2"
-        Option "TearFree"        "false"
-        Option "TripleBuffer"    "true"
-        Option "SwapbuffersWait" "false"
-      '';
     };
 
-    barebones.configuration = {
+    guest_xfce_cinnamon.configuration = {
       # disable my usual gnome config
       gnome.enable = lib.mkForce false;
 
@@ -222,6 +209,7 @@
     wget
     vim
     git
+    ddcutil
   ];
 
   # Bootloader configuration
