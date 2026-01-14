@@ -17,6 +17,15 @@ in
 
   programs.firefox = {
     enable = true;
+    # enableGnomeExtensions = true;
+    package = pkgs.firefox.override {
+      # See nixpkgs' firefox/wrapper.nix to check which options you can use
+      nativeMessagingHosts = [
+        # Gnome shell native connector
+        pkgs.gnome-browser-connector
+      ];
+    };
+
     profiles.${profile-name} = {
       isDefault = true;
       userChrome = ''
@@ -37,7 +46,6 @@ in
         disconnect
         clearurls
         greasemonkey
-        # browserpass
       ];
 
       # https://github.com/nix-community/home-manager/issues/3698#issuecomment-1442291975
