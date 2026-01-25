@@ -1,4 +1,5 @@
-{pkgs, ...} : {
+{ pkgs, ... }:
+{
   # I hate auth, just set it up declaratively once
   home.packages = with pkgs; [
     liboauth
@@ -7,9 +8,9 @@
 
   programs.git = {
     enable = true;
-    userName = "AbrasiveAlmond";
-    userEmail = "qpearson.nz@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "AbrasiveAlmond";
+      user.email = "qpearson.nz@gmail.com";
       push.autoSetupRemote = true;
       credential = {
         helper = "oauth";
