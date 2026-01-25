@@ -133,13 +133,13 @@
       };
 
       # Touchpad
-        services.libinput = {
-          touchpad = {
-            disableWhileTyping = false;
-            tapping = true;
-            tappingDragLock = true;
-          };
+      services.libinput = {
+        touchpad = {
+          disableWhileTyping = false;
+          tapping = true;
+          tappingDragLock = true;
         };
+      };
     };
 
     integrated.configuration = {

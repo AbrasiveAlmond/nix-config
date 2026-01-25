@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other home-manager modules here
   imports = [
     ../../common/home/gnome
@@ -19,57 +20,57 @@
     homeDirectory = "/home/busyboy";
   };
 
-  home.packages = (with pkgs; [
-    # goldwarden
-    # Gnome apps
-    # plots         # Worse desmos
-    # rnote
-    speedcrunch
+  home.packages =
+    (with pkgs; [
+      # goldwarden
+      # Gnome apps
+      # plots         # Worse desmos
+      # rnote
+      speedcrunch
 
-    bazaar
-    # gnome-secrets # Passwords
-    apostrophe    # Markdown Editor
-    eyedropper    # Colour picker
-    # papers        # PDF Reader
-    zed-editor
+      bazaar
+      # gnome-secrets # Passwords
+      apostrophe # Markdown Editor
+      eyedropper # Colour picker
+      # papers        # PDF Reader
+      zed-editor
 
-    gnome-feeds   # RSS Feeds
+      gnome-feeds # RSS Feeds
 
-    # Utilities
-    # warp          # File sharing tool
+      # Utilities
+      # warp          # File sharing tool
 
-    # Keyboard remapping
-    kanata
+      # Keyboard remapping
+      kanata
 
-    tmux
-    neovim
-    tree
-    zoxide
+      tmux
+      neovim
+      tree
+      zoxide
 
-    clang
-    # llvmPackages.bintools
-    rustup
+      clang
+      # llvmPackages.bintools
+      rustup
 
-    # just in case it is more performant
-    ungoogled-chromium
-  ])++
-  (with pkgs.gnomeExtensions; [
-    # Gnome Extensions
-    reboottouefi                    # Adds uefi boot option
-    happy-appy-hotkey               # Assign hotkeys to apps to focus or launch them
-    dual-shock-4-battery-percentage # power level in top panel
-    blur-my-shell                   # Blurry shell is a needed ux improvement
-    caffeine                        # Keep PC on
-    hide-top-bar
-    tactile                         # Tile windows using a custom grid.
-    gtile                           # another tiling thing
-    tiling-assistant                # Windows-like tiling
-    middle-click-to-close-in-overview # Much better.
-    control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
-    burn-my-windows                 # Visual swag
-    gsconnect
-  ]);
-
+      # just in case it is more performant
+      ungoogled-chromium
+    ])
+    ++ (with pkgs.gnomeExtensions; [
+      # Gnome Extensions
+      reboottouefi # Adds uefi boot option
+      happy-appy-hotkey # Assign hotkeys to apps to focus or launch them
+      dual-shock-4-battery-percentage # power level in top panel
+      blur-my-shell # Blurry shell is a needed ux improvement
+      caffeine # Keep PC on
+      hide-top-bar
+      tactile # Tile windows using a custom grid.
+      gtile # another tiling thing
+      tiling-assistant # Windows-like tiling
+      middle-click-to-close-in-overview # Much better.
+      control-monitor-brightness-and-volume-with-ddcutil # Control monitor brightness
+      burn-my-windows # Visual swag
+      gsconnect
+    ]);
 
   # dconf.settings."org/gnome/shell" = {
   #     disable-user-extensions = false;
@@ -84,39 +85,39 @@
   #   };
   # };
 
-  services.flatpak = {
-    enable = true;
-    update.auto = {
-      enable = true;
-      onCalendar = "daily";
-    };
+  # services.flatpak = {
+  #   enable = true;
+  #   update.auto = {
+  #     enable = true;
+  #     onCalendar = "daily";
+  #   };
 
-    packages = [ # All installing from flathub stable by default
-      "dev.bragefuglseth.Keypunch"
-      "re.sonny.Workbench"
-    ];
+  #   packages = [ # All installing from flathub stable by default
+  #     "dev.bragefuglseth.Keypunch"
+  #     "re.sonny.Workbench"
+  #   ];
 
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://flathub.org/repo/flathub.flatpakrepo";
-      }
-      {
-        name = "flathub-beta";
-        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-      }
-    ];
+  #   remotes = [
+  #     {
+  #       name = "flathub";
+  #       location = "https://flathub.org/repo/flathub.flatpakrepo";
+  #     }
+  #     {
+  #       name = "flathub-beta";
+  #       location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+  #     }
+  #   ];
 
-    # overrides = {
-    #   "io.gitlab.librewolf-community".Context = {
-    #     filesystems = [
-    #       "~/Downloads:rw" # downloads
-    #       "~/Documents:ro" # expose documents for uploading
-    #     ];
+  #   # overrides = {
+  #   #   "io.gitlab.librewolf-community".Context = {
+  #   #     filesystems = [
+  #   #       "~/Downloads:rw" # downloads
+  #   #       "~/Documents:ro" # expose documents for uploading
+  #   #     ];
 
-    #   };
-    # };
-  };
+  #   #   };
+  #   # };
+  # };
 
   # accessed via home-manager modules
   services.kanata.enable = true;

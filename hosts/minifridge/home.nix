@@ -24,36 +24,36 @@
     ../../common/home/git.nix
   ];
 
-  services.flatpak = {
-    enable = true;
-    update.auto = {
-      enable = true;
-      onCalendar = "daily";
-    };
+  # services.flatpak = {
+  #   enable = true;
+  #   update.auto = {
+  #     enable = true;
+  #     onCalendar = "daily";
+  #   };
 
-    packages = [
-      # All installing from flathub stable by default
-      "dev.bragefuglseth.Keypunch"
-      "re.sonny.Workbench"
-      # "io.gitlab.librewolf-community" # deal with switching later if I care
-      # "org.mozilla.firefox"
-      # can't figure it out declaratively so harden librewolf via this
-      # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
-      # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
-      # "com.github.tchx84.Flatseal"
-    ];
+  #   packages = [
+  #     # All installing from flathub stable by default
+  #     "dev.bragefuglseth.Keypunch"
+  #     "re.sonny.Workbench"
+  #     # "io.gitlab.librewolf-community" # deal with switching later if I care
+  #     # "org.mozilla.firefox"
+  #     # can't figure it out declaratively so harden librewolf via this
+  #     # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
+  #     # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
+  #     # "com.github.tchx84.Flatseal"
+  #   ];
 
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://flathub.org/repo/flathub.flatpakrepo";
-      }
-      {
-        name = "flathub-beta";
-        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-      }
-    ];
-  };
+  #   remotes = [
+  #     {
+  #       name = "flathub";
+  #       location = "https://flathub.org/repo/flathub.flatpakrepo";
+  #     }
+  #     {
+  #       name = "flathub-beta";
+  #       location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+  #     }
+  #   ];
+  # };
 
   programs.direnv = {
     enable = true;
@@ -81,10 +81,12 @@
     (with pkgs-unstable; [
       # cannot use pkgs.unstable due to strange unfree attribute not setting
 
+      # Productivity
       onedrivegui
-
       obsidian
+      bazaar # Gnome software is a single threaded mess.
       bitwarden-desktop
+
       #valent # Works, but I'll switch to gsconnect extension for nautilus and firefox integration
       lutris
       cartridges
