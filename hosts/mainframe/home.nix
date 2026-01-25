@@ -25,6 +25,8 @@
     # plots         # Worse desmos
     # rnote
     speedcrunch
+
+    bazaar
     # gnome-secrets # Passwords
     apostrophe    # Markdown Editor
     eyedropper    # Colour picker
