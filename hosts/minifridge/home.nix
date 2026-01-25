@@ -84,7 +84,6 @@
       # Productivity
       onedrivegui
       obsidian
-      bazaar # Gnome software is a single threaded mess.
       bitwarden-desktop
 
       #valent # Works, but I'll switch to gsconnect extension for nautilus and firefox integration
@@ -92,6 +91,8 @@
       cartridges
 
       qemu
+
+      bazaar # Gnome software is a single threaded mess.
 
       # Gnome apps
       fragments # BitTorrent

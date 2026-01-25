@@ -22,26 +22,18 @@
 
   home.packages =
     (with pkgs; [
-      # goldwarden
-      # Gnome apps
-      # plots         # Worse desmos
-      # rnote
-      speedcrunch
 
       bazaar
-      # gnome-secrets # Passwords
-      apostrophe # Markdown Editor
-      eyedropper # Colour picker
-      # papers        # PDF Reader
       zed-editor
 
       gnome-feeds # RSS Feeds
 
       # Utilities
-      # warp          # File sharing tool
+      eyedropper # Colour picker
+      apostrophe # Markdown Editor
+      speedcrunch
 
-      # Keyboard remapping
-      kanata
+      kanata # Keyboard remapping
 
       tmux
       neovim
