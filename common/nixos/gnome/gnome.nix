@@ -1,16 +1,19 @@
-{ lib, config, ...}:
-let cfg = config.gnome; in {
+{ lib, config, ... }:
+let
+  cfg = config.gnome;
+in
+{
   options = {
     gnome.enable = lib.mkEnableOption "Enable Module";
   };
 
   config = lib.mkIf cfg.enable {
     # Enable the X11 windowing system.
-    services.xserver.enable = true;
+    # services.xserver.enable = true;
 
     # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
     # on initial boot this uses the correct layout for entering
@@ -33,5 +36,20 @@ let cfg = config.gnome; in {
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    programs.dconf.profiles.user.databases = [
+      {
+        settings = {
+          "org/gnome/mutter" = {
+            experimental-features = [
+              "scale-monitor-framebuffer" # Enables fractional scaling (125% 150% 175%)
+              "variable-refresh-rate" # Enables Variable Refresh Rate (VRR) on compatible displays
+              "xwayland-native-scaling" # Scales Xwayland applications to look crisp on HiDPI screens
+              "autoclose-xwayland" # automatically terminates Xwayland if all relevant X11 clients are gone
+            ];
+          };
+        };
+      }
+    ];
   };
 }
