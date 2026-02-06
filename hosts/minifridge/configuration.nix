@@ -52,10 +52,15 @@
         "i2c"
         "uinput"
         "input"
-        "docker"
+        # "docker"
+        "plugdev"
+        "dialout"
       ];
     };
   };
+
+  users.extraGroups.plugdev = { };
+  services.udev.packages = [ pkgs.openocd ];
 
   # virtualisation.docker.enable = true;
   # virtualisation.docker.storageDriver = "btrfs";
