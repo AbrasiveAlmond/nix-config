@@ -15,14 +15,6 @@ in
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 
-    # Configure keymap in X11
-    # on initial boot this uses the correct layout for entering
-    # passwords n stuff, since I set kanata to start with the shell/user
-    services.xserver = {
-      xkb.layout = "us";
-      xkb.variant = "colemak_dh_ortho";
-    };
-
     # Whether to enable Sushi, a quick preview for nautilus.
     services.gnome.sushi.enable = true;
 

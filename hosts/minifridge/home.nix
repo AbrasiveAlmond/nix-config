@@ -74,7 +74,11 @@
     };
   };
 
-  services.kanata.enable = true;
+  services.kanata = {
+    enable = true;
+    user = "quinnieboi";
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages =

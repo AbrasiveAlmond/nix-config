@@ -103,6 +103,7 @@
   # services.tailscale.enable = true;
   services.ddccontrol.enable = true;
   hardware.i2c.enable = true;
+  hardware.uinput.enable = true;
 
   # Disable until further notice, rebuilding system with 'doas'
   # does not work :/ "error: opening Git repository "/home/quinnieboi/nix-config": repository path '/home/quinnieboi/nix-config' is not owned by current user"
@@ -221,7 +222,7 @@
     kernelModules = [
       "i2c-dev"
       "ddcci_backlight"
-      "uinput"
+      # "uinput" # switched to using hardware.uinput.enable
       "kvm-amd"
     ];
     extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];

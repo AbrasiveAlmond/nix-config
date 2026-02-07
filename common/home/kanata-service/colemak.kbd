@@ -4,8 +4,6 @@
   log-layer-changes no
   linux-dev-names-exclude (
     "ZMK Project Cradio Keyboard"
-    /dev/input/event2 ;; Laptop keyboard
-    /dev/input/event2 ;; Laptop keyboard
     "SteelSeries SteelSeries Arctis 5"
     "Razer Razer Basilisk V3"
     "Razer Razer Basilisk V3 Keyboard"
