@@ -68,9 +68,6 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "libsoup-2.74.3"
-      ];
     };
   };
 
@@ -87,7 +84,6 @@
 
       # Productivity
       onedrivegui
-      obsidian
       bitwarden-desktop
 
       #valent # Works, but I'll switch to gsconnect extension for nautilus and firefox integration
