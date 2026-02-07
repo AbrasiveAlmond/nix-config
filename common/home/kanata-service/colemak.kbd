@@ -2,10 +2,14 @@
   process-unmapped-keys yes
   concurrent-tap-hold yes
   log-layer-changes no
-  ;;linux-dev (
-  ;;  /dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd ;; Computer keyboard
-  ;;  /dev/input/event2 ;; Laptop keyboard
-  ;;)
+  linux-dev-names-exclude (
+    "ZMK Project Cradio Keyboard"
+    /dev/input/event2 ;; Laptop keyboard
+    /dev/input/event2 ;; Laptop keyboard
+    "SteelSeries SteelSeries Arctis 5"
+    "Razer Razer Basilisk V3"
+    "Razer Razer Basilisk V3 Keyboard"
+  )
 )
 
 ;; layer switching
