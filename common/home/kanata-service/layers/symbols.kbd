@@ -13,35 +13,17 @@
 ;;     _    _    _              _              _    _    _
 ;;)
 
-;;(deflayer symbols
-;;     _    @%   [    ]    `   @|   @&   @$   @<   @>  _
-;;     _    S-2  S-9  S-0  @:  @#   @?   @=   @+   -   @!   _
-;;     _    S-2  @{   @}   @'' @bk  @~   /    _    _   _   _
-;;     _    _    _              _              _    _    _
-;;)
-
-;;(deflayer symbols
-;;     _    @%   @<   @>   @'' @|   @&   @{   [    ]    @}
-;;     _    @!   -    @+   @=   @?   @#   @:   S-9  S-0  S-2   _
-;;     _    @^   /    @*   \    @bk  @~   @$   _    _    _     _
-;;     _    _    _              _                _    _    _
-;;)
-
 ;; TODO:
 ;; add combo on "h,"
-;; make ` ' " hold to become triple. If that doesn't feel nice, try make them combos!!!
 ;; may as well try making bracket hold into the close + left arrow macro.
-;; Test if holding ` as a combo works
 
 ;; add combos for closed brackets, already pressing the combo gives
 ;; closed brackets 90% of the time, so why not 100%
-
 
 (defalias
   = (macro =) ;; only rapid fire =+ doesn't work.
   ;; fixes trouble with unshift causing => roll (right after layer switch)
   ;; causing kanata to output .= or ,=.
-  ;;= (macro (unmod =) =) ;; This is the old implementation
   | S-\
   & S-7
   # S-3
@@ -58,18 +40,6 @@
 
 ;; Bracket shite
 (defalias
-     ob (fork
-          (macro (S-9 S-0 left))
-          S-9
-          (nop0)
-     )
-
-     cb (fork
-          S-0
-          (macro (S-0 left))
-          (nop0)
-     )
-
      [ (fork
           (macro ([ ] left))
           [
@@ -93,12 +63,6 @@
      } (fork
           S-]
           (macro (S-] left))
-          (nop0)
-     )
-
-     <> (fork
-          (macro (S-, S-. left))
-          S-,
           (nop0)
      )
 
