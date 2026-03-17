@@ -23,10 +23,6 @@
 
     ../../common/nixos/hotspot.nix
     ./immich.nix
-    # ./hotspot.nix
-
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules
 
     # modules from nixos-hardware repo:
     inputs.hardware.nixosModules.common-gpu-amd
@@ -34,10 +30,8 @@
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
-  gnome = {
-    # Enable the GNOME Desktop Environment.
-    enable = true;
-  };
+  # Enable the GNOME Desktop Environment.
+  gnome.enable = true;
 
   # enable virtualisation hypervisor for gnome boxes in hm
   virtualisation.libvirtd.enable = true;
@@ -56,34 +50,11 @@
     };
   };
 
-  # virtualisation.docker.enable = true;
-  # virtualisation.docker.storageDriver = "btrfs";
-  # virtualisation.docker.daemon.settings = {
-  #   data-root = "/srv/docker";
-  #   userland-proxy = false; # designed for Windoze
-  # };
-
-  programs.nix-ld.enable = true;
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
   };
 
-  # Syncs folder by uploading and downloading to sync
-  # But it updates regularly and cannot function on
-  # anything but the most recent version, making regular
-  # use very hard via a system flake. It also has
-  # problems in general; often making -backup file duplicates
-  # services.onedrive= {
-  #   enable = true;
-  #   package = pkgs.unstable.onedrive;
-  # };
-  # services.syncthing = {
-  #   enable = true;
-  #   user = "quinnieboi";
-  #   dataDir = "/home/quinnieboi/Documents/Synced";
-  #   configDir = "/home/quinnieboi/Documents/.config/syncthing";
-  # };
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
@@ -102,50 +73,12 @@
 
   # services.tailscale.enable = true;
   services.ddccontrol.enable = true;
-  hardware.i2c.enable = true;
-  hardware.uinput.enable = true;
-
-  # Disable until further notice, rebuilding system with 'doas'
-  # does not work :/ "error: opening Git repository "/home/quinnieboi/nix-config": repository path '/home/quinnieboi/nix-config' is not owned by current user"
-  # security = {
-  #   sudo.enable = true;
-  #   doas.enable = true;
-  #   doas.extraRules = [
-  #     # Allow execution of any command by any user in group doas, requiring
-  #     # a password and keeping any previously-defined environment variables.
-  #     {
-  #       groups = [ "doas" ];
-  #       noPass = false;
-  #       keepEnv = true;
-  #     }
-
-  #     # Allow execution of `create_ap` by user `quinnieboi`,
-  #     # without a password.
-  #     {
-  #       # groups = [ "bar" ];
-  #       users = [ "quinnieboi" ];
-  #       runAs = "root";
-  #       noPass = true;
-  #       cmd = "/home/quinnieboi/.nix-profile/bin/create_ap";
-  #       # args = [ ];
-  #     }
-  #   ];
-  # };
-
-  # accessed via home-manager modules
-  # TODO: Configuration requires single file, not directory
-  # services.kanata = {
-  #   enable = true;
-  #   package = pkgs-unstable.kanata;
-  #   keyboards = {
-  #     main = {
-  #       devices = [ "/dev/input/by-id/usb-SINO_WEALTH_RK_Bluetooth_Keyboar-event-kbd" ];
-  #       configFile = ../../home/common/kanata-service/colemak/colemak.kbd;
-  #     };
-  #   };
-  # };
-
-  hardware.graphics.enable = true;
+  hardware = {
+    i2c.enable = true;
+    uinput.enable = true;
+    graphics.enable = true;
+    opentabletdriver.enable = true;
+  };
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;
@@ -155,16 +88,6 @@
     networkmanager.enable = true;
   };
 
-  # fish completions provided by Nixpkgs along with HM
-  # programs.fish.enable = true;
-
-  # Loads ceratin qmk udev rules. Ones missing in ">qmk setup"
-  # Makes via work aswell: https://nixos.wiki/wiki/Qmk
-  # hardware.keyboard.qmk.enable = true;
-
-  # Open Tablet Driver
-  hardware.opentabletdriver.enable = true;
-
   environment.systemPackages = with pkgs; [
     wget
     vim
@@ -172,11 +95,7 @@
     nixd
   ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   nix =
     let
@@ -192,25 +111,16 @@
       };
 
       optimise.automatic = true;
-      # Opinionated: disable channels
       channel.enable = false;
 
       # Opinionated: make flake registry and nix path match flake inputs
+      # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
       registry = {
-        # Makes `nix run nixpkgs#...` run using the nixpkgs from this flake
         nixpkgs.flake = inputs.nixpkgs;
         nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
-
-        # https://github.com/clo4/nix-dotfiles/blob/cccef7267a0580e7277ae79377942cbdcd9517a1/systems/host.nix#L42
-        # my.flake = inputs.self;
       };
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-
-  # Revert to old kernel because the latest one may be the cause
-  # of my desktop freezing after some minutes running.
-  # https://discourse.nixos.org/t/possibly-graphical-problems-with-upgrading-from-24-11-to-25-05/65135/4
-  # https://discourse.nixos.org/t/randomly-flickering-freezing-darken-on-amd-gpu/65416
 
   # Bootloader configuration
   boot = {
@@ -230,8 +140,6 @@
     kernelParams = [
       "quiet"
       "splash"
-      # quiet doesn't work - loglevel was still 4
-      # as seen in ./result/boot.json or ./result/kernel-params
       "loglevel=3"
       "boot.shell_on_fail"
       "rd.systemd.show_status=false"
@@ -245,8 +153,6 @@
     # Hide OS choice for bootloaders - still accessible via key press
     loader.timeout = 0;
 
-    # Works quite well but does get interrupted a bit
-    # other themes: dragon, sphere
     plymouth = {
       enable = true;
       theme = "colorful_sliced";

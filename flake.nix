@@ -33,10 +33,6 @@
       flake = false;
     };
 
-    # nvchad4nix = {
-    #   url = "github:nix-community/nix4nvchad";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     flake-utils.url = "github:numtide/flake-utils";
 
     # Another repository to hold development flakes, could be integrated into this one

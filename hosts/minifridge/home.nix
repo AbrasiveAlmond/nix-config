@@ -24,52 +24,14 @@
     ../../common/home/git.nix
   ];
 
-  # services.flatpak = {
-  #   enable = true;
-  #   update.auto = {
-  #     enable = true;
-  #     onCalendar = "daily";
-  #   };
-
-  #   packages = [
-  #     # All installing from flathub stable by default
-  #     "dev.bragefuglseth.Keypunch"
-  #     "re.sonny.Workbench"
-  #     # "io.gitlab.librewolf-community" # deal with switching later if I care
-  #     # "org.mozilla.firefox"
-  #     # can't figure it out declaratively so harden librewolf via this
-  #     # okay imma run the nofilesystem command from below since flatseal is giving ro access to /?
-  #     # https://discourse.nixos.org/t/my-experience-and-reasons-using-flatpak-on-nixos/30880
-  #     # "com.github.tchx84.Flatseal"
-  #   ];
-
-  #   remotes = [
-  #     {
-  #       name = "flathub";
-  #       location = "https://flathub.org/repo/flathub.flatpakrepo";
-  #     }
-  #     {
-  #       name = "flathub-beta";
-  #       location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-  #     }
-  #   ];
-  # };
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
     silent = true;
-    # shows all changed env variables otherwise.
   };
-  programs.bash.enable = true;
 
-  nixpkgs = {
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
+  programs.bash.enable = true;
 
   services.kanata = {
     enable = true;
@@ -78,15 +40,10 @@
 
   fonts.fontconfig.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages =
     (with pkgs-unstable; [
-      # cannot use pkgs.unstable due to strange unfree attribute not setting
-
-      # Productivity
-      onedrivegui
-      bitwarden-desktop
-
-      #valent # Works, but I'll switch to gsconnect extension for nautilus and firefox integration
       lutris
       cartridges
 
@@ -96,7 +53,7 @@
 
       # Gnome apps
       fragments # BitTorrent
-      hydrapaper # Gnome utility for multi-screen wlpaper
+      hydrapaper # Gnome utility for multi-screen wallpaper
 
       qalculate-gtk # Algebraic calculator
 
@@ -110,16 +67,12 @@
       darktable # Photo manager and raw developer
       shotwell # Photo manager
       inkscape # Vector graphics editor
-      # might lowkey prefer using it via flatpak. Easier with plugins
-      # gimp # GNU Image Manipulation Program
-      # gimpPlugins.lqrPlugin
       hugin # Panorama stitcher
       ffmpeg # Audio/video cli tools
       # rnote # Drawing software
       identity # Compare photos and videos
 
       # Utilities
-      # warp # File sharing tool
       impression # Disk image etcher
       # video-trimmer
 
@@ -190,7 +143,7 @@
     python.flake = inputs.python-devShells;
   };
 
-  # Why must they be reset if not manually defined. I would much prefer imperative usage
+  # These are reset if not manually defined. I would much prefer imperative usage
   dconf.settings = {
     "org/gnome/shell" = {
       enabled-extensions = [
