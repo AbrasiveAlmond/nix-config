@@ -17,7 +17,6 @@
 
     ../../common/nixos/ssh.nix
     ../../common/nixos/locale.nix
-    ../../common/nixos/printing.nix
     ../../common/nixos/gaming.nix
 
     ../../common/nixos/gnome
@@ -31,10 +30,28 @@
     #    - When NVIDIA PRIME is enabled, the GPU bus IDs must be configured.
   ];
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      # Opinionated: forbid root login through SSH.
+      PermitRootLogin = "no";
+      # Opinionated: use keys only.
+      # Remove if you want to SSH using passwords
+      PasswordAuthentication = false;
+    };
+  };
+
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
   services.flatpak.enable = true;
 
   services.gnome.gnome-browser-connector.enable = true;
+
+  # Enable CUPS to print documents using the IPP Everywhere protocol
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+  };
 
   gnome = {
     # Enable the GNOME Desktop E    nvironment.
@@ -288,6 +305,24 @@
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
+
+  # Set your time zone.
+  time.timeZone = "Pacific/Auckland";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_NZ.UTF-8";
+    LC_IDENTIFICATION = "en_NZ.UTF-8";
+    LC_MEASUREMENT = "en_NZ.UTF-8";
+    LC_MONETARY = "en_NZ.UTF-8";
+    LC_NAME = "en_NZ.UTF-8";
+    LC_NUMERIC = "en_NZ.UTF-8";
+    LC_PAPER = "en_NZ.UTF-8";
+    LC_TELEPHONE = "en_NZ.UTF-8";
+    LC_TIME = "en_NZ.UTF-8";
+  };
 
   system.stateVersion = "24.05";
 }

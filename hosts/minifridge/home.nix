@@ -55,8 +55,6 @@
       fragments # BitTorrent
       hydrapaper # Gnome utility for multi-screen wallpaper
 
-      qalculate-gtk # Algebraic calculator
-
       # Social
       tuba # Browse the fediverse
       fractal # Matrix Client
@@ -69,18 +67,14 @@
       inkscape # Vector graphics editor
       hugin # Panorama stitcher
       ffmpeg # Audio/video cli tools
-      # rnote # Drawing software
-      identity # Compare photos and videos
 
       # Utilities
       impression # Disk image etcher
-      # video-trimmer
 
       pwvucontrol # Disables monitor audio sleep while running
 
       discord
       ungoogled-chromium # for limnu
-      # tangram # Run web apps on desktop
 
       # coding
       vscodium
@@ -89,17 +83,11 @@
 
       # Now Handled by rust-devshells flake
       # https://github.com/AbrasiveAlmond/rust-dev-flake
-      # cargo
-      # gcc
-      # rustc
       rust-analyzer
-      # rustup # collides with cargo
       gnome-builder
       gnome-extensions-cli
       libsecret
       tree
-      # zoxide
-      # nixd
       nil
 
       vivid
