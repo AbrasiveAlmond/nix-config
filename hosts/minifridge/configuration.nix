@@ -15,8 +15,8 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../../common/nixos/firefox.nix
-    ../../common/nixos/locale.nix
-    ../../common/nixos/ssh.nix
+    # ../../common/nixos/locale.nix
+    # ../../common/nixos/ssh.nix
     ../../common/nixos/gnome
     ../../common/nixos/gaming.nix
 
@@ -74,7 +74,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
     # Enable experimental features to see battery
     # level of connected devices.
     settings.General.Experimental = true;
