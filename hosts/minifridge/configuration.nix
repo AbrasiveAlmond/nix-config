@@ -54,6 +54,13 @@
     };
   };
 
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+  };
+
+  services.ddccontrol.enable = true;
+
   users.users = {
     quinnieboi = {
       isNormalUser = true;
@@ -67,19 +74,6 @@
     };
   };
 
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-  };
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    # Enable experimental features to see battery
-    # level of connected devices.
-    settings.General.Experimental = true;
-  };
-
   fonts.packages = with pkgs.nerd-fonts; [
     _0xproto
     hack
@@ -88,13 +82,21 @@
     fira-code
   ];
 
-  # services.tailscale.enable = true;
-  services.ddccontrol.enable = true;
   hardware = {
     i2c.enable = true;
     uinput.enable = true;
     graphics.enable = true;
     opentabletdriver.enable = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    # Enable experimental features to see battery level of connected devices.
+    settings.General = {
+      Experimental = true;
+      FastConnectable = true;
+    };
   };
 
   # enable flatpak configuration, apps are installed declaratively in homemanager using module
