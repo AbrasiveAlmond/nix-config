@@ -112,7 +112,10 @@
   # };
 
   # accessed via home-manager modules
-  services.kanata.enable = true;
+  services.kanata = {
+    enable = true;
+    user = "busyboy";
+  };
 
   nixpkgs = {
     config = {
