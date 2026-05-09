@@ -4,6 +4,7 @@
   log-layer-changes no
   linux-dev-names-exclude (
     "ZMK Project Cradio Keyboard"
+    "Cradio Keyboard"
     "SteelSeries SteelSeries Arctis 5"
     "Razer Razer Basilisk V3"
     "Razer Razer Basilisk V3 Keyboard"
