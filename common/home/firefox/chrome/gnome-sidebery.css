@@ -1,17 +1,14 @@
+@import "colors/dark.css";
+@import "colors/light.css";
+
 /* Hide the useless and thick sidebar header */
 #sidebar-header,
 #sidebar-panel-header {
     display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-    #sidebar-splitter {
-        background: rgb(48, 48, 48) !important;
-    }
-}
-
-/* Make the sidebar resize bar wider and correct colour */
 #sidebar-splitter {
+    background: var(--gnome-sidebar-background) !important;
     border: 0 !important;
     border-right: none !important;
     width: 8px !important; /* Basically functions as padding-right for sidebar */
@@ -38,3 +35,18 @@
     /* Tabs were still interactive without the following */
     pointer-events: none;
 }
+
+#sidebar-box {
+    transition:
+        width 150ms,
+        min-width 150ms ease-out !important;
+    min-width: 150px;
+}
+
+/* it already hides, but for some reason it appears noticibly before the
+sidebar and it's animation, this makes their appearance sync. */
+#main-window:not([titlepreface*="​"]) #sidebar-box {
+    visibility: collapse;
+}
+
+/* #main-window:not([titlepreface*="​"])*/

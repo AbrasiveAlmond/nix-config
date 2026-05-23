@@ -1,46 +1,84 @@
 #root.root {
-    --bookmarks-bookmark-font: 0.85rem Adwaita Sans;
-}
-#root.root {
-    --bookmarks-folder-font: 0.9rem Adwaita Sans;
-}
-
-#root.root {
+    --frame-bg: var(--gnome-sidebar-background);
     --tabs-font: 0.85rem Adwaita Sans;
-}
-
-#root.root {
+    --toolbar-bg: var(--gnome-sidebar-background);
+    --bookmarks-bookmark-font: 0.85rem Adwaita Sans;
+    --bookmarks-folder-font: 0.9rem Adwaita Sans;
     --ntb-btn-height: 35px;
-}
-#root.root {
     --ntb-padding: 5px;
-}
 
-#root.root {
     --tabs-margin: 5px;
-}
-
-#root.root {
     --tabs-indent: 10px;
-}
-#root.root {
     --tabs-inner-gap: 10px;
-}
-
-#root.root {
-    --general-border-radius: 5px;
-}
-
-#root.root {
-    --tabs-lvl-opacity: 0.16;
-}
-
-#root.root {
     --tabs-height: 35px;
+    --tabs-lvl-opacity: 0.16;
+    --general-border-radius: 5px;
+    --nav-btn-margin: 3px;
+    --general-margin: 0px;
 }
 
-#root.root {
-    --nav-btn-margin: 3px;
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Colors */
+        --gnome-standalone-color-oklab: max(l, 0.85) a b;
+        --gnome-destructive-bg: var(--gnome-palette-red-4);
+        --gnome-success-bg: var(--gnome-palette-green-5);
+        --gnome-warning-bg: #cd9309;
+        --gnome-error-bg: var(--gnome-palette-red-4);
+
+        --gnome-toolbar-star-button: var(--gnome-palette-yellow-1);
+
+        /* Window */
+        --gnome-window-background: #222226;
+        --gnome-window-color: white;
+        --gnome-view-background: #1e1e1e;
+        --gnome-sidebar-background: #2e2e32;
+        --gnome-secondary-sidebar-background: #28282c;
+
+        /* Card */
+        --gnome-card-background: rgba(255, 255, 255, 0.08);
+        --gnome-card-shade-color: rgba(0, 0, 6, 0.36);
+
+        /* Menu */
+        --gnome-menu-background: #36363a;
+
+        /* Header bar */
+        --gnome-headerbar-background: #2e2e32;
+        --gnome-headerbar-shade-color: rgba(0, 0, 0, 0.9);
+
+        /* Tabs */
+        --gnome-tabbar-identity-color-blue: #81d0ff;
+        --gnome-tabbar-identity-color-green: var(--gnome-palette-green-1);
+        --gnome-tabbar-identity-color-yellow: var(--gnome-palette-yellow-2);
+        --gnome-tabbar-identity-color-orange: var(--gnome-palette-orange-3);
+        --gnome-tabbar-identity-color-red: var(--gnome-palette-red-1);
+        --gnome-tabbar-identity-color-purple: var(--gnome-palette-purple-1);
+
+        /* Miscellaneous */
+        --gnome-shade-color: rgba(0, 0, 6, 0.25);
+
+        /* Text color for Firefox Logo in new private tab */
+        --gnome-private-wordmark: #fbfbfe;
+        /* New private tab background */
+        --gnome-private-in-content-page-background: #222226;
+        /* Private browsing info box */
+        --gnome-private-text-primary-color: #fbfbfe;
+
+        /* Backdrop colors */
+        &:-moz-window-inactive {
+            --gnome-sidebar-background: #28282c;
+            --gnome-secondary-sidebar-background: #252529;
+        }
+
+        /* Private browsing colors */
+        &[privatebrowsingmode="temporary"] {
+            /* Headerbar */
+            --gnome-headerbar-background: #2e2540 !important;
+            &:-moz-window-inactive {
+                --gnome-headerbar-background: #241d34 !important;
+            }
+        }
+    }
 }
 
 .PinnedTabsBar {
@@ -51,64 +89,7 @@
 .PinnedTabsBar .tab-wrapper {
     flex-grow: 1;
 }
+
 .Tab[data-pin="true"] {
     width: 100%;
-}
-
-#root.root {
-    --general-margin: 0px;
-}
-
-@media (prefers-color-scheme: dark) {
-    #root.root {
-        --tabs-activated-fg: rgb(255, 255, 255);
-    }
-    #root.root {
-        --tabs-activated-bg: rgb(255, 255, 255, 0.08);
-    }
-    #root.root {
-        --toolbar-bg: rgb(46, 46, 50);
-    }
-
-    #root.root {
-        --toolbar-scrollbar-color: rgba(255, 255, 255, 0.275);
-    }
-    #root.root {
-        --toolbar-el-overlay-selected-border: #47cfff;
-    }
-
-    #root.root {
-        --tabs-normal-bg: rgb(46, 46, 50);
-    }
-    #root.root {
-        --tabs-normal-fg: rgb(255, 255, 255);
-    }
-
-    #root.root {
-        --tabs-progress-bg: rgba(255, 255, 255, 0.086);
-    }
-
-    #root.root {
-        --frame-bg: rgb(46, 46, 50);
-    }
-
-    /* Lighten text of unloaded tabs */
-    .Tab[data-discarded="true"] > .body > .t-box,
-    .Tab[data-discarded="true"] > .body > .ctx {
-        opacity: 0.7;
-    }
-
-    /* pinned sidebery tabs have variable width*/
-    #root.root {
-        --pinned-tabs-normal-bg: rgb(55, 55, 55);
-    }
-
-    /* Theming */
-    .Tab[data-pin="true"] .body {
-        background-color: var(--pinned-tabs-normal-bg);
-    }
-
-    .Tab[data-pin="true"][data-active="true"] .body {
-        background-color: var(--tabs-activated-bg);
-    }
 }
